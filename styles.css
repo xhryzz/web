@@ -1,0 +1,226 @@
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: url('https://images.unsplash.com/photo-1629194898512-b6b8697063ac?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; /* Cambia la URL por la de tu imagen de madera */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+header {
+    background: linear-gradient(90deg, #333, #555);
+    padding: 15px 0;
+}
+
+header nav ul {
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #00bfff;
+}
+
+section {
+    padding: 60px 0;
+}
+
+h1, h2 {
+    margin: 20px 0;
+    color: #ffffff;
+    background-color: rgba(51, 51, 51, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+p {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    font-size: 18px;
+}
+
+.centered {
+    text-align: center;
+}
+
+/* Botones */
+.grid-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #555;
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.8);
+}
+
+/* Imágenes */
+.main-logo, .profile-img {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    border-radius: 50%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Proyectos */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.project-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+.project-card img {
+    width: 100%;
+    height: 250px; /* Aumenta la altura */
+    object-fit: cover; /* Mantiene la proporción */
+    border-radius: 10px;
+}
+
+.project-card:hover {
+    transform: scale(1.03);
+}
+
+/* Estilos específicos de secciones */
+#donar, #contact { 
+    background-color: rgba(51, 51, 51, 0.7);
+    padding: 60px 0;
+    color: #ffffff;
+}
+
+a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #007acc;
+}
+
+/* Experiencias */
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.experience-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+.experience-card:hover {
+    transform: scale(1.05);
+}
+
+
+/* Estilo para la nieve */
+.snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background: url('https://example.com/path-to-your-snow-image.png') repeat top center; /* Cambia la URL por la de tu imagen de nieve */
+    opacity: 0.5; /* Ajusta la opacidad para suavizar el efecto */
+    animation: snowfall 10s linear infinite; /* Duración y velocidad de la caída */
+}
+
+@keyframes snowfall {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 0 100%; /* Ajusta el movimiento de la nieve */
+    }
+}
+
+/* Estilo para la nieve */
+.snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1; /* Asegúrate de que esté detrás de otros elementos */
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    width: 3px; /* Tamaño más pequeño */
+    height: 3px;
+    background: rgba(255, 255, 255, 0.5); /* Color y opacidad más suaves */
+    border-radius: 50%;
+    opacity: 0.4; /* Opacidad más baja */
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh); /* Caída completa */
+    }
+}
+

@@ -136,6 +136,24 @@ p {
     transform: scale(1.03);
 }
 
+
+
+/* Filtro en blanco y negro para las imágenes de proyectos */
+#proyectos .project-card img {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+#proyectos .project-card img:hover {
+    filter: grayscale(0%);
+}
+
+
+
+
+
+
+
 /* Estilos específicos de secciones */
 #donar, #contact { 
     background-color: rgba(51, 51, 51, 0.7);

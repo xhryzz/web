@@ -130,25 +130,14 @@ p {
     height: 250px; /* Aumenta la altura */
     object-fit: cover; /* Mantiene la proporción */
     border-radius: 10px;
-}
-
-.project-card:hover {
-    transform: scale(1.03);
-}
-
-
-
-/* Filtro en blanco y negro para las imágenes de proyectos */
-#proyectos .project-card img {
     filter: grayscale(100%);
     transition: filter 0.3s ease;
 }
 
-#proyectos .project-card img:hover {
+.project-card:hover {
+    transform: scale(1.03);
     filter: grayscale(0%);
 }
-
-
 
 
 

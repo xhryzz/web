@@ -36,6 +36,92 @@
             </div>
         </div>
     </section>
+
+
+<!-- Contenedor de música -->
+
+<div class="music-player">
+    <audio id="background-music" loop>
+        <source id="audio-source" src="https://s19.aconvert.com/convert/p3r68-cdx67/pplbb-f46ei.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
+    </audio>
+    <button id="play-pause" class="btn btn-secondary">▶</button>
+    <button id="prev-song" class="btn btn-secondary">◁</button>
+    <button id="next-song" class="btn btn-secondary">▷</button>
+    <input id="volume-control" type="range" min="0" max="1" step="0.1" value="0.5">
+</div>
+
+
+<script>
+    const songs = [
+        'https://s19.aconvert.com/convert/p3r68-cdx67/pplbb-f46ei.mp3',
+        'https://s31.aconvert.com/convert/p3r68-cdx67/c4eex-3jv0f.mp3',  // Añade más URLs de canciones aquí
+        'https://s21.aconvert.com/convert/p3r68-cdx67/yyg3d-lejuq.mp3',
+        
+
+
+        'https://s21.aconvert.com/convert/p3r68-cdx67/yyg3d-lejuq.mp3',
+        'https://s21.aconvert.com/convert/p3r68-cdx67/yyg3d-lejuq.mp3',
+        'https://s21.aconvert.com/convert/p3r68-cdx67/yyg3d-lejuq.mp3',
+        
+        
+        
+         ];
+
+    let currentSongIndex = 0;
+    const music = document.getElementById('background-music');
+    const playPauseButton = document.getElementById('play-pause');
+    const volumeControl = document.getElementById('volume-control');
+    const nextSongButton = document.getElementById('next-song');
+    const prevSongButton = document.getElementById('prev-song');
+
+    // Configurar volumen inicial bajo
+    music.volume = 0.2;
+    volumeControl.value = 0.2;  // Sincronizar el control de volumen con el valor inicial
+
+
+
+    // Actualizar la fuente de la música
+    function loadSong(index) {
+        music.src = songs[index];
+        music.play();
+        playPauseButton.textContent = '||';
+    }
+
+
+
+    // Play/Pause toggle
+    playPauseButton.addEventListener('click', function() {
+        if (music.paused) {
+            music.play();
+            playPauseButton.textContent = '||';
+        } else {
+            music.pause();
+            playPauseButton.textContent = '▶';
+        }
+    });
+
+    // Control de volumen
+    volumeControl.addEventListener('input', function() {
+        music.volume = volumeControl.value;
+    });
+
+    // Siguiente canción
+    nextSongButton.addEventListener('click', function() {
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        loadSong(currentSongIndex);
+    });
+
+    // Canción anterior
+    prevSongButton.addEventListener('click', function() {
+        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        loadSong(currentSongIndex);
+    });
+
+    // Cargar la primera canción al iniciar
+    loadSong(currentSongIndex);
+</script>
+
     
        <section id="experiencias" class="centered">
         <h2>Experiencias y Estudios</h2>

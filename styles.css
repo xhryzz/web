@@ -264,3 +264,93 @@ a:hover {
 }
 
 
+
+
+
+/* Estilo para el reproductor de música */
+.music-player {
+    position: absolute; /* Cambiado a 'absolute' para que no sea fijo */
+    top: 70px; /* Moverlo a la parte superior */
+    left :10px; /* Moverlo a la parte izquierda */
+    background-color: rgba(51, 51, 51, 0.7); /* Fondo oscuro semitransparente */
+    padding: 3px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+.music-player button,
+.music-player input {
+    margin-left: 10px;
+}
+
+.music-player button {
+    background-color: rgba(255, 255, 255, 0.2); /* Color principal del botón */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.music-player button:hover {
+    background-color: rgba(255, 255, 255, 0.521); /* Color más oscuro al pasar el ratón */
+}
+
+.music-player input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 5px;
+    background: #fff; /* Color blanco para el control de volumen */
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.music-player input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(82, 82, 82, 0.87); /* Color del control del volumen */
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.music-player input[type="range"]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+
+
+.song-title {
+    margin-top: 5px; /* Espacio entre el reproductor y el título */
+    font-size: 16px; /* Tamaño de la fuente del título */
+    color: #ffffff; /* Color del texto del título */
+    text-align: center; /* Centra el texto */
+    padding: 5px; /* Espaciado interno opcional */
+}
+
+
+
+.music-player {
+    display: flex;
+    flex-direction: column; /* Asegúrate de que los elementos estén en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    background-color: #333; /* Color de fondo del reproductor */
+    padding: 10px; /* Espaciado interno del reproductor */
+    border-radius: 8px; /* Bordes redondeados opcionales */
+}
+
+
+

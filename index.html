@@ -43,14 +43,91 @@
             <source src="https://s19.aconvert.com/convert/p3r68-cdx67/pplbb-f46ei.mp3" type="audio/mpeg">
             Tu navegador no soporta la reproducción de audio.
         </audio>
-        <button id="play-pause" class="btn btn-secondary">Play</button>
-        <input id="volume-control" type="range" min="0" max="1" step="0.1" value="0.5">
-        <br>
-        <button id="prev-song" class="btn btn-secondary">◁</button>
-        <button id="next-song" class="btn btn-secondary">▷</button>
-        <div id="song-title" class="song-title">Título de la canción aquí</div>
-    </div>
+        <h3>My Playlist</h3>
+        
+        <div class="controls">
+            <button id="play-pause" class="btn"><i class="fas fa-play"></i>Play</button>
+            <input id="volume-control" type="range" min="0" max="1" step="0.1" value="0.5">
+            <div class="song-navigation">
+                <button id="prev-song" class="btn"><i class="fas fa-backward"></i> Anterior</button>
+                <button id="next-song" class="btn"><i class="fas fa-forward"></i> Siguiente</button>
+            </div>
+        </div>
+        
+        
+        <div id="song-title" class="song-title">30GP - Jc Reyes</div>
     
+        <!-- Canvas para el visualizador de audio -->
+        <canvas id="audio-visualizer" width="500" height="100"></canvas>
+    
+        <!-- Enlace y logo de Spotify -->
+        <div class="spotify-link">
+            <a href="https://open.spotify.com/playlist/7kQQUiH8pufAvNEa5PRIC0?si=6f8a8fa8cdd34dc5" target="_blank">
+                <img src="./canciones/spotify-white-icon.png" alt="Spotify Logo" class="spotify-logo">
+
+            </a>
+
+        </div>
+    </div>
+
+    <style>
+
+        
+       
+        
+        .controls .btn:hover {
+            background-color: #555;
+        }
+        
+        .song-navigation {
+            display: flex;
+            gap: 10px;
+        }
+        
+        #volume-control {
+            width: 100px;
+            margin-left: 20px;
+        }
+        
+        #song-title {
+            margin-top: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        canvas {
+            margin: 20px 0;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .spotify-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .spotify-link a img {
+            width: 40px;
+            transition: transform 0.3s ease;
+        }
+        
+        .spotify-link a img:hover {
+            transform: scale(1.1);
+        }
+        
+        .spotify-link p {
+            margin: 0;
+            font-size: 1rem;
+        }
+        </style>
+    
+    <br>
+
+    <br>
+
 
     <!-- Resto de las secciones aquí... -->
 
@@ -258,52 +335,35 @@
     </section>
 
     <script>
-         const songs = [
+        const songs = [
             {
                 url: './canciones/Boujee.mp3',
                 title: 'Boujee - Krillz'
             },
-
-
             {
                 url: './canciones/otravez.mp3',
                 title: 'Otra Vez - B10'
             },
-
-
-
             {
                 url: './canciones/30gp.mp3',
                 title: '30GP - Jc Reyes'
             },
-
-
             {
                 url: './canciones/3AM.mp3',
-                title: '3AM - Eladio Carrión' 
+                title: '3AM - Eladio Carrión'
             },
-
-
             {
                 url: './canciones/4AM.mp3',
                 title: '4AM - Anuel AA'
             },
-            
             {
                 url: './canciones/unratitomas.mp3',
                 title: 'Un Ratio Más - Bryant Myers'
             },
-
-
             {
                 url: './canciones/airdrop.mp3',
                 title: 'Air Drop - Bryant Myers'
-            },
-
-            
-
-
-            // Añade más canciones aquí
+            }
         ];
 
         let currentSongIndex = 0;
@@ -318,7 +378,6 @@
         let shuffledSongs = [...songs];
         shuffleArray(shuffledSongs);
 
-        // Función para mezclar un array
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -326,24 +385,23 @@
             }
         }
 
-        // Configurar volumen inicial
-        music.volume = 0.2;
-        volumeControl.value = 0.2;
+        music.volume = 0.5;  // Volumen inicial
+        volumeControl.addEventListener('input', (e) => {
+            music.volume = e.target.value;
+        });
 
-        // Cargar la canción actual
         function loadSong(index) {
             music.src = shuffledSongs[index].url;
-            songTitle.textContent = shuffledSongs[index].title; // Actualiza el título de la canción
-            music.play();  // Reproducir la canción cuando se carga
-            playPauseButton.textContent = "P";  // Cambiar el texto a "Pause"
+            songTitle.textContent = shuffledSongs[index].title;
+            music.play();
+            playPauseButton.textContent = "Play";
         }
 
-        // Cambiar a la siguiente canción
         nextSongButton.addEventListener('click', () => {
             currentSongIndex++;
             if (currentSongIndex >= shuffledSongs.length) {
-                currentSongIndex = 0; // Reiniciar al principio
-                shuffleArray(shuffledSongs); // Mezclar nuevamente
+                currentSongIndex = 0;
+                shuffleArray(shuffledSongs);
             }
             loadSong(currentSongIndex);
         });
@@ -351,29 +409,61 @@
         prevSongButton.addEventListener('click', () => {
             currentSongIndex--;
             if (currentSongIndex < 0) {
-                currentSongIndex = shuffledSongs.length - 1; // Volver a la última canción
+                currentSongIndex = shuffledSongs.length - 1;
             }
             loadSong(currentSongIndex);
         });
 
+        const canvas = document.getElementById('audio-visualizer');
+        const canvasCtx = canvas.getContext('2d');
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const audioElement = document.getElementById('background-music');
+        const audioSource = audioCtx.createMediaElementSource(audioElement);
+
+        const analyser = audioCtx.createAnalyser();
+        audioSource.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        analyser.fftSize = 256;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        function drawVisualizer() {
+            requestAnimationFrame(drawVisualizer);
+            analyser.getByteFrequencyData(dataArray);
+
+            canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const barWidth = (canvas.width / bufferLength) * 2.5;
+            let barHeight;
+            let x = 0;
+
+            for (let i = 0; i < bufferLength; i++) {
+                barHeight = dataArray[i] / 2;  // Ajusta la altura de las barras
+
+                canvasCtx.fillStyle = '#FFFFFF';  // Cambia el color a blanco
+                canvasCtx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+                x += barWidth + 1;
+            }
+        }
+
         playPauseButton.addEventListener('click', () => {
-            if (music.paused) {
-                music.play();
-                playPauseButton.textContent = "P";
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            if (audioElement.paused) {
+                audioElement.play();
+                playPauseButton.textContent = "Play";
             } else {
-                music.pause();
-                playPauseButton.textContent = "R";
+                audioElement.pause();
+                playPauseButton.textContent = "Resume";
             }
         });
 
-        // Control de volumen
-        volumeControl.addEventListener('input', (e) => {
-            music.volume = e.target.value;  // Ajustar el volumen según el control
-        });
-
-        // Cargar la primera canción al cargar la página
         window.onload = () => {
-            loadSong(currentSongIndex);  // Cargar y reproducir la canción actual
+            loadSong(currentSongIndex);
+            drawVisualizer();
         };
     </script>
 </body>

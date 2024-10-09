@@ -51,8 +51,17 @@ section {
     padding: 60px 0;
 }
 
-h1, h2 {
-    margin: 20px 0;
+h1 {
+    margin: 10px 0;
+    color: #ffffff;
+
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+h2 {
+    margin: 10px 0;
     color: #ffffff;
     background-color: rgba(51, 51, 51, 0.7);
     padding: 10px;
@@ -270,8 +279,8 @@ a:hover {
 /* Estilo para el reproductor de música */
 .music-player {
     position: absolute; /* Cambiado a 'absolute' para que no sea fijo */
-    top: 70px; /* Moverlo a la parte superior */
-    left :10px; /* Moverlo a la parte izquierda */
+    top: 90px; /* Moverlo a la parte superior */
+    left :40px; /* Moverlo a la parte izquierda */
     background-color: rgba(51, 51, 51, 0.7); /* Fondo oscuro semitransparente */
     padding: 3px;
     border-radius: 10px;
@@ -352,5 +361,15 @@ a:hover {
     border-radius: 8px; /* Bordes redondeados opcionales */
 }
 
+
+
+
+#audio-visualizer {
+    width: 100%;  /* Asegúrate de que ocupe el espacio disponible */
+    height: 100px;  /* Ajusta esta altura según sea necesario */
+    background-color: rgba(0, 0, 0, 0.2); /* Color de fondo para verlo mejor */
+    display: block;  /* Asegúrate de que esté visible */
+    border-radius: 5px;  /* Opcional */
+}
 
 

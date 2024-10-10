@@ -44,7 +44,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-    color: #00bfff;
+    color: #707070;
 }
 
 section {
@@ -165,12 +165,12 @@ p {
 }
 
 a {
-    color: #00bfff;
+    color: #707070;
     text-decoration: none;
 }
 
 a:hover {
-    color: #007acc;
+    color: #707070;
 }
 
 /* Experiencias */

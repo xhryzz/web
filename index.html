@@ -346,159 +346,25 @@
         </div>
     </section>
 
+
+
     <script>
-        const songs = [
-            {
-                url: './canciones/Boujee.mp3',
-                title: 'Boujee - Krillz'
-            },
-            {
-                url: './canciones/otravez.mp3',
-                title: 'Otra Vez - B10'
-            },
-            {
-                url: './canciones/30gp.mp3',
-                title: '30GP - Jc Reyes'
-            },
-            {
-                url: './canciones/3AM.mp3',
-                title: '3AM - Eladio Carrión'
-            },
-            {
-                url: './canciones/4AM.mp3',
-                title: '4AM - Anuel AA'
-            },
-            {
-                url: './canciones/unratitomas.mp3',
-                title: 'Un Ratio Más - Bryant Myers'
-            },
-            {
-                url: './canciones/airdrop.mp3',
-                title: 'Air Drop - Bryant Myers'
+        document.addEventListener('DOMContentLoaded', function () {
+            const snowContainer = document.querySelector('.snow');
+            const numFlakes = 100; // Número de copos de nieve
+    
+            for (let i = 0; i < numFlakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's'; // Velocidad de caída aleatoria
+                snowflake.style.opacity = Math.random() + 0.3; // Opacidad aleatoria
+                snowflake.style.transform = `scale(${Math.random()})`; // Tamaño aleatorio
+                snowflake.style.animationDelay = Math.random() * 5 + 's'; // Diferente tiempo de inicio de animación
+                snowContainer.appendChild(snowflake);
             }
-        ];
-
-        let currentSongIndex = 0;
-        const music = document.getElementById('background-music');
-        const playPauseButton = document.getElementById('play-pause');
-        const nextSongButton = document.getElementById('next-song');
-        const prevSongButton = document.getElementById('prev-song');
-        const songTitle = document.getElementById('song-title');
-
-
-        // Establece el volumen inicial
-music.volume = volumeControl.value; 
-
-// Cambia el volumen al mover el slider
-volumeControl.addEventListener('input', function() {
-    music.volume = this.value;
-});
-
-        // Mezclar las canciones
-        let shuffledSongs = [...songs];
-        shuffleArray(shuffledSongs);
-
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        music.volume = 0.5;  // Volumen inicial
-        volumeControl.addEventListener('input', (e) => {
-            music.volume = e.target.value;
-        });
-
-        function loadSong(index) {
-            music.src = shuffledSongs[index].url;
-            songTitle.textContent = shuffledSongs[index].title;
-            music.play();
-            playPauseButton.textContent = "Play";
-        }
-
-        nextSongButton.addEventListener('click', () => {
-            currentSongIndex++;
-            if (currentSongIndex >= shuffledSongs.length) {
-                currentSongIndex = 0;
-                shuffleArray(shuffledSongs);
-            }
-            loadSong(currentSongIndex);
-        });
-
-        prevSongButton.addEventListener('click', () => {
-            currentSongIndex--;
-            if (currentSongIndex < 0) {
-                currentSongIndex = shuffledSongs.length - 1;
-            }
-            loadSong(currentSongIndex);
-        });
-
-        const canvas = document.getElementById('audio-visualizer');
-        const canvasCtx = canvas.getContext('2d');
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const audioElement = document.getElementById('background-music');
-        const audioSource = audioCtx.createMediaElementSource(audioElement);
-
-        const analyser = audioCtx.createAnalyser();
-        audioSource.connect(analyser);
-        analyser.connect(audioCtx.destination);
-        analyser.fftSize = 256;
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
-
-        function drawVisualizer() {
-            requestAnimationFrame(drawVisualizer);
-            analyser.getByteFrequencyData(dataArray);
-
-            canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
-
-            const barWidth = (canvas.width / bufferLength) * 2.5;
-            let barHeight;
-            let x = 0;
-
-            for (let i = 0; i < bufferLength; i++) {
-                barHeight = dataArray[i] / 2;  // Ajusta la altura de las barras
-
-                canvasCtx.fillStyle = '#FFFFFF';  // Cambia el color a blanco
-                canvasCtx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-
-                x += barWidth + 1;
-            }
-        }
-
-        playPauseButton.addEventListener('click', () => {
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-
-            if (audioElement.paused) {
-                audioElement.play();
-                playPauseButton.textContent = "Pause";
-            } else {
-                audioElement.pause();
-                playPauseButton.textContent = "Play";
-            }
-        });
-
-        window.onload = () => {
-            loadSong(currentSongIndex);
-            drawVisualizer();
-        };
-
-
-          // Inicializar el control de volumen
-          const volumeControl = document.getElementById('volume-control');
-        const spotifyIframe = document.querySelector('.spotify-playlist iframe');
-
-        // Establecer el volumen inicial
-        volumeControl.addEventListener('input', function() {
-            const volume = this.value;
-            // Cambiar el volumen de la música
-            spotifyIframe.style.opacity = volume; // Cambiar la opacidad como efecto visual
-            // Notificar al usuario sobre el volumen actual
-            sweetAlert("Volumen Ajustado", "El volumen se ha cambiado a: " + Math.round(volume * 100) + "%", "success");
         });
     </script>
+
 </body>
 </html>

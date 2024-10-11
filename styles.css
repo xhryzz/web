@@ -44,7 +44,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-    color: #707070;
+    color: #00bfff;
 }
 
 section {
@@ -165,12 +165,12 @@ p {
 }
 
 a {
-    color: #707070;
+    color: #00bfff;
     text-decoration: none;
 }
 
 a:hover {
-    color: #707070;
+    color: #007acc;
 }
 
 /* Experiencias */
@@ -273,51 +273,49 @@ a:hover {
 }
 
 
+
+
+
 /* Estilo para el reproductor de música */
 .music-player {
-    position: absolute; /* Mantener como absoluto */
-    top: 90px; /* Mantener posición */
-    left: 40px; /* Mantener posición */
-    background-color: rgba(51, 51, 51, 0.7); /* Fondo más oscuro para mayor contraste */
-    padding: 15px; /* Mayor padding para espaciar elementos */
-    border-radius: 15px; /* Bordes más redondeados */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    position: absolute; /* Cambiado a 'absolute' para que no sea fijo */
+    top: 90px; /* Moverlo a la parte superior */
+    left :40px; /* Moverlo a la parte izquierda */
+    background-color: rgba(51, 51, 51, 0.7); /* Fondo oscuro semitransparente */
+    padding: 3px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
-    flex-direction: column;
     align-items: center;
     z-index: 1000;
-    width: 320px; /* Ancho ligeramente aumentado */
 }
 
-/* Estilo para botones e inputs */
 .music-player button,
 .music-player input {
     margin-left: 10px;
 }
 
 .music-player button {
-    background-color: rgba(255, 105, 180, 0.8); /* Color principal vibrante */
+    background-color: rgba(255, 255, 255, 0.2); /* Color principal del botón */
     border: none;
     color: white;
-    padding: 10px 20px; /* Mayor padding para botones */
-    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px 15px;
+    border-radius: 5px;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s; /* Agregada transición de transform */
+    transition: background-color 0.3s;
 }
 
 .music-player button:hover {
-    background-color: rgba(255, 105, 180, 1); /* Color más brillante al pasar el ratón */
-    transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+    background-color: rgba(255, 255, 255, 0.521); /* Color más oscuro al pasar el ratón */
 }
 
-/* Estilo del rango de volumen */
 .music-player input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
-    width: 100px; /* Mantener ancho */
-    height: 8px; /* Aumentar altura */
-    background: #555; /* Fondo del rango más oscuro */
+    width: 100px;
+    height: 5px;
+    background: #fff; /* Color blanco para el control de volumen */
     border-radius: 5px;
     outline: none;
     transition: background 0.3s;
@@ -326,64 +324,112 @@ a:hover {
 .music-player input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 20px; /* Aumentar tamaño del pulgar */
-    height: 20px; /* Aumentar tamaño del pulgar */
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    background: rgb(255, 255, 255); /* Color del pulgar más vibrante */
+    background: rgba(82, 82, 82, 0.87); /* Color del control del volumen */
     cursor: pointer;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
 .music-player input[type="range"]::-moz-range-thumb {
-    width: 20px; /* Aumentar tamaño del pulgar */
-    height: 20px; /* Aumentar tamaño del pulgar */
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    background: rgb(255, 255, 255); /* Color del pulgar más vibrante */
+    background: rgba(255, 255, 255, 0.2);
     cursor: pointer;
 }
 
-/* Estilo para el título de la canción */
+
+
 .song-title {
-    color: white; /* Texto blanco para mayor contraste */
-    font-size: 16px; /* Tamaño del texto del título */
-    margin-bottom: 10px; /* Espaciado inferior */
+    margin-top: 5px; /* Espacio entre el reproductor y el título */
+    font-size: 16px; /* Tamaño de la fuente del título */
+    color: #ffffff; /* Color del texto del título */
+    text-align: center; /* Centra el texto */
+    padding: 5px; /* Espaciado interno opcional */
 }
 
-/* Consultas para diferentes tamaños de pantalla */
-@media (max-width: 768px) {
-    .music-player {
-        width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
-        left: 0; /* Ajusta posición */
-        top: 70px; /* Ajusta margen superior */
-        padding: 10px; /* Ajusta padding */
-    }
 
-    .music-player input[type="range"] {
-        width: 80px; /* Reduce ancho del control de rango */
-    }
 
-    .song-title {
-        font-size: 14px; /* Ajusta tamaño del texto del título */
-    }
+.music-player {
+    display: flex;
+    flex-direction: column; /* Asegúrate de que los elementos estén en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    background-color: #333; /* Color de fondo del reproductor */
+    padding: 10px; /* Espaciado interno del reproductor */
+    border-radius: 8px; /* Bordes redondeados opcionales */
 }
 
+
+
+
+#audio-visualizer {
+    width: 100%;  /* Asegúrate de que ocupe el espacio disponible */
+    height: 100px;  /* Ajusta esta altura según sea necesario */
+    background-color: rgba(0, 0, 0, 0.2); /* Color de fondo para verlo mejor */
+    display: block;  /* Asegúrate de que esté visible */
+    border-radius: 5px;  /* Opcional */
+}
+
+
+
+
+/* Para pantallas más pequeñas aún */
 @media (max-width: 480px) {
-    .music-player {
-        width: 100%; /* Mantener ancho en pantallas muy pequeñas */
-        left: 0; /* Ajusta posición */
-        top: 50px; /* Ajusta margen superior */
-        padding: 5px; /* Ajusta padding */
+    .btn {
+        font-size: 12px;
+        padding: 8px 12px;
     }
 
-    .music-player button {
-        padding: 8px 12px; /* Reduce tamaño de botones */
+    .main-logo, .profile-img {
+        width: 100px;
+        height: 100px;
     }
 
-    .music-player input[type="range"] {
-        width: 60px; /* Reduce aún más el control de volumen */
+    .project-card img {
+        height: 150px;
     }
 
-    .song-title {
-        font-size: 12px; /* Ajusta tamaño del texto del título */
+    h1, h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .large-card {
+        padding: 20px;
+    }
+}
+
+/* Estilo para la nieve */
+.snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Cambiado para que la nieve cubra toda la pantalla */
+    pointer-events: none;
+    z-index: 1; /* Asegúrate de que esté detrás de otros elementos */
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px; /* Parte superior de la pantalla */
+    width: 5px; /* Tamaño más pequeño */
+    height: 5px; /* Tamaño más pequeño */
+    background: rgba(255, 255, 255, 0.5); /* Color y opacidad más suaves */
+    border-radius: 50%;
+    opacity: 0.3; /* Opacidad más baja */
+    filter: blur(1px);
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh); /* Caída completa hasta la parte inferior */
     }
 }

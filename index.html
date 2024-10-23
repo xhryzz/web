@@ -35,9 +35,9 @@
             </div>
         </div>
     </section>
-
     <div class="music-player">
         <h3>My Playlist</h3>
+        <div class="underline"></div>
         
         <!-- Spotify Playlist Embed -->
         <div class="spotify-playlist">
@@ -57,84 +57,86 @@
                 <img src="./canciones/spotify-white-icon.png" alt="Spotify Logo" class="spotify-logo">
             </a>
         </div>
-
     </div>
-        
- 
-
-
     
     <br><br><br><br>
-
+    
     <style>
-
-        
-       
-        
-        .controls .btn:hover {
-            background-color: #555;
+        /* Animación del container */
+        .music-player {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards, neonGlowOuter 1.5s forwards; /* Efecto de neón exterior */
+            transition: all 0.3s ease-in-out;
+            border-radius: 10px; /* Agrega un borde redondeado */
+            padding: 20px; /* Espacio interno */
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0), 0 0 0 rgba(255, 255, 255, 0); /* Sin sombra inicialmente */
         }
-        
-        .song-navigation {
-            display: flex;
-            gap: 10px;
+    
+        /* Animación de fade-in para el contenedor */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        #volume-control {
-            width: 100px;
-            margin-left: 20px;
+    
+        /* Animación del efecto de neón exterior */
+        @keyframes neonGlowOuter {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
         }
-        
-        #song-title {
-            margin-top: 15px;
-            font-size: 1.1em;
-            font-weight: bold;
-        }
-        
-        canvas {
-            margin: 20px 0;
+    
+        /* Estilos del iframe */
+        .spotify-playlist iframe {
+            width: 100%;
             border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.1);
+            opacity: 0; /* Sin opacidad inicialmente */
+            animation: fadeInUp 1s forwards, neonGlowInner 1.5s forwards; /* Efecto de neón interior */
+            box-shadow: 0 0 0 rgba(0, 255, 0, 0), 0 0 0 rgba(0, 255, 0, 0); /* Sin sombra inicialmente */
+            transition: transform 0.3s ease-in-out;
         }
-        
+    
+        /* Animación del efecto de neón interior */
+        @keyframes neonGlowInner {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(99, 99, 99, 0.3); /* Color verde neón */
+            }
+            50% {
+                box-shadow: 0 0 20px rgb(78, 78, 78), 0 0 30px rgba(78, 78, 78, 0.6);
+            }
+        }
+    
+        .spotify-playlist iframe:hover {
+            transform: scale(1.02);
+        }
+    
+        /* Enlace del logo de Spotify */
         .spotify-link {
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 10px;
+            align-items: center;
             margin-top: 20px;
         }
-        
-        .spotify-link a img {
-            width: 40px;
+    
+        /* Logo de Spotify con animación */
+        .spotify-logo {
+            width: 50px;
             transition: transform 0.3s ease;
         }
-        
-        .spotify-link a img:hover {
-            transform: scale(1.1);
+    
+        .spotify-logo:hover {
+            transform: rotate(10deg) scale(1.1);
         }
-        
-        .spotify-link p {
-            margin: 0;
-            font-size: 1rem;
-        }
-
-        .controls {
-    display: flex;
-    flex-direction: column; /* Cambia a columna para apilar elementos verticalmente */
-    align-items: center; /* Centra los elementos horizontalmente */
-    margin-top: 20px; /* Espacio superior */
-}
-
-#volume-control {
-    width: 80%; /* O el tamaño que prefieras */
-    margin-top: 10px; /* Espacio entre el logo y el control de volumen */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el slider */
-}
-
-
-
-        </style>
+    </style>
     
     <br>
 

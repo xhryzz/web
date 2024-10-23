@@ -8,7 +8,49 @@ body {
     line-height: 1.6;
     background: url('https://images.unsplash.com/photo-1629194898512-b6b8697063ac?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; /* Cambia la URL por la de tu imagen de madera */
     background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    animation: fadeIn 1s ease-in; /* Efecto fade-in */
 }
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Efecto slide-in */
+@keyframes slideIn {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Aplicar el efecto a los encabezados y párrafos */
+h1, h2, p {
+    animation: slideIn 0.5s ease forwards; /* Cambia el tiempo según tu preferencia */
+    opacity: 0; /* Inicialmente oculto */
+}
+
+/* Añadir un retraso para cada elemento */
+h1 {
+    animation-delay: 0.2s;
+}
+h2 {
+    animation-delay: 0.4s;
+}
+p {
+    animation-delay: 0.6s;
+}
+
+/* Resto de tu CSS... */
+
 
 .container {
     max-width: 1200px;
@@ -431,5 +473,17 @@ a:hover {
 @keyframes fall {
     to {
         transform: translateY(100vh); /* Caída completa hasta la parte inferior */
+    }
+}
+
+
+
+/* Efecto fade-in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

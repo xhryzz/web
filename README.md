@@ -16,5 +16,5 @@ Puedes visitar mi página web aquí: [web](https://xhryzz.github.io/web/)
 
 Si quieres contactarme, puedes hacerlo a través de:
 
-- Discord: [Discord](discord://-/users/637698552360861696)
+- Instagram: [Link](https://www.instagram.com/chriismartinezz/)
 

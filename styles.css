@@ -487,3 +487,36 @@ a:hover {
         opacity: 1;
     }
 }
+
+
+   /* Estilo para SweetAlert personalizado */
+   .custom-swal {
+    background-color: #333 !important; /* Fondo oscuro */
+    color: #FFFFFF !important; /* Color de texto blanco */
+}
+
+/* Asegúrate de que el texto y los elementos de entrada sean blancos */
+.custom-swal h1,
+.custom-swal h2,
+.custom-swal p,
+.custom-swal span {
+    color: #FFFFFF !important; /* Asegura que el texto del título y párrafos sea blanco */
+}
+
+.custom-swal input {
+    background-color: #555; /* Fondo del input oscuro */
+    color: #FFFFFF; /* Color del texto en el input blanco */
+    border: 1px solid #777; /* Borde del input más claro */
+    border-radius: 5px; /* Bordes redondeados del input */
+    padding: 10px; /* Espaciado interno del input */
+}
+
+.custom-swal .swal-button {
+    background-color: #666; /* Fondo de los botones */
+    color: white; /* Color de texto de los botones */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.custom-swal .swal-button:hover {
+    background-color: #888; /* Fondo al pasar el ratón */
+}

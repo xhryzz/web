@@ -9,6 +9,7 @@
     <script src="sweetalert.min.js"></script>
     <script src="jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -350,6 +351,101 @@
             }
         });
     </script>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    // Función para obtener la última vez que se jugó
+    function getLastPlayed() {
+        return localStorage.getItem('lastPlayed');
+    }
+
+    // Función para establecer la última vez que se jugó
+    function setLastPlayed() {
+        localStorage.setItem('lastPlayed', new Date().getTime());
+    }
+
+    // Función para comprobar si han pasado 24 horas
+    function canPlay() {
+        const lastPlayed = getLastPlayed();
+        if (!lastPlayed) return true; // Si nunca se ha jugado, se puede jugar
+
+        const now = new Date().getTime();
+        const twentyFourHours = 24 * 60 * 60 * 1000; // 24 horas en milisegundos
+        return (now - lastPlayed) > twentyFourHours;
+    }
+
+    document.addEventListener('keydown', function (event) {
+        if (event.ctrlKey && event.shiftKey && event.key === 'X') {
+            if (!canPlay()) {
+                const lastPlayed = new Date(parseInt(getLastPlayed()));
+                const timeLeft = (24 * 60 * 60 * 1000) - (new Date().getTime() - lastPlayed.getTime());
+                const hoursLeft = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
+                const minutesLeft = Math.floor((timeLeft / (1000 * 60)) % 60);
+                swal({
+                    title: "¡Espera!",
+                    text: `Puedes jugar al Easter Egg nuevamente en ${hoursLeft} horas y ${minutesLeft} minutos.`,
+                    icon: "warning",
+                    className: "custom-swal"
+                });
+                return; // Detener si no se puede jugar
+            }
+
+            const secretNumber = Math.floor(Math.random() * 10) + 1; // Número secreto entre 1 y 10
+
+            // Personalizar SweetAlert
+            swal({
+                title: "¡Easter Egg Activado!",
+                text: "Adivina el número secreto (1 al 10):",
+                content: {
+                    element: "input",
+                    attributes: {
+                        placeholder: "Introduce un número (1 al 10)",
+                        type: "number",
+                        min: "1",
+                        max: "10",
+                    },
+                },
+                buttons: ["Cancelar", "Enviar"],
+                className: "custom-swal" // Clase personalizada para el estilo
+            }).then((value) => {
+                if (value !== null) {
+                    const userGuess = parseInt(value);
+                    setLastPlayed(); // Actualizar la última vez que se jugó
+
+                    if (userGuess === secretNumber) {
+                        swal({
+                            title: "¡Correcto!",
+                            text: "Has acertado el número secreto. Aquí está tu recompensa:",
+                            icon: "success",
+                            buttons: {
+                                link: {
+                                    text: "Reclamar Recompensa",
+                                    value: "link",
+                                },
+                            },
+                            className: "custom-swal" // Clase personalizada para el estilo
+                        }).then((value) => {
+                            if (value === "link") {
+                                window.open("https://discord.gg/ZcjsZegUww", "_blank");
+                            }
+                        });
+                    } else {
+                        swal({
+                            title: "¡Incorrecto!",
+                            text: `El número secreto era ${secretNumber}. Inténtalo de nuevo presionando Ctrl + Shift + X.`,
+                            icon: "error",
+                            className: "custom-swal" // Clase personalizada para el estilo
+                        });
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+
 
 </body>
 </html>

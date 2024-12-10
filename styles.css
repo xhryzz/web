@@ -200,7 +200,7 @@ p {
 }
 
 /* Estilos específicos de secciones */
-#donar, #contact { 
+#donar, #contact, #easter { 
     background-color: rgba(51, 51, 51, 0.7);
     padding: 60px 0;
     color: #ffffff;
@@ -519,4 +519,13 @@ a:hover {
 
 .custom-swal .swal-button:hover {
     background-color: #888; /* Fondo al pasar el ratón */
+}
+
+
+/* Estilo del texto de easter egg */
+.easter-egg {
+    margin-top: 70px; /* Espaciado superior */
+    font-style: italic; /* Estilo de texto en cursiva */
+    color: #555; /* Color más claro */
+    font-size: 15px;
 }

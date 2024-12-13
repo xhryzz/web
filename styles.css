@@ -58,36 +58,84 @@ p {
     padding: 0 20px;
     text-align: center;
 }
-
+/* Estilo general para el header */
 header {
-    background: linear-gradient(90deg, #333, #555);
-    padding: 15px 0;
+    background: linear-gradient(90deg, #333, #555); /* Fondo con los colores originales */
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
+/* Estilos para el menú de navegación */
 header nav ul {
     list-style: none;
-    text-align: center;
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
+/* Estilos para los items del menú */
 header nav ul li {
     display: inline-block;
     margin: 0 15px;
+    position: relative;
 }
 
+/* Estilos de los enlaces */
 header nav ul li a {
     color: white;
     text-decoration: none;
-    padding: 10px;
     font-size: 18px;
-    font-weight: 600;
-    transition: color 0.3s;
+    font-weight: 500; /* Peso de fuente más ligero */
+    padding: 8px;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
 }
 
+/* Efecto hover más moderno */
 header nav ul li a:hover {
-    color: #5e5e5e;
+    color: #ccc;  /* Gris claro al hacer hover */
+    transform: translateY(-3px);  /* Efecto de desplazamiento hacia arriba */
 }
+
+/* Subrayado animado */
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #ccc;  /* Subrayado gris claro */
+    bottom: 0;
+    left: 50%;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+header nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Estilo para dispositivos móviles */
+@media (max-width: 768px) {
+    header nav ul {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    header nav ul li {
+        margin: 10px 0;
+    }
+
+    header nav ul li a {
+        font-size: 18px;
+        padding: 12px;
+    }
+}
+
 
 section {
     padding: 60px 0;
@@ -200,7 +248,7 @@ p {
 }
 
 /* Estilos específicos de secciones */
-#donar, #contact, #easter { 
+#donar, #contact, #easter, #descargas { 
     background-color: rgba(51, 51, 51, 0.7);
     padding: 60px 0;
     color: #ffffff;
@@ -318,102 +366,6 @@ a:hover {
 
 
 
-/* Estilo para el reproductor de música */
-.music-player {
-    position: absolute; /* Cambiado a 'absolute' para que no sea fijo */
-    top: 90px; /* Moverlo a la parte superior */
-    left :40px; /* Moverlo a la parte izquierda */
-    background-color: rgba(51, 51, 51, 0.7); /* Fondo oscuro semitransparente */
-    padding: 3px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    z-index: 1000;
-}
-
-.music-player button,
-.music-player input {
-    margin-left: 10px;
-}
-
-.music-player button {
-    background-color: rgba(255, 255, 255, 0.2); /* Color principal del botón */
-    border: none;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.music-player button:hover {
-    background-color: rgba(255, 255, 255, 0.521); /* Color más oscuro al pasar el ratón */
-}
-
-.music-player input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100px;
-    height: 5px;
-    background: #fff; /* Color blanco para el control de volumen */
-    border-radius: 5px;
-    outline: none;
-    transition: background 0.3s;
-}
-
-.music-player input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: rgba(82, 82, 82, 0.87); /* Color del control del volumen */
-    cursor: pointer;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-}
-
-.music-player input[type="range"]::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-}
-
-
-
-.song-title {
-    margin-top: 5px; /* Espacio entre el reproductor y el título */
-    font-size: 16px; /* Tamaño de la fuente del título */
-    color: #ffffff; /* Color del texto del título */
-    text-align: center; /* Centra el texto */
-    padding: 5px; /* Espaciado interno opcional */
-}
-
-
-
-.music-player {
-    display: flex;
-    flex-direction: column; /* Asegúrate de que los elementos estén en columna */
-    align-items: center; /* Centra los elementos horizontalmente */
-    background-color: #333; /* Color de fondo del reproductor */
-    padding: 10px; /* Espaciado interno del reproductor */
-    border-radius: 8px; /* Bordes redondeados opcionales */
-}
-
-
-
-
-#audio-visualizer {
-    width: 100%;  /* Asegúrate de que ocupe el espacio disponible */
-    height: 100px;  /* Ajusta esta altura según sea necesario */
-    background-color: rgba(0, 0, 0, 0.2); /* Color de fondo para verlo mejor */
-    display: block;  /* Asegúrate de que esté visible */
-    border-radius: 5px;  /* Opcional */
-}
-
 
 
 
@@ -528,4 +480,272 @@ a:hover {
     font-style: italic; /* Estilo de texto en cursiva */
     color: #555; /* Color más claro */
     font-size: 15px;
+}
+
+.downloads-section {
+    text-align: center;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: rgba(51, 51, 51, 0.7); /* Fondo oscuro semitransparente */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra más fuerte para el diseño oscuro */
+    color: #ffffff; /* Texto blanco */
+}
+
+.downloads-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.download-card {
+    background: rgba(250, 248, 248, 0.1); /* Fondo oscuro translúcido */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde claro */
+    border-radius: 8px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #ffffff; /* Texto blanco */
+}
+
+.download-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Sombra más intensa al pasar el cursor */
+}
+
+.download-card .icon {
+    margin-bottom: 1rem;
+}
+
+.download-card .icon img {
+    max-width: 80px;
+    height: auto;
+    filter: grayscale(100%); /* Filtro en blanco y negro */
+    transition: filter 0.3s ease;
+}
+
+.download-card .icon img:hover {
+    filter: grayscale(0%); /* Quita el filtro al pasar el cursor */
+}
+
+.download-card h3 {
+    font-size: 1.5rem;
+    color: #ffffff; /* Texto blanco */
+    margin-bottom: 0.5rem;
+    background-color: rgba(51, 51, 51, 0.7); /* Fondo tras el texto */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.download-card p {
+    font-size: 1rem;
+    color: #ccc; /* Texto gris claro */
+    margin-bottom: 1rem;
+}
+
+.download-btn {
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    background: #333;  /* Fondo oscuro antes de hacer hover */
+    border: 1px solid #555;  /* Borde oscuro */
+    outline: none;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    transition: 1s ease-in-out;
+}
+
+.download-btn svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 150 480;
+    stroke-dashoffset: 150;
+    transition: 1s ease-in-out;
+}
+
+.download-btn:hover {
+    background: #444;  /* Fondo más oscuro al pasar el ratón */
+}
+
+.download-btn:hover svg {
+    stroke-dashoffset: -480;
+}
+
+.download-btn span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+    font-weight: 100;
+    transition: 1s ease-in-out;
+}
+
+.download-btn:hover span {
+    color: #fff;
+}
+
+
+
+.download-btn2 {
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    background: #333;  /* Fondo oscuro */
+    border: 2px solid #333;  /* Borde gris oscuro */
+    border-radius: 10px;
+    outline: none;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.download-btn2::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: #555;  /* Fondo gris medio */
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0;
+}
+
+.download-btn2:hover::after {
+    opacity: 1;
+    width: 0;
+    height: 0;
+}
+
+.download-btn2 svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #fff;  /* Color blanco para el trazo */
+    stroke-width: 2;
+    stroke-dasharray: 120 400;
+    stroke-dashoffset: 120;
+    transition: 1s ease-in-out;
+    z-index: 1;
+}
+
+.download-btn2:hover svg {
+    stroke-dashoffset: -400;
+}
+
+.download-btn2 span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.download-btn2:hover span {
+    color: #fff;
+
+}
+
+.download-btn2:hover {
+    border-color: #888;  /* Borde gris claro al hacer hover */
+    transform: scale(1.1); /* Efecto de expansión */
+}
+
+
+
+
+
+ /* Estilos generales para la sección */
+ .playlists-section {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: rgba(50, 50, 50, 0.8); /* Fondo oscuro más suave */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sombra más sutil */
+    color: #fff;
+}
+
+.playlists-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.playlist-card {
+    background: rgba(240, 240, 240, 0.1); /* Fondo más sutil */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde más suave */
+    border-radius: 8px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra más ligera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.playlist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.playlist-card h3 {
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    background-color: rgba(50, 50, 50, 0.7);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.underline {
+    width: 50px;
+    height: 3px;
+    background-color: #fff;
+    margin: 10px auto;
+}
+
+/* Estilo para el contenedor del iframe */
+.spotify-playlist {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para el enlace de Spotify con el logo */
+.spotify-link {
+    margin-top: 10px;
+}
+
+.spotify-logo {
+    width: 40px;
+    height: auto;
+    filter: brightness(0) invert(1); /* Asegura que el logo sea blanco */
+    transition: transform 0.3s ease;
+}
+
+.spotify-link a:hover .spotify-logo {
+    transform: scale(1.1);
 }

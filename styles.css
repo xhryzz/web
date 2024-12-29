@@ -1,751 +1,275 @@
-/* Estilos generales */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #1a1a1a;
-    color: #ffffff;
+* {
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-    background: url('https://images.unsplash.com/photo-1629194898512-b6b8697063ac?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; /* Cambia la URL por la de tu imagen de madera */
+    box-sizing: border-box;
+}
+
+:root {
+    --color-light-blue: #ffffff;
+    --color-red: rgb(255, 255, 255);
+    --color-white: rgb(255, 255, 255);
+    --color-dark-blue: #2d2d2e;
+    --color-very-dark-blue: #363636;
+    --color-black: #000000;
+}
+
+html {
+    font-family: 'Red Hat Text', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+body {
+    font-size: 1rem;
+    line-height: 1.5;
+    background: url('https://images.unsplash.com/photo-1629194898512-b6b8697063ac?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; /* Cambia la URL por la de tu imagen */
     background-size: cover; /* Asegura que la imagen cubra todo el fondo */
-    animation: fadeIn 1s ease-in; /* Efecto fade-in */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-/* Efecto slide-in */
-@keyframes slideIn {
-    0% {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-/* Aplicar el efecto a los encabezados y párrafos */
-h1, h2, p {
-    animation: slideIn 0.5s ease forwards; /* Cambia el tiempo según tu preferencia */
-    opacity: 0; /* Inicialmente oculto */
-}
-
-/* Añadir un retraso para cada elemento */
-h1 {
-    animation-delay: 0.2s;
-}
-h2 {
-    animation-delay: 0.4s;
-}
-p {
-    animation-delay: 0.6s;
-}
-
-/* Resto de tu CSS... */
-
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-}
-/* Estilo general para el header */
-header {
-    background: linear-gradient(90deg, #333, #555); /* Fondo con los colores originales */
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-/* Estilos para el menú de navegación */
-header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+main {
+    background: url('https://images.unsplash.com/photo-1629194898512-b6b8697063ac?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; /* Cambia la URL por la de tu imagen de madera */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Estilos para los items del menú */
-header nav ul li {
-    display: inline-block;
-    margin: 0 15px;
+.caption {
+    font-size: 1.3rem;
+    color: var(--color-white);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 3em;
+    letter-spacing: 0.4em;
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 750px;
+    width: 90%;
+}
+
+.time-content {
+    height: 70px;
+    box-shadow: 0 7px 2px -2px rgb(25, 26, 36);
+    background-color: var(--color-very-dark-blue);
+    border-radius: 6px;
+    overflow: hidden;
     position: relative;
 }
 
-/* Estilos de los enlaces */
-header nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500; /* Peso de fuente más ligero */
-    padding: 8px;
-    display: inline-block;
-    transition: color 0.3s ease, transform 0.3s ease;
-    border-radius: 5px;
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: var(--color-dark-blue);
+    position: relative;
 }
 
-/* Efecto hover más moderno */
-header nav ul li a:hover {
-    color: #ccc;  /* Gris claro al hacer hover */
-    transform: translateY(-3px);  /* Efecto de desplazamiento hacia arriba */
-}
-
-/* Subrayado animado */
-header nav ul li a::after {
+.time::before {
     content: '';
     position: absolute;
-    width: 0;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(34, 34, 34, 0.75);
+}
+
+.time > span {
+    color: var(--color-red);
+    font-size: 2.5em;
+    z-index: 2;
+    
+}
+
+.rings {
+    position: absolute;
+    top: 50%;
+    width: 100%;
     height: 2px;
-    background-color: #ccc;  /* Subrayado gris claro */
-    bottom: 0;
-    left: 50%;
-    transition: width 0.3s ease, left 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.15);
+    z-index: 3;
 }
 
-header nav ul li a:hover::after {
-    width: 100%;
-    left: 0;
-}
-
-/* Estilo para dispositivos móviles */
-@media (max-width: 768px) {
-    header nav ul {
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-    }
-
-    header nav ul li {
-        margin: 10px 0;
-    }
-
-    header nav ul li a {
-        font-size: 18px;
-        padding: 12px;
-    }
-}
-
-
-section {
-    padding: 60px 0;
-}
-
-h1 {
-    margin: 10px 0;
-    color: #ffffff;
-
-    padding: 10px;
-    border-radius: 10px;
-}
-
-
-h2 {
-    margin: 10px 0;
-    color: #ffffff;
-    background-color: rgba(51, 51, 51, 0.7);
-    padding: 10px;
-    border-radius: 10px;
-}
-
-p {
-    max-width: 600px;
-    margin: 0 auto 20px;
-    font-size: 18px;
-}
-
-.centered {
-    text-align: center;
-}
-
-/* Botones */
-.grid-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    justify-content: center;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.btn {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    margin: 10px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.btn-secondary {
-    background-color: #333;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: #555;
-    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.8);
-}
-
-/* Imágenes */
-.main-logo, .profile-img {
-    width: 150px;
-    height: 150px;
-    margin: 20px auto;
-    border-radius: 50%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-}
-
-/* Proyectos */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 0 20px;
-}
-
-.project-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
-}
-
-.project-card img {
-    width: 100%;
-    height: 250px; /* Aumenta la altura */
-    object-fit: cover; /* Mantiene la proporción */
-    border-radius: 10px;
-}
-
-.project-card:hover {
-    transform: scale(1.03);
-
-
-}
-
-/* Filtro en blanco y negro para las imágenes de proyectos */
-#proyectos .project-card img {
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
-}
-
-#proyectos .project-card img:hover {
-    filter: grayscale(0%);
-}
-
-/* Estilos específicos de secciones */
-#donar, #contact, #easter, #descargas { 
-    background-color: rgba(51, 51, 51, 0.7);
-    padding: 60px 0;
-    color: #ffffff;
-}
-
-a {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #928c8c;
-}
-
-/* Experiencias */
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 0 20px;
-}
-
-.experience-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
-}
-
-.experience-card:hover {
-    transform: scale(1.05);
-}
-
-
-/* Estilo para la nieve */
-.snow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-    background: url('https://example.com/path-to-your-snow-image.png') repeat top center; /* Cambia la URL por la de tu imagen de nieve */
-    opacity: 0.5; /* Ajusta la opacidad para suavizar el efecto */
-    animation: snowfall 10s linear infinite; /* Duración y velocidad de la caída */
-}
-
-@keyframes snowfall {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 0 100%; /* Ajusta el movimiento de la nieve */
-    }
-}
-
-/* Estilo para la nieve */
-.snow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1; /* Asegúrate de que esté detrás de otros elementos */
-}
-
-.snowflake {
+.rings::before,
+.rings::after {
+    content: '';
     position: absolute;
-    top: -10px;
-    width: 3px; /* Tamaño más pequeño */
-    height: 3px;
-    background: rgba(255, 255, 255, 0.5); /* Color y opacidad más suaves */
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    opacity: 0.4; /* Opacidad más baja */
-    animation: fall linear infinite;
+    background-color: var(--color-very-dark-blue);
+    top: -2px;
 }
 
-@keyframes fall {
-    to {
-        transform: translateY(100vh); /* Caída completa */
-    }
+.rings::before {
+    left: -3.5px;
 }
 
-/* Estilos específicos para la sección especial */
-.special-project {
-    margin-top: 50px;
+.rings::after {
+    right: -3.5px;
+}
+
+.metric {
+    text-transform: uppercase;
     text-align: center;
+    color: var(--color-light-blue);
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    
 }
 
-.large-card {
-    max-width: 600px;
-    margin: 0 auto; /* Centra la tarjeta en la página */
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo ligeramente más claro */
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7);
-    transition: transform 0.3s;
-}
-
-.large-card img {
-    width: 100%;
-    height: auto;
-    object-fit: contain; /* Asegura que la imagen se ajuste correctamente */
-    border-radius: 10px;
-}
-
-.large-card:hover {
-    transform: scale(1.05);
-}
-
-
-
-
-
-
-
-
-/* Para pantallas más pequeñas aún */
-@media (max-width: 480px) {
-    .btn {
-        font-size: 12px;
-        padding: 8px 12px;
-    }
-
-    .main-logo, .profile-img {
-        width: 100px;
-        height: 100px;
-    }
-
-    .project-card img {
-        height: 150px;
-    }
-
-    h1, h2 {
-        font-size: 20px;
-    }
-
-    p {
-        font-size: 14px;
-    }
-
-    .large-card {
-        padding: 20px;
-    }
-}
-
-/* Estilo para la nieve */
-.snow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Cambiado para que la nieve cubra toda la pantalla */
-    pointer-events: none;
-    z-index: 1; /* Asegúrate de que esté detrás de otros elementos */
-    overflow: hidden;
-}
-
-.snowflake {
-    position: absolute;
-    top: -10px; /* Parte superior de la pantalla */
-    width: 5px; /* Tamaño más pequeño */
-    height: 5px; /* Tamaño más pequeño */
-    background: rgba(255, 255, 255, 0.5); /* Color y opacidad más suaves */
-    border-radius: 50%;
-    opacity: 0.3; /* Opacidad más baja */
-    filter: blur(1px);
-    animation: fall linear infinite;
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(100vh); /* Caída completa hasta la parte inferior */
-    }
-}
-
-
-
-/* Efecto fade-in */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-
-   /* Estilo para SweetAlert personalizado */
-   .custom-swal {
-    background-color: #333 !important; /* Fondo oscuro */
-    color: #FFFFFF !important; /* Color de texto blanco */
-}
-
-/* Asegúrate de que el texto y los elementos de entrada sean blancos */
-.custom-swal h1,
-.custom-swal h2,
-.custom-swal p,
-.custom-swal span {
-    color: #FFFFFF !important; /* Asegura que el texto del título y párrafos sea blanco */
-}
-
-.custom-swal input {
-    background-color: #555; /* Fondo del input oscuro */
-    color: #FFFFFF; /* Color del texto en el input blanco */
-    border: 1px solid #777; /* Borde del input más claro */
-    border-radius: 5px; /* Bordes redondeados del input */
-    padding: 10px; /* Espaciado interno del input */
-}
-
-.custom-swal .swal-button {
-    background-color: #666; /* Fondo de los botones */
-    color: white; /* Color de texto de los botones */
-    border-radius: 5px; /* Bordes redondeados */
-}
-
-.custom-swal .swal-button:hover {
-    background-color: #888; /* Fondo al pasar el ratón */
-}
-
-
-/* Estilo del texto de easter egg */
-.easter-egg {
-    margin-top: 70px; /* Espaciado superior */
-    font-style: italic; /* Estilo de texto en cursiva */
-    color: #555; /* Color más claro */
-    font-size: 15px;
-}
-
-.downloads-section {
-    text-align: center;
-    margin: 3rem auto;
-    padding: 2rem;
-    background-color: rgba(51, 51, 51, 0.7); /* Fondo oscuro semitransparente */
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra más fuerte para el diseño oscuro */
-    color: #ffffff; /* Texto blanco */
-}
-
-.downloads-grid {
+footer {
+    height: 25%;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5rem;
+    background: url('https://images.unsplash.com/photo-1629194898512-b6b8697063ac?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; /* Cambia la URL por la de tu imagen de madera */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+}
+
+.socials {
+    display: flex;
     justify-content: center;
     gap: 2rem;
+    
 }
 
-.download-card {
-    background: rgba(250, 248, 248, 0.1); /* Fondo oscuro translúcido */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde claro */
-    border-radius: 8px;
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 1.5rem;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: #ffffff; /* Texto blanco */
-}
-
-.download-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Sombra más intensa al pasar el cursor */
-}
-
-.download-card .icon {
-    margin-bottom: 1rem;
-}
-
-.download-card .icon img {
-    max-width: 80px;
-    height: auto;
-    filter: grayscale(100%); /* Filtro en blanco y negro */
-    transition: filter 0.3s ease;
-}
-
-.download-card .icon img:hover {
-    filter: grayscale(0%); /* Quita el filtro al pasar el cursor */
-}
-
-.download-card h3 {
-    font-size: 1.5rem;
-    color: #ffffff; /* Texto blanco */
-    margin-bottom: 0.5rem;
-    background-color: rgba(51, 51, 51, 0.7); /* Fondo tras el texto */
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.download-card p {
-    font-size: 1rem;
-    color: #ccc; /* Texto gris claro */
-    margin-bottom: 1rem;
-}
-
-.download-btn {
-    width: 180px;
-    height: 60px;
+.socials .icon {
     cursor: pointer;
-    background: #333;  /* Fondo oscuro antes de hacer hover */
-    border: 1px solid #555;  /* Borde oscuro */
-    outline: none;
-    display: inline-block;
-    position: relative;
-    text-decoration: none;
-    transition: 1s ease-in-out;
-}
-
-.download-btn svg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    fill: none;
-    stroke: #fff;
-    stroke-dasharray: 150 480;
-    stroke-dashoffset: 150;
-    transition: 1s ease-in-out;
-}
-
-.download-btn:hover {
-    background: #444;  /* Fondo más oscuro al pasar el ratón */
-}
-
-.download-btn:hover svg {
-    stroke-dashoffset: -480;
-}
-
-.download-btn span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 18px;
-    font-weight: 100;
-    transition: 1s ease-in-out;
-}
-
-.download-btn:hover span {
-    color: #fff;
-}
-
-
-
-.download-btn2 {
-    width: 120px;
-    height: 40px;
-    cursor: pointer;
-    background: #333;  /* Fondo oscuro */
-    border: 2px solid #333;  /* Borde gris oscuro */
-    border-radius: 10px;
-    outline: none;
-    display: inline-block;
-    position: relative;
-    text-decoration: none;
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-}
-
-.download-btn2::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: #555;  /* Fondo gris medio */
-    border-radius: 50%;
-    z-index: 0;
-    opacity: 0;
-}
-
-.download-btn2:hover::after {
-    opacity: 1;
-    width: 0;
-    height: 0;
-}
-
-.download-btn2 svg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    fill: none;
-    stroke: #fff;  /* Color blanco para el trazo */
-    stroke-width: 2;
-    stroke-dasharray: 120 400;
-    stroke-dashoffset: 120;
-    transition: 1s ease-in-out;
-    z-index: 1;
-}
-
-.download-btn2:hover svg {
-    stroke-dashoffset: -400;
-}
-
-.download-btn2 span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    z-index: 1;
-}
-
-.download-btn2:hover span {
-    color: #fff;
-
-}
-
-.download-btn2:hover {
-    border-color: #888;  /* Borde gris claro al hacer hover */
-    transform: scale(1.1); /* Efecto de expansión */
-}
-
-
-
-
-
- /* Estilos generales para la sección */
- .playlists-section {
-    text-align: center;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: rgba(50, 50, 50, 0.8); /* Fondo oscuro más suave */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sombra más sutil */
-    color: #fff;
-}
-
-.playlists-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-.playlist-card {
-    background: rgba(240, 240, 240, 0.1); /* Fondo más sutil */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde más suave */
-    border-radius: 8px;
-    width: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 1.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra más ligera */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.playlist-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-}
-
-.playlist-card h3 {
-    font-size: 1.4rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-    background-color: rgba(50, 50, 50, 0.7);
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.underline {
-    width: 50px;
-    height: 3px;
-    background-color: #fff;
-    margin: 10px auto;
-}
-
-/* Estilo para el contenedor del iframe */
-.spotify-playlist {
-    width: 100%;
-    margin-bottom: 1.5rem;
-}
-
-/* Estilo para el enlace de Spotify con el logo */
-.spotify-link {
-    margin-top: 10px;
-}
-
-.spotify-logo {
-    width: 40px;
-    height: auto;
-    filter: brightness(0) invert(1); /* Asegura que el logo sea blanco */
     transition: transform 0.3s ease;
 }
 
-.spotify-link a:hover .spotify-logo {
+.socials .icon:hover path {
+    fill: var(--color-red);
     transform: scale(1.1);
 }
+
+.attribution {
+    font-size: 11px;
+    padding: 1em;
+    text-align: center;
+    color: var(--color-light-blue);
+    background: url('https://images.unsplash.com/photo-1629194898512-b6b8697063ac?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; /* Cambia la URL por la de tu imagen de madera */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+}
+
+.attribution a {
+    color: var(--color-red);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.attribution a:hover,
+.attribution a:focus {
+    text-decoration: underline;
+}
+
+@media (min-width: 1024px) {
+    .caption {
+        font-size: 1.5rem;
+        margin-bottom: 4em;
+    }
+
+    .time-content {
+        height: 120px;
+    }
+
+    .time > span {
+        font-size: 5em;
+    }
+
+    .metric {
+        font-size: 1rem;
+    }
+
+    .rings::before,
+    .rings::after {
+        width: 10px;
+        height: 10px;
+        top: -4px;
+    }
+
+    .rings::before {
+        left: -5px;
+    }
+
+    .rings::after {
+        right: -5px;
+    }
+}
+
+@media (max-width: 640px) {
+    .caption {
+        font-size: 1.2rem;
+    }
+
+    .time-content {
+        height: 90px;
+    }
+
+    .time > span {
+        font-size: 3.5em;
+    }
+
+    .socials {
+        gap: 1rem;
+    }
+}
+
+
+/* Fondo sólido */
+.wrapper {
+    padding: 15px;
+    display: grid;
+    place-items: center;
+    background-color: #1c1c1c; /* Fondo oscuro */
+    border-radius: 10px; /* Bordes redondeados */
+  }
+  
+  .typing-demo {
+    font-family: monospace;
+    font-size: 12px; /* Tamaño de la fuente */
+    width: max-content; /* Ajustar el ancho según el contenido */
+    white-space: nowrap; /* Evitar que el texto se envuelva */
+    overflow: hidden; /* Ocultar texto que no esté animado aún */
+    border-right: 3px solid; /* Simula el cursor */
+    animation: typing 5s steps(60) 1s 1 normal both, blink .5s step-end infinite;
+    color: rgb(163, 163, 163);
+  }
+  
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+  
+
+  

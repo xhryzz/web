@@ -66,17 +66,12 @@
       <br>
       <br>
 
-
       <!-- Mensaje de mantenimiento -->
       <div class="wrapper">
         <div class="typing-demo">
           Estamos en mantenimiento por actualización de nuestros sistemas. Te agradecemos por tu paciencia y comprensión.
         </div>
     </div>
-
-
-    
-
 
     </main>
 
@@ -90,55 +85,60 @@
   </div>
 
   
-  
   <script>
-    // Calcula la fecha de finalización agregando 7 días a la fecha actual
-const launchDate = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
+    // Verificar si el contador ya se ha guardado en localStorage
+    let countdownData = JSON.parse(localStorage.getItem("countdownData"));
+    
+    // Si no hay datos, inicializa con los 7 días que mencionabas antes
+    if (!countdownData) {
+      countdownData = {
+        endTime: new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+      };
+      // Guardar los datos en localStorage
+      localStorage.setItem("countdownData", JSON.stringify(countdownData));
+    }
 
+    const countdown = function () {
+      const presentDate = new Date().getTime();
 
+      if (presentDate < countdownData.endTime) {
+        const diffInSeconds = Math.floor((countdownData.endTime - presentDate) / 1000);
 
-const countdown = function () {
-  const presentDate = new Date().getTime();
+        const days = Math.floor(diffInSeconds / 86400);
 
-  if (presentDate < launchDate) {
-    const diffInSeconds = Math.floor((launchDate - presentDate) / 1000);
+        let hours, minutes, seconds;
+        let timeValue;
 
-    const days = Math.floor(diffInSeconds / 86400);
+        // Hours (el resto de segundos [diffInSeconds % 86400] se divide por la cantidad de segundos en una hora - 3600 para obtener las horas restantes)
+        timeValue = diffInSeconds % 86400;
+        hours = Math.floor(timeValue / 3600);
 
-    let hours, minutes, seconds;
-    let timeValue;
+        // Minutes (calculamos los minutos restantes después de obtener las horas)
+        timeValue = timeValue % 3600;
+        minutes = Math.floor(timeValue / 60);
 
-    // Hours (el resto de segundos [diffInSeconds % 86400] se divide por la cantidad de segundos en una hora - 3600 para obtener las horas restantes)
-    timeValue = diffInSeconds % 86400;
-    hours = Math.floor(timeValue / 3600);
+        // Seconds (el resto después de calcular los minutos son los segundos restantes)
+        seconds = timeValue % 60;
 
-    // Minutes (calculamos los minutos restantes después de obtener las horas)
-    timeValue = timeValue % 3600;
-    minutes = Math.floor(timeValue / 60);
+        document.querySelector('.days').textContent = zeroPadding(days);
+        document.querySelector('.hours').textContent = zeroPadding(hours);
+        document.querySelector('.minutes').textContent = zeroPadding(minutes);
+        document.querySelector('.seconds').textContent = zeroPadding(seconds);
+      } else {
+        document.querySelector('.days').textContent = zeroPadding(0);
+        document.querySelector('.hours').textContent = zeroPadding(0);
+        document.querySelector('.minutes').textContent = zeroPadding(0);
+        document.querySelector('.seconds').textContent = zeroPadding(0);
+        document.querySelector('.caption').textContent = 'En breves se publicará la nueva web!';
+      }
+    };
 
-    // Seconds (el resto después de calcular los minutos son los segundos restantes)
-    seconds = timeValue % 60;
+    function zeroPadding(time) {
+      return time < 10 ? '0' + String(time) : time;
+    }
 
-    document.querySelector('.days').textContent = zeroPadding(days);
-    document.querySelector('.hours').textContent = zeroPadding(hours);
-    document.querySelector('.minutes').textContent = zeroPadding(minutes);
-    document.querySelector('.seconds').textContent = zeroPadding(seconds);
-  } else {
-    document.querySelector('.days').textContent = zeroPadding(0);
-    document.querySelector('.hours').textContent = zeroPadding(0);
-    document.querySelector('.minutes').textContent = zeroPadding(0);
-    document.querySelector('.seconds').textContent = zeroPadding(0);
-    document.querySelector('.caption').textContent = 'En breves se publicará la nueva web!';
-  }
-};
-
-function zeroPadding(time) {
-  return time < 10 ? '0' + String(time) : time;
-}
-
-// Llama a la función cada segundo
-setInterval(countdown, 1000);
-
+    // Llama a la función cada segundo
+    setInterval(countdown, 1000);
   </script>
 </body>
 

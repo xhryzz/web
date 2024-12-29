@@ -27,7 +27,7 @@
               <div class="rings"></div>
             </div>
           </div>
-          <p class="metric">Dias</p>
+          <p class="metric">Días</p>
         </div>
 
         <div class="time-wrapper">
@@ -62,7 +62,6 @@
 
       </section>
 
-      
       <br>
       <br>
 
@@ -78,46 +77,34 @@
     <div class="attribution">
       <p>
         Developed By <a href="https://www.instagram.com/chriismartinezz/" target="_blank" rel="noopener">Xhryz.</a>
-        Feliz Navidad !🎄
+        ¡Feliz Navidad! 🎄
       </p>
     </div>
 
   </div>
 
-  
   <script>
-    // Verificar si el contador ya se ha guardado en localStorage
-    let countdownData = JSON.parse(localStorage.getItem("countdownData"));
-    
-    // Si no hay datos, inicializa con los 7 días que mencionabas antes
-    if (!countdownData) {
-      countdownData = {
-        endTime: new Date().getTime() + 7 * 24 * 60 * 60 * 1000
-      };
-      // Guardar los datos en localStorage
-      localStorage.setItem("countdownData", JSON.stringify(countdownData));
-    }
+    // Define una fecha fija de finalización en UTC
+    const endTimeUTC = new Date('2024-01-05T00:00:00Z').getTime(); // Cambia esta fecha según sea necesario
 
     const countdown = function () {
       const presentDate = new Date().getTime();
-
-      if (presentDate < countdownData.endTime) {
-        const diffInSeconds = Math.floor((countdownData.endTime - presentDate) / 1000);
+      if (presentDate < endTimeUTC) {
+        const diffInSeconds = Math.floor((endTimeUTC - presentDate) / 1000);
 
         const days = Math.floor(diffInSeconds / 86400);
-
         let hours, minutes, seconds;
         let timeValue;
 
-        // Hours (el resto de segundos [diffInSeconds % 86400] se divide por la cantidad de segundos en una hora - 3600 para obtener las horas restantes)
+        // Horas (el resto de segundos [diffInSeconds % 86400] se divide por la cantidad de segundos en una hora - 3600 para obtener las horas restantes)
         timeValue = diffInSeconds % 86400;
         hours = Math.floor(timeValue / 3600);
 
-        // Minutes (calculamos los minutos restantes después de obtener las horas)
+        // Minutos (calculamos los minutos restantes después de obtener las horas)
         timeValue = timeValue % 3600;
         minutes = Math.floor(timeValue / 60);
 
-        // Seconds (el resto después de calcular los minutos son los segundos restantes)
+        // Segundos (el resto después de calcular los minutos son los segundos restantes)
         seconds = timeValue % 60;
 
         document.querySelector('.days').textContent = zeroPadding(days);
@@ -129,7 +116,7 @@
         document.querySelector('.hours').textContent = zeroPadding(0);
         document.querySelector('.minutes').textContent = zeroPadding(0);
         document.querySelector('.seconds').textContent = zeroPadding(0);
-        document.querySelector('.caption').textContent = 'En breves se publicará la nueva web!';
+        document.querySelector('.caption').textContent = '¡En breves se publicará la nueva web!';
       }
     };
 

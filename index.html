@@ -1,490 +1,145 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christian Martinez</title>
-    <link rel="icon" href="https://i.ibb.co/z7qC6wP/cc165a48a221e090afe9d2011ed8f199-1.webp">
-    <link rel="stylesheet" href="styles.css">
-    <script src="sweetalert.min.js"></script>
-    <script src="jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://i.ibb.co/z7qC6wP/cc165a48a221e090afe9d2011ed8f199-1.webp">
+  <link rel="icon" type="image/png" sizes="32x32" href="./public/images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+
+  <title>Christian Martinez</title>
 </head>
 
 <body>
-    <div class="snow"></div>
-   <header>
-    <nav>
-        <ul>
-            <li><a href="#main">Inicio</a></li>
-            <li><a href="#experiencias">Conóceme</a></li>
-            <li><a href="#proyectos">Proyectos</a></li>
-            <li><a href="#donar">Donaciones</a></li>
-            <li><a href="#contact">Contacto</a></li>
-        </ul>
-    </nav>
-</header>
+  <div class="container">
+    <main>
+      <h1 class="caption">Web en Mantenimiento, vuelta en:</h1>
 
-<section id="main" class="centered">
-    <div class="container">
-        <h1>¡Bienvenido, soy Xhryz.!</h1>
-        <img src="https://i.ibb.co/z7qC6wP/cc165a48a221e090afe9d2011ed8f199-1.webp" alt="Xhryz." class="main-logo">
-        <div id="buttons-container" class="donate-buttons-container">
-            <a href="discord://-/users/637698552360861696" id="discord-button" class="download-btn2">
-                <span>Discord</span>
-            </a> 
-            <a href="https://www.instagram.com/chriismartinezz/" id="instagram-button" class="download-btn2">
-                <span>Instagram</span>
-            </a>
+      <section class="countdown">
+        <div class="time-wrapper">
+          <div class="time-content">
+            <div class="time">
+              <span class="days">08</span>
+              <div class="rings"></div>
+            </div>
+          </div>
+          <p class="metric">Dias</p>
+        </div>
+
+        <div class="time-wrapper">
+          <div class="time-content">
+            <div class="time">
+              <span class="hours">23</span>
+              <div class="rings"></div>
+            </div>
+          </div>
+          <p class="metric">Horas</p>
+        </div>
+
+        <div class="time-wrapper">
+          <div class="time-content">
+            <div class="time">
+              <span class="minutes">55</span>
+              <div class="rings"></div>
+            </div>
+          </div>
+          <p class="metric">Minutos</p>
+        </div>
+
+        <div class="time-wrapper">
+          <div class="time-content">
+            <div class="time">
+              <span class="seconds">41</span>
+              <div class="rings"></div>
+            </div>
+          </div>
+          <p class="metric">Segundos</p>
+        </div>
+
+      </section>
+
+      
+      <br>
+      <br>
+
+
+      <!-- Mensaje de mantenimiento -->
+      <div class="wrapper">
+        <div class="typing-demo">
+          Estamos en mantenimiento por actualización de nuestros sistemas. Te agradecemos por tu paciencia y comprensión.
         </div>
     </div>
-</section>
-
-   
 
 
-
-    <!-- Resto de las secciones aquí... -->
-
-    <section id="experiencias" class="centered">
-        <h2>Experiencias y Estudios</h2>
-        <br>
-        <div class="experience-grid">
-            <div class="experience-card">
-                <h3>Grado Medio SMX</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Grado Superior DAM</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Grado Superior DAW</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Ciberseguridad</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Ingeniería en IA</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Machine Learning</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Blockchain y Criptografía</h3>
-            </div>
-            <div class="experience-card">
-                <h3>C++</h3>
-            </div>
-            <div class="experience-card">
-                <h3>C#</h3>
-            </div>
-            <div class="experience-card">
-                <h3>JAVA</h3>
-            </div>
-            <div class="experience-card">
-                <h3>PYTHON</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Informática Forense</h3>
-            </div>
-            <div class="experience-card">
-                <h3>HTML</h3>
-            </div>
-            <div class="experience-card">
-                <h3>CSS</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Data Science</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Desarrollo de Videojuegos</h3>
-            </div>
-            <div class="experience-card">
-                <h3>DevOps y Automatización</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Análisis de Malware</h3>
-            </div>
-        </div>
-    </section>
     
-    <section id="proyectos" class="centered">
-        <h2>Proyectos & Logros</h2>
-        <br>
-        <div class="project-grid">
-            <div class="project-card">
-                <img src="https://i.ibb.co/tPRCTW8/image5.webp" alt="Proyecto 1">
-                <h3>Venice AI</h3>
-                <p>Participación en la seguridad de Venice AI</p>
-            </div>
-            <div class="project-card">
-                <img src="https://i.ibb.co/mBX5NHf/image4.webp" alt="Proyecto 2">
-                <h3>Wolf RP</h3>
-                <p>Owner y Programador de Wolf RP</p>
-            </div>
-            <div class="project-card">
-                <img src="https://i.ibb.co/bg0r1Ck/image3.webp" alt="Proyecto 3">
-                <h3>Optimizer</h3>
-                <p>Optimizador para Windows 10 y Windows 11</p>
-            </div>
-       
-                
-        </div>
-    </section>
 
 
-    <section id="proyectos" class="centered">
-        
-        <div class="project-grid">
-            <div class="project-card">
-                <img src="https://i.ibb.co/DwjxZ33/image2.webp" alt="Proyecto 4">
-                <h3>AdBlock</h3>
-                <p>Adblock para Navegadores</p>
-            </div>
+    </main>
 
-                <div class="project-card">
-                    <img src="https://i.ibb.co/hMhTBvb/image1.webp" alt="Proyecto 4">
-                    <h3>Páginas Webs</h3>
-                    <p>Webs para Particulares/Empresas</p>
-                </div>
+    <div class="attribution">
+      <p>
+        Developed By <a href="https://www.instagram.com/chriismartinezz/" target="_blank" rel="noopener">Xhryz.</a>
+        Feliz Navidad !🎄
+      </p>
+    </div>
 
-                    <div class="project-card">
-                        <img src="https://i.ibb.co/CnX1Yqm/image.png" alt="Proyecto 4">
-                        <h3>Windows 10 Custom</h3>
-                        <p>Realización de un Windows Personalizado</p>
-                    </div>
-       
-    </section>
+  </div>
 
-
-    <section id="proyectos" class="centered">
-        
-        <div class="project-grid">
-            <div class="project-card">
-                <img src="https://i.ibb.co/pwW7Fc2/image-1.png" alt="Proyecto 4">
-                <h3>C1b3rWall</h3>
-                <p>Participante en C1b3rWall para la Policia Nacional</p>
-            </div>
-
-                <div class="project-card">
-                    <img src="https://i.ibb.co/6s9Qn3v/discord.jpg" alt="Proyecto 4">
-                    <h3>Bots Discord</h3>
-                    <p>Bots Personalizados para Discord</p>
-                </div>
-
-                    <div class="project-card">
-                        <img src="https://i.ibb.co/Pm1DzTT/texto-codigo-java-digital-concepto-vector-codificacion-software-computadora-programacion-script-codi.jpg" alt="Proyecto 4">
-                        <h3>Programas a medida</h3>
-                        <p>Programas para Particulares/Empresas</p>
-                    </div>
-       
-    </section>
+  
+  
+  <script>
+    // Calcula la fecha de finalización agregando 7 días a la fecha actual
+const launchDate = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
 
 
 
+const countdown = function () {
+  const presentDate = new Date().getTime();
 
+  if (presentDate < launchDate) {
+    const diffInSeconds = Math.floor((launchDate - presentDate) / 1000);
 
-        <section id="proyectos" class="centered">
-            <div class="project-grid">
-                <div class="project-card">
-                    <img src="https://i.ibb.co/GPSrbHY/image.png" alt="Proyecto 10">
-                    <h3>Ambassador World Cup</h3>
-                    <p>Participante en Campeonato Mundial de Hackers Éticos</p>
-                </div>
-        
-                <div class="project-card">
-                    <img src="https://assets.super.so/9f72892d-9d90-4dcb-b641-78368b7524d4/uploads/cover/676f1d89-b441-4bd7-aad5-755114fa1368.png" alt="Proyecto 11">
-                    <h3>National Cyber League</h3>
-                    <p>Participante de la National Cyber League</p>
-                </div>
-        
-                <div class="project-card">
-                    <img src="https://programame.com/2024/nac/images/FotoGrupoNacional2024.jpg" alt="Proyecto 12">
-                    <h3>ProgramaMe</h3>
-                    <p>Campeón Regional de ProgramaMe 2021/2022</p>
-                </div>
-        
-            </section> 
+    const days = Math.floor(diffInSeconds / 86400);
 
+    let hours, minutes, seconds;
+    let timeValue;
 
-            <section id="proyectos" class="centered special-project"> <div class="project-grid"> <div class="project-card large-card"> <img src="https://i.ibb.co/MDbywMq/Diploma-Christian-Martinez.png" alt="Proyecto 10"> <h3>Campeón Nacional</h3> <p>Campeón Nacional de Ciberseguridad y Hacking Ético 2024/2025</p> </div> </div> </section>
-    
-            <section id="descargas" class="downloads-section">
-                <h2>Descargas Disponibles</h2>
-                <div class="downloads-grid">
-                    
-                    <div class="download-card">
-                        <div class="icon">
-                            <img src="iconos/php.png" alt="Icono PHP">
-                        </div>
-                        <div class="content">
-                            <h3>Extension PHP</h3>
-                            <p>Extensión con IA para PHP</p>
-                            <a href="descargas/vscode-xhryz-php-client-1.0.vsix" class="download-btn">
-                                <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
-                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
-                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
-                                </svg>
-                                <span>Descargar</span>
-                            </a>
-                        </div>
-                    </div>
-            
-                    <div class="download-card">
-                        <div class="icon">
-                            <img src="iconos/optimizer.png" alt="Icono Optimizer">
-                        </div>
-                        <div class="content">
-                            <h3>Optimizer</h3>
-                            <p>Optimizador para Windows 10/11</p>
-                            <a href="descargas/Optimizer-Xhryz.exe" class="download-btn">
-                                <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
-                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
-                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
-                                </svg>
-                                <span>Descargar</span>
-                            </a>
-                        </div>
-                    </div>
-            
-                    <div class="download-card">
-                        <div class="icon">
-                            <img src="iconos/cursor.png" alt="Icono Cursor">
-                        </div>
-                        <div class="content">
-                            <h3>Cursor</h3>
-                            <p>Cursor Minimalista para Windows</p>
-                            <a href="descargas/Cursores Mouse.rar" class="download-btn">
-                                <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
-                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
-                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
-                                </svg>
-                                <span>Descargar</span>
-                            </a>
-                        </div>
-                    </div>
-            
-                    <div class="download-card">
-                        <div class="icon">
-                            <img src="iconos/act.png" alt="Icono Activador">
-                        </div>
-                        <div class="content">
-                            <h3>Activador</h3>
-                            <p>Activador de Windows y Office 365</p>
-                            <a href="descargas/act-win10-xhryz.rar" class="download-btn">
-                                <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
-                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
-                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
-                                </svg>
-                                <span>Descargar</span>
-                            </a>
-                        </div>
-                    </div>
-            
-                </div>
-            </section>
-            
+    // Hours (el resto de segundos [diffInSeconds % 86400] se divide por la cantidad de segundos en una hora - 3600 para obtener las horas restantes)
+    timeValue = diffInSeconds % 86400;
+    hours = Math.floor(timeValue / 3600);
 
+    // Minutes (calculamos los minutos restantes después de obtener las horas)
+    timeValue = timeValue % 3600;
+    minutes = Math.floor(timeValue / 60);
 
+    // Seconds (el resto después de calcular los minutos son los segundos restantes)
+    seconds = timeValue % 60;
 
-            <section id="my-playlists" class="playlists-section">
-                <h2>My Playlists</h2>
-                <div class="playlists-grid">
-                    <!-- Spotify Playlist Card 1 -->
-                    <div class="playlist-card">
-                        <h3> Own </h3>
-                        <div class="underline"></div>
-                        
-                        <!-- Spotify Playlist Embed -->
-                        <div class="spotify-playlist">
-                            <iframe 
-                                src="https://open.spotify.com/embed/playlist/1wuucjtHUqxlQbhTCGUDvf" 
-                                width="100%" 
-                                height="380" 
-                                frameborder="0" 
-                                allowtransparency="true" 
-                                allow="encrypted-media">
-                            </iframe>
-                        </div>
-            
-                        <!-- Enlace y logo de Spotify -->
-                        <div class="spotify-link">
-                            <a href="https://open.spotify.com/playlist/1wuucjtHUqxlQbhTCGUDvf?si=1e2f8f690029495b" target="_blank">
-                                <img src="iconos/logo_white_spotify.png" alt="Spotify Logo" class="spotify-logo">
-                            </a>
-                        </div>
-                    </div>
-            
-                    <!-- Spotify Playlist Card 2 -->
-                    <div class="playlist-card">
-                        <h3> Gym </h3>
-                        <div class="underline"></div>
-                        
-                        <!-- Spotify Playlist Embed -->
-                        <div class="spotify-playlist">
-                            <iframe 
-                                src="https://open.spotify.com/embed/playlist/6NFoOzkguzPhgAjkSR1uC5" 
-                                width="100%" 
-                                height="380" 
-                                frameborder="0" 
-                                allowtransparency="true" 
-                                allow="encrypted-media">
-                            </iframe>
-                        </div>
-            
-                        <!-- Enlace y logo de Spotify -->
-                        <div class="spotify-link">
-                            <a href="https://open.spotify.com/playlist/6NFoOzkguzPhgAjkSR1uC5?si=85d1393de3a8401f" target="_blank">
-                                <img src="iconos/logo_white_spotify.png" alt="Spotify Logo" class="spotify-logo">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    document.querySelector('.days').textContent = zeroPadding(days);
+    document.querySelector('.hours').textContent = zeroPadding(hours);
+    document.querySelector('.minutes').textContent = zeroPadding(minutes);
+    document.querySelector('.seconds').textContent = zeroPadding(seconds);
+  } else {
+    document.querySelector('.days').textContent = zeroPadding(0);
+    document.querySelector('.hours').textContent = zeroPadding(0);
+    document.querySelector('.minutes').textContent = zeroPadding(0);
+    document.querySelector('.seconds').textContent = zeroPadding(0);
+    document.querySelector('.caption').textContent = 'En breves se publicará la nueva web!';
+  }
+};
 
+function zeroPadding(time) {
+  return time < 10 ? '0' + String(time) : time;
+}
 
-            <section id="donar" class="centered">
-                <h2>Donaciones</h2>
-                <p>Si te gusta lo que hago, puedes apoyar mi trabajo con una donación:</p>
-                <div class="donate-buttons-container">
-                    <a href="https://www.paypal.com/paypalme/chriismartinezz" class="download-btn2">
-                        <span>Donar</span>
-                    </a>
-                </div>
-            </section>
-            
-            <section id="contact" class="centered">
-                <h2>Contacto</h2>
-                <p>Para preguntas o comentarios, escríbeme en:</p>
-                <div class="buttons-container">
-                    <a href="discord://-/users/637698552360861696" id="discord-button" class="download-btn2">
-                        <span>Discord</span>
-                    </a>
-                    <a href="https://www.instagram.com/chriismartinezz/" id="instagram-button" class="download-btn2">
-                        <span>Instagram</span>
-                    </a>
-                </div>
-                <p class="easter-egg">Explora la página y descubre un easter egg escondido. Ctrl + Shift + ...</p>
-            </section>
-            
+// Llama a la función cada segundo
+setInterval(countdown, 1000);
 
-
-
-
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const snowContainer = document.querySelector('.snow');
-            const numFlakes = 100; // Número de copos de nieve
-    
-            for (let i = 0; i < numFlakes; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                snowflake.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
-                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's'; // Velocidad de caída aleatoria
-                snowflake.style.opacity = Math.random() + 0.3; // Opacidad aleatoria
-                snowflake.style.transform = `scale(${Math.random()})`; // Tamaño aleatorio
-                snowflake.style.animationDelay = Math.random() * 5 + 's'; // Diferente tiempo de inicio de animación
-                snowContainer.appendChild(snowflake);
-            }
-        });
-    </script>
-
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    // Función para obtener la última vez que se jugó
-    function getLastPlayed() {
-        return localStorage.getItem('lastPlayed');
-    }
-
-    // Función para establecer la última vez que se jugó
-    function setLastPlayed() {
-        localStorage.setItem('lastPlayed', new Date().getTime());
-    }
-
-    // Función para comprobar si han pasado 24 horas
-    function canPlay() {
-        const lastPlayed = getLastPlayed();
-        if (!lastPlayed) return true; // Si nunca se ha jugado, se puede jugar
-
-        const now = new Date().getTime();
-        const twentyFourHours = 24 * 60 * 60 * 1000; // 24 horas en milisegundos
-        return (now - lastPlayed) > twentyFourHours;
-    }
-
-    document.addEventListener('keydown', function (event) {
-        if (event.ctrlKey && event.shiftKey && event.key === 'X') {
-            if (!canPlay()) {
-                const lastPlayed = new Date(parseInt(getLastPlayed()));
-                const timeLeft = (24 * 60 * 60 * 1000) - (new Date().getTime() - lastPlayed.getTime());
-                const hoursLeft = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
-                const minutesLeft = Math.floor((timeLeft / (1000 * 60)) % 60);
-                swal({
-                    title: "¡Espera!",
-                    text: `Puedes jugar al Easter Egg nuevamente en ${hoursLeft} horas y ${minutesLeft} minutos.`,
-                    icon: "warning",
-                    className: "custom-swal"
-                });
-                return; // Detener si no se puede jugar
-            }
-
-            const secretNumber = Math.floor(Math.random() * 10) + 1; // Número secreto entre 1 y 10
-
-            // Personalizar SweetAlert
-            swal({
-                title: "¡Easter Egg Activado!",
-                text: "Adivina el número secreto (1 al 10):",
-                content: {
-                    element: "input",
-                    attributes: {
-                        placeholder: "Introduce un número (1 al 10)",
-                        type: "number",
-                        min: "1",
-                        max: "10",
-                    },
-                },
-                buttons: ["Cancelar", "Enviar"],
-                className: "custom-swal" // Clase personalizada para el estilo
-            }).then((value) => {
-                if (value !== null) {
-                    const userGuess = parseInt(value);
-                    setLastPlayed(); // Actualizar la última vez que se jugó
-
-                    if (userGuess === secretNumber) {
-                        swal({
-                            title: "¡Correcto!",
-                            text: "Has acertado el número secreto. Aquí está tu recompensa:",
-                            icon: "success",
-                            buttons: {
-                                link: {
-                                    text: "Reclamar Recompensa",
-                                    value: "link",
-                                },
-                            },
-                            className: "custom-swal" // Clase personalizada para el estilo
-                        }).then((value) => {
-                            if (value === "link") {
-                                window.open("https://discord.gg/ZcjsZegUww", "_blank");
-                            }
-                        });
-                    } else {
-                        swal({
-                            title: "¡Incorrecto!",
-                            text: `El número secreto era ${secretNumber}. Inténtalo de nuevo presionando Ctrl + Shift + X.`,
-                            icon: "error",
-                            className: "custom-swal" // Clase personalizada para el estilo
-                        });
-                    }
-                }
-            });
-        }
-    });
-</script>
-
-
-
+  </script>
 </body>
+
 </html>

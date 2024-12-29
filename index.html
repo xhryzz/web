@@ -85,47 +85,60 @@
 
   <script>
     // Define una fecha fija de finalización en UTC
-    const endTimeUTC = new Date('2024-01-05T00:00:00Z').getTime(); // Cambia esta fecha según sea necesario
+    // Configura una fecha fija en UTC para que sea igual en todo el mundo
+const endTimeUTC = new Date('2024-12-31T23:59:59Z').getTime(); // Cambia la fecha si es necesario
 
-    const countdown = function () {
-      const presentDate = new Date().getTime();
-      if (presentDate < endTimeUTC) {
-        const diffInSeconds = Math.floor((endTimeUTC - presentDate) / 1000);
+const countdown = function () {
+  // Obtiene la fecha y hora actuales
+  const presentDate = new Date().getTime();
 
-        const days = Math.floor(diffInSeconds / 86400);
-        let hours, minutes, seconds;
-        let timeValue;
+  console.log('Tiempo actual:', new Date(presentDate).toISOString());
+  console.log('Tiempo de finalización:', new Date(endTimeUTC).toISOString());
 
-        // Horas (el resto de segundos [diffInSeconds % 86400] se divide por la cantidad de segundos en una hora - 3600 para obtener las horas restantes)
-        timeValue = diffInSeconds % 86400;
-        hours = Math.floor(timeValue / 3600);
+  // Calcula la diferencia entre la fecha actual y la fecha de finalización
+  if (presentDate < endTimeUTC) {
+    const diffInSeconds = Math.floor((endTimeUTC - presentDate) / 1000);
 
-        // Minutos (calculamos los minutos restantes después de obtener las horas)
-        timeValue = timeValue % 3600;
-        minutes = Math.floor(timeValue / 60);
+    // Calcula días, horas, minutos y segundos restantes
+    const days = Math.floor(diffInSeconds / 86400);
 
-        // Segundos (el resto después de calcular los minutos son los segundos restantes)
-        seconds = timeValue % 60;
+    let hours, minutes, seconds;
+    let timeValue;
 
-        document.querySelector('.days').textContent = zeroPadding(days);
-        document.querySelector('.hours').textContent = zeroPadding(hours);
-        document.querySelector('.minutes').textContent = zeroPadding(minutes);
-        document.querySelector('.seconds').textContent = zeroPadding(seconds);
-      } else {
-        document.querySelector('.days').textContent = zeroPadding(0);
-        document.querySelector('.hours').textContent = zeroPadding(0);
-        document.querySelector('.minutes').textContent = zeroPadding(0);
-        document.querySelector('.seconds').textContent = zeroPadding(0);
-        document.querySelector('.caption').textContent = '¡En breves se publicará la nueva web!';
-      }
-    };
+    // Horas restantes
+    timeValue = diffInSeconds % 86400;
+    hours = Math.floor(timeValue / 3600);
 
-    function zeroPadding(time) {
-      return time < 10 ? '0' + String(time) : time;
-    }
+    // Minutos restantes
+    timeValue = timeValue % 3600;
+    minutes = Math.floor(timeValue / 60);
 
-    // Llama a la función cada segundo
-    setInterval(countdown, 1000);
+    // Segundos restantes
+    seconds = timeValue % 60;
+
+    // Actualiza el DOM con los valores calculados
+    document.querySelector('.days').textContent = zeroPadding(days);
+    document.querySelector('.hours').textContent = zeroPadding(hours);
+    document.querySelector('.minutes').textContent = zeroPadding(minutes);
+    document.querySelector('.seconds').textContent = zeroPadding(seconds);
+  } else {
+    // Si el tiempo ya pasó, muestra el mensaje de finalización
+    document.querySelector('.days').textContent = zeroPadding(0);
+    document.querySelector('.hours').textContent = zeroPadding(0);
+    document.querySelector('.minutes').textContent = zeroPadding(0);
+    document.querySelector('.seconds').textContent = zeroPadding(0);
+    document.querySelector('.caption').textContent = '¡En breves se publicará la nueva web!';
+  }
+};
+
+// Función para añadir ceros a los números menores a 10
+function zeroPadding(time) {
+  return time < 10 ? '0' + String(time) : time;
+}
+
+// Llama a la función cada segundo
+setInterval(countdown, 1000);
+
   </script>
 </body>
 

@@ -1,54 +1,658 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="https://i.ibb.co/z7qC6wP/cc165a48a221e090afe9d2011ed8f199-1.webp"><link rel="icon" type="image/png" sizes="32x32" href="./public/images/favicon-32x32.png"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"><link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"><title>Christian Martinez</title></head><body><div class="container"><main><h1 class="caption">Web en Mantenimiento, vuelta en:</h1><section class="countdown"><div class="time-wrapper"><div class="time-content"><div class="time"><span class="days">00</span><div class="rings"></div></div></div><p class="metric">Días</p></div><div class="time-wrapper"><div class="time-content"><div class="time"><span class="hours">00</span><div class="rings"></div></div></div><p class="metric">Horas</p></div><div class="time-wrapper"><div class="time-content"><div class="time"><span class="minutes">00</span><div class="rings"></div></div></div><p class="metric">Minutos</p></div><div class="time-wrapper"><div class="time-content"><div class="time"><span class="seconds">00</span><div class="rings"></div></div></div><p class="metric">Segundos</p></div></section><br><br><div class="wrapper"><div class="typing-demo">Estamos en mantenimiento por actualización de nuestros sistemas. Te agradecemos por tu paciencia y comprensión.</div></div></main><div class="attribution"><p>Developed By <a href="https://www.instagram.com/chriismartinezz/" target="_blank" rel="noopener">Xhryz. </a>¡Feliz Navidad! 🎄</p></div></div><script>// Define una fecha fija de finalización en UTC
-    // Configura una fecha fija en UTC para que sea igual en todo el mundo
-const endTimeUTC = new Date('2025-01-05T23:59:59Z').getTime(); // Cambia la fecha si es necesario
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Martinez</title>
+    <link rel="icon" href="https://i.ibb.co/7XK2X9r/xhryz-perfil.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="sweetalert.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    
 
-const countdown = function () {
-  // Obtiene la fecha y hora actuales
-  const presentDate = new Date().getTime();
+</head>
 
-  console.log('Tiempo actual:', new Date(presentDate).toISOString());
-  console.log('Tiempo de finalización:', new Date(endTimeUTC).toISOString());
+<body>
+    <div class="snow"></div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#main">Inicio</a></li>
+                <li><a href="#experiencias">Conóceme</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#descargas">Descargas</a></li>
+                <li><a href="#donar">Donaciones</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
 
-  // Calcula la diferencia entre la fecha actual y la fecha de finalización
-  if (presentDate < endTimeUTC) {
-    const diffInSeconds = Math.floor((endTimeUTC - presentDate) / 1000);
+<section id="main" class="centered">
+    <div class="container">
+        <h1>¡Bienvenido/a, soy Xhryz.!</h1>
+        <img src="https://i.ibb.co/7XK2X9r/xhryz-perfil.png" alt="Xhryz." class="main-logo">
+        <div id="buttons-container" class="donate-buttons-container">
+            <a href="discord://-/users/637698552360861696" target="_blank" id="discord-button" class="download-btn2">
+                <span>Discord</span>
+            </a> 
+            <a href="https://www.instagram.com/chriismartinezz/" target="_blank" id="instagram-button" class="download-btn2">
+                <span>Instagram</span>
+            </a>
+        </div>
+    </div>
+</section>
 
-    // Calcula días, horas, minutos y segundos restantes
-    const days = Math.floor(diffInSeconds / 86400);
+   
 
-    let hours, minutes, seconds;
-    let timeValue;
 
-    // Horas restantes
-    timeValue = diffInSeconds % 86400;
-    hours = Math.floor(timeValue / 3600);
 
-    // Minutos restantes
-    timeValue = timeValue % 3600;
-    minutes = Math.floor(timeValue / 60);
+    <!-- Resto de las secciones aquí... -->
 
-    // Segundos restantes
-    seconds = timeValue % 60;
+    <section id="experiencias" class="centered">
+        <h2>Experiencias y Estudios</h2>
+        <br>
+        <div class="experience-grid">
+            <div class="experience-card">
+                <h3>Grado Medio SMX</h3>
+            </div>
+            <div class="experience-card">
+                <h3>Grado Superior DAM</h3>
+            </div>
+            <div class="experience-card">
+                <h3>Grado Superior DAW</h3>
+            </div>
+            <div class="experience-card">
+                <h3>Ciberseguridad</h3>
+            </div>
+            <div class="experience-card">
+                <h3>Ingeniería en IA</h3>
+            </div>
+            <div class="experience-card">
+                <h3>Machine Learning</h3>
+            </div>
+            <div class="experience-card">
+                <h3>Blockchain y Criptografía</h3>
+            </div>
+            <div class="experience-card">
+                <h3>C++</h3>
+            </div>
+            <div class="experience-card">
+                <h3>C#</h3>
+            </div>
+            <div class="experience-card">
+                <h3>JAVA</h3>
+            </div>
+            <div class="experience-card">
+                <h3>PYTHON</h3>
+            </div>
+            <div class="experience-card">
+                <h3>Informática Forense</h3>
+            </div>
+            <div class="experience-card">
+                <h3>HTML</h3>
+            </div>
+            <div class="experience-card">
+                <h3>CSS</h3>
+            </div>
+            <div class="experience-card">
+                <h3>Data Science</h3>
+            </div>
+            <div class="experience-card">
+                <h3>Desarrollo de Videojuegos</h3>
+            </div>
+            <div class="experience-card">
+                <h3>DevOps y Automatización</h3>
+            </div>
+            <div class="experience-card">
+                <h3>Análisis de Malware</h3>
+            </div>
+        </div>
+    </section>
+    
+    <section id="proyectos" class="centered">
+        <h2>Proyectos & Logros</h2>
+        <br>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="https://i.ibb.co/tPRCTW8/image5.webp" alt="Proyecto 1">
+                <h3>Venice AI</h3>
+                <p>Participación en la seguridad de Venice AI</p>
+            </div>
+            <div class="project-card">
+                <img src="https://i.ibb.co/mBX5NHf/image4.webp" alt="Proyecto 2">
+                <h3>Wolf RP</h3>
+                <p>Owner y Programador de Wolf RP</p>
+            </div>
+            <div class="project-card">
+                <img src="https://i.ibb.co/bg0r1Ck/image3.webp" alt="Proyecto 3">
+                <h3>Optimizer</h3>
+                <p>Optimizador para Windows 10 y Windows 11</p>
+            </div>
+       
+                
+        </div>
+    </section>
 
-    // Actualiza el DOM con los valores calculados
-    document.querySelector('.days').textContent = zeroPadding(days);
-    document.querySelector('.hours').textContent = zeroPadding(hours);
-    document.querySelector('.minutes').textContent = zeroPadding(minutes);
-    document.querySelector('.seconds').textContent = zeroPadding(seconds);
-  } else {
-    // Si el tiempo ya pasó, muestra el mensaje de finalización
-    document.querySelector('.days').textContent = zeroPadding(0);
-    document.querySelector('.hours').textContent = zeroPadding(0);
-    document.querySelector('.minutes').textContent = zeroPadding(0);
-    document.querySelector('.seconds').textContent = zeroPadding(0);
-    document.querySelector('.caption').textContent = '¡En breves se publicará la nueva web!';
-  }
-};
 
-// Función para añadir ceros a los números menores a 10
-function zeroPadding(time) {
-  return time < 10 ? '0' + String(time) : time;
-}
+    <section id="proyectos" class="centered">
+        
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="https://i.ibb.co/DwjxZ33/image2.webp" alt="Proyecto 4">
+                <h3>AdBlock</h3>
+                <p>Adblock para Navegadores</p>
+            </div>
 
-// Llama a la función cada segundo
-setInterval(countdown, 1000);</script></body></html>
+                <div class="project-card">
+                    <img src="https://i.ibb.co/hMhTBvb/image1.webp" alt="Proyecto 4">
+                    <h3>Páginas Webs</h3>
+                    <p>Webs para Particulares/Empresas</p>
+                </div>
+
+                    <div class="project-card">
+                        <img src="https://i.ibb.co/CnX1Yqm/image.png" alt="Proyecto 4">
+                        <h3>Windows 10 Custom</h3>
+                        <p>Realización de un Windows Personalizado</p>
+                    </div>
+       
+    </section>
+
+
+    <section id="proyectos" class="centered">
+        
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="https://i.ibb.co/pwW7Fc2/image-1.png" alt="Proyecto 4">
+                <h3>C1b3rWall</h3>
+                <p>Participante en C1b3rWall para la Policia Nacional</p>
+            </div>
+
+                <div class="project-card">
+                    <img src="https://i.ibb.co/6s9Qn3v/discord.jpg" alt="Proyecto 4">
+                    <h3>Bots Discord</h3>
+                    <p>Bots Personalizados para Discord</p>
+                </div>
+
+                    <div class="project-card">
+                        <img src="https://i.ibb.co/Pm1DzTT/texto-codigo-java-digital-concepto-vector-codificacion-software-computadora-programacion-script-codi.jpg" alt="Proyecto 4">
+                        <h3>Programas a medida</h3>
+                        <p>Programas para Particulares/Empresas</p>
+                    </div>
+       
+    </section>
+
+
+
+
+
+        <section id="proyectos" class="centered">
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://i.ibb.co/GPSrbHY/image.png" alt="Proyecto 10">
+                    <h3>Ambassador World Cup</h3>
+                    <p>Participante en Campeonato Mundial de Hackers Éticos</p>
+                </div>
+        
+                <div class="project-card">
+                    <img src="https://assets.super.so/9f72892d-9d90-4dcb-b641-78368b7524d4/uploads/cover/676f1d89-b441-4bd7-aad5-755114fa1368.png" alt="Proyecto 11">
+                    <h3>National Cyber League</h3>
+                    <p>Participante de la National Cyber League</p>
+                </div>
+        
+                <div class="project-card">
+                    <img src="https://programame.com/2024/nac/images/FotoGrupoNacional2024.jpg" alt="Proyecto 12">
+                    <h3>ProgramaMe</h3>
+                    <p>Campeón Regional de ProgramaMe 2021/2022</p>
+                </div>
+        
+            </section> 
+
+
+            <section id="proyectos" class="centered special-project"> <div class="project-grid"> <div class="project-card large-card"> <img src="https://i.ibb.co/MDbywMq/Diploma-Christian-Martinez.png" alt="Proyecto 10"> <h3>Campeón Nacional</h3> <p>Campeón Nacional de Ciberseguridad y Hacking Ético 2024/2025</p> </div> </div> </section>
+    
+            <section id="descargas" class="downloads-section">
+                <h2>Descargas Disponibles</h2>
+                <br>
+                <div class="downloads-grid">
+                    
+                    <div class="download-card">
+                        <div class="icon">
+                            <img src="iconos/php.png" alt="Icono PHP">
+                        </div>
+                        <div class="content">
+                            <h3>Extension PHP</h3>
+                            <p>Extensión con IA para PHP</p>
+                            <a href="descargas/vscode-xhryz-php-client-1.0.vsix" class="download-btn">
+                                <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                                </svg>
+                                <span>Descargar</span>
+                            </a>
+                        </div>
+                    </div>
+            
+                    <div class="download-card">
+                        <div class="icon">
+                            <img src="/iconos/optimizer.png" alt="Icono Optimizer">
+                        </div>
+                        <div class="content">
+                            <h3>Optimizer</h3>
+                            <p>Optimizador para Windows 10/11</p>
+                            <a href="descargas/Optimizer-Xhryz.exe" class="download-btn">
+                                <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                                </svg>
+                                <span>Descargar</span>
+                            </a>
+                        </div>
+                    </div>
+            
+                    <div class="download-card">
+                        <div class="icon">
+                            <img src="/iconos/cursor.png" alt="Icono Cursor">
+                        </div>
+                        <div class="content">
+                            <h3>Cursor</h3>
+                            <p>Cursor Minimalista para Windows</p>
+                            <a href="descargas/Cursores Mouse.rar" class="download-btn">
+                                <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                                </svg>
+                                <span>Descargar</span>
+                            </a>
+                        </div>
+                    </div>
+            
+                    <div class="download-card">
+                        <div class="icon">
+                            <img src="/iconos/act.png" alt="Icono Activador">
+                        </div>
+                        <div class="content">
+                            <h3>Activador</h3>
+                            <p>Activador de Windows y Office 365</p>
+                            <a href="descargas/act-win10-xhryz.rar" class="download-btn">
+                                <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                                    <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                                </svg>
+                                <span>Descargar</span>
+                            </a>
+                        </div>
+                    </div>
+            
+                </div>
+            </section>
+            
+
+
+
+            <section id="my-playlists" class="playlists-section">
+                <h2>My Playlists</h2>
+                <br>
+                <div class="playlists-grid">
+                    <!-- Spotify Playlist Card 1 -->
+                    <div class="playlist-card">
+                        <h3> Own </h3>
+                        <div class="underline"></div>
+                        
+                        <!-- Spotify Playlist Embed -->
+                        <div class="spotify-playlist">
+                            <iframe 
+                                src="https://open.spotify.com/embed/playlist/1wuucjtHUqxlQbhTCGUDvf" 
+                                width="100%" 
+                                height="380" 
+                                frameborder="0" 
+                                allowtransparency="true" 
+                                allow="encrypted-media">
+                            </iframe>
+                        </div>
+            
+                        <!-- Enlace y logo de Spotify -->
+                        <div class="spotify-link">
+                            <a href="https://open.spotify.com/playlist/1wuucjtHUqxlQbhTCGUDvf?si=1e2f8f690029495b" target="_blank">
+                                <img src="iconos/logo_white_spotify.png" alt="Spotify Logo" class="spotify-logo">
+                            </a>
+                        </div>
+                    </div>
+            
+                    <!-- Spotify Playlist Card 2 -->
+                    <div class="playlist-card">
+                        <h3> Gym </h3>
+                        <div class="underline"></div>
+                        
+                        <!-- Spotify Playlist Embed -->
+                        <div class="spotify-playlist">
+                            <iframe 
+                                src="https://open.spotify.com/embed/playlist/6NFoOzkguzPhgAjkSR1uC5" 
+                                width="100%" 
+                                height="380" 
+                                frameborder="0" 
+                                allowtransparency="true" 
+                                allow="encrypted-media">
+                            </iframe>
+                        </div>
+            
+                        <!-- Enlace y logo de Spotify -->
+                        <div class="spotify-link">
+                            <a href="https://open.spotify.com/playlist/6NFoOzkguzPhgAjkSR1uC5?si=85d1393de3a8401f" target="_blank">
+                                <img src="iconos/logo_white_spotify.png" alt="Spotify Logo" class="spotify-logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="donar" class="centered">
+                <h2>Donaciones</h2>
+                <p>Si te gusta lo que hago, puedes apoyar mi trabajo con una donación:</p>
+                <div class="donate-buttons-container">
+                    <a href="https://www.paypal.com/paypalme/chriismartinezz" target="_blank" class="download-btn2">
+                        <span>Donar</span>
+                    </a>
+                </div>
+            </section>
+            
+            <section id="contact" class="centered">
+                <h2>Contacto</h2>
+                <p>Para preguntas o comentarios, escríbeme en:</p>
+                <div class="buttons-container">
+                    <a href="discord://-/users/637698552360861696" target="_blank" id="discord-button" class="download-btn2">
+                        <span>Discord</span>
+                    </a>
+                    <a href="https://www.instagram.com/chriismartinezz/" target="_blank" id="instagram-button" class="download-btn2">
+                        <span>Instagram</span>
+                    </a>
+                </div>
+                <p class="easter-egg">Explora la página y descubre un easter egg escondido. Ctrl + Shift + ...</p>
+            </section>
+            
+
+        
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const snowContainer = document.querySelector('.snow');
+            const numFlakes = 100; // Número de copos de nieve
+    
+            for (let i = 0; i < numFlakes; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.style.left = Math.random() * 100 + 'vw'; // Posición horizontal aleatoria
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's'; // Velocidad de caída aleatoria
+                snowflake.style.opacity = Math.random() + 0.3; // Opacidad aleatoria
+                snowflake.style.transform = `scale(${Math.random()})`; // Tamaño aleatorio
+                snowflake.style.animationDelay = Math.random() * 5 + 's'; // Diferente tiempo de inicio de animación
+                snowContainer.appendChild(snowflake);
+            }
+        });
+    </script>
+
+
+    
+<script>
+
+    document.querySelectorAll('.download-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            // Agregar la clase 'clicked' para activar la animación
+            this.classList.add('clicked');
+            
+            // Eliminar la clase después de la animación (300ms es el tiempo de la animación)
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 300);
+        });
+    });
+    
+    
+    </script>
+    
+
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+ document.addEventListener('keydown', function (event) {
+    if (event.ctrlKey && event.shiftKey && event.key === 'X') {
+        let rounds = 0;
+        let playerLives = 3;
+        const maxRoundsToWin = 5; // Número de rondas necesarias para ganar el premio
+        const attemptsPerDay = 3; // Máximo de intentos por día
+        let attemptsToday = parseInt(localStorage.getItem('attemptsToday')) || 0; // Número de intentos realizados hoy
+        const choices = ["Piedra", "Papel", "Tijeras"];
+        const choiceImages = {
+            Piedra: "https://images.vexels.com/content/145874/preview/stone-boulder-2f1c5f.png",
+            Papel: "https://i.ibb.co/4phx1SK/papel.png",
+            Tijeras: "https://i.ibb.co/G3JTJwC/tijeras.png"
+        };
+
+        // Cargar datos guardados (última fecha de intento, rondas ganadas y fecha de pérdida de vidas)
+        const lastPlayedDate = localStorage.getItem('lastPlayedDate');
+        const roundsWon = parseInt(localStorage.getItem('roundsWon')) || 0;
+        const lastLossDate = localStorage.getItem('lastLossDate'); // Fecha cuando el jugador perdió todas las vidas
+
+        const currentDate = new Date();
+        const lastPlayedDateObj = lastPlayedDate ? new Date(lastPlayedDate) : null;
+        const timeDifference = lastPlayedDateObj ? currentDate - lastPlayedDateObj : 0;
+        const hoursSinceLastPlay = timeDifference / (1000 * 60 * 60); // en horas
+
+        const lastLossDateObj = lastLossDate ? new Date(lastLossDate) : null;
+        const timeSinceLastLoss = lastLossDateObj ? currentDate - lastLossDateObj : 0;
+        const minutesSinceLastLoss = timeSinceLastLoss / (1000 * 60); // en minutos
+
+        // Verificar si han pasado 12 horas desde la última vez que se perdió todas las vidas
+        if (minutesSinceLastLoss < 720) { // 12 horas = 720 minutos
+            const timeRemaining = 720 * 60 * 1000 - timeSinceLastLoss; // Tiempo restante en milisegundos
+            const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60)); // Horas restantes
+            const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60)); // Minutos restantes
+            const secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000); // Segundos restantes
+
+            swal({
+                title: "¡Frena!",
+                text: `Has perdido todas tus vidas. Tienes que esperar ${hoursRemaining} horas, ${minutesRemaining} minutos y ${secondsRemaining} segundos para volver a jugar.`,
+                icon: "info",
+                className: "custom-swal"
+            });
+            return;
+        }
+
+        // Si pasaron más de 12 horas desde el último intento, reiniciar los intentos
+        if (timeDifference > (1000 * 60 * 60 * 12)) { // 12 horas (en milisegundos)
+            attemptsToday = 0; // Reiniciar intentos
+            localStorage.setItem('attemptsToday', attemptsToday);
+        }
+
+        // Verificar si el jugador ha alcanzado el límite de intentos por día
+        if (attemptsToday >= attemptsPerDay) {
+            swal({
+                title: "¡Límite de intentos alcanzado!",
+                text: "Has alcanzado el máximo de 3 intentos por hoy. ¡Vuelve mañana para más desafíos!",
+                icon: "info",
+                className: "custom-swal"
+            });
+            return;
+        }
+
+        swal({
+            title: "¡Juego Activado!",
+            text: "¡Estás a punto de entrar en la arena de batalla! Tienes 3 vidas para desafiar al sistema. Elige sabiamente entre Piedra, Papel o Tijeras. ¡Vamos a ver quién es el más astuto!",
+            buttons: ["Cancelar", "Comenzar"],
+            className: "custom-swal"
+        }).then((startGame) => {
+            if (!startGame) return;
+
+            // Marcar que se ha jugado un intento hoy
+            attemptsToday++;
+            localStorage.setItem('attemptsToday', attemptsToday);
+            localStorage.setItem('lastPlayedDate', currentDate.toISOString()); // Guardar la fecha de este intento
+
+            function playRound() {
+                if (playerLives <= 0) {
+                    // Registrar la fecha en que el jugador pierde todas las vidas
+                    localStorage.setItem('lastLossDate', currentDate.toISOString());
+
+                    swal({
+                        title: "¡Juego Terminado!",
+                        text: `¡Has perdido todas tus vidas! Has sobrevivido ${rounds} rondas. Vuelve en 12 horas para intentar de nuevo.`,
+                        icon: "error",
+                        className: "custom-swal"
+                    });
+                    return; // Termina el juego si el jugador no tiene vidas
+                }
+
+                const content = document.createElement('div');
+                content.innerHTML = `
+                    <h3 style="text-align:center">Ronda ${rounds + 1}: Haz tu elección</h3>
+                    <div class="choice-container">
+                        <div class="choice" data-choice="Piedra">
+                            <img src="${choiceImages.Piedra}" alt="Piedra">
+                            <p style="text-align:center">Piedra</p>
+                        </div>
+                        <div class="choice" data-choice="Papel">
+                            <img src="${choiceImages.Papel}" alt="Papel">
+                            <p style="text-align:center">Papel</p>
+                        </div>
+                        <div class="choice" data-choice="Tijeras">
+                            <img src="${choiceImages.Tijeras}" alt="Tijeras">
+                            <p style="text-align:center">Tijeras</p>
+                        </div>
+                    </div>
+                `;
+
+                swal({
+                    content,
+                    buttons: false,
+                    className: "custom-swal"
+                });
+
+                document.querySelectorAll('.choice').forEach(choiceElement => {
+                    choiceElement.addEventListener('click', () => {
+                        const playerChoice = choiceElement.getAttribute('data-choice');
+                        const resultContent = document.createElement('div');
+                        let currentChoiceIndex = 0;
+                        let interval;
+
+                        const stopRouletteAndDecide = () => {
+                            clearInterval(interval);
+                            const aiChoice = choices[Math.floor(Math.random() * choices.length)];
+                            const resultText =
+                                playerChoice === aiChoice
+                                    ? `¡Es un empate! Ambos habeis sacado ${playerChoice}.`
+                                    : (playerChoice === "Piedra" && aiChoice === "Tijeras") ||
+                                      (playerChoice === "Papel" && aiChoice === "Piedra") ||
+                                      (playerChoice === "Tijeras" && aiChoice === "Papel")
+                                    ? `¡Has ganado esta ronda! Tu ${playerChoice} aplasta a ${aiChoice}.`
+                                    : `¡Has perdido! ${aiChoice} derrota a tu ${playerChoice}.`;
+
+                            resultContent.innerHTML = `
+                                <div class="result-container">
+                                    <div>
+                                        <h4>Tu elección:</h4>
+                                        <img src="${choiceImages[playerChoice]}" alt="${playerChoice}" style="width: 80px; height: 80px;">
+                                    </div>
+                                    <div>
+                                        <h4>Elección de la IA:</h4>
+                                        <img src="${choiceImages[aiChoice]}" alt="${aiChoice}" style="width: 80px; height: 80px;">
+                                    </div>
+                                </div>
+                                <p style="text-align:center; margin-top: 20px;">${resultText}</p>
+                            `;
+
+                            if (resultText.includes("ganado")) {
+                                rounds++;
+                                if (rounds >= maxRoundsToWin) {
+                                    // Otorgar el premio cuando el jugador gana 5 rondas
+                                    swal({
+                                        title: "¡Felicidades!",
+                                        text: "¡Has ganado 5 rondas! Haz captura de pantalla y enviamela para reclamar tu premio.",
+                                        icon: "success",
+                                        buttons: {
+                                            link: "Enviar",
+                                        },
+                                        className: "custom-swal"
+                                    }).then((buttonClicked) => {
+                                        if (buttonClicked) {
+                                            window.location.href = "discord://-/users/637698552360861696"; // Cambia el enlace por el de tu servidor de Discord
+                                        }
+                                    });
+                                }
+                            } else if (resultText.includes("perdido")) {
+                                playerLives--; // Resta una vida si se pierde
+                            }
+
+                            swal({
+                                content: resultContent,
+                                buttons: { continue: "Continuar" },
+                                className: "custom-swal"
+                            }).then(() => {
+                                playRound(); // Continúa con la siguiente ronda si aún quedan vidas
+                            });
+                        };
+
+                        const aiImageContainer = document.createElement('div');
+                        aiImageContainer.classList.add('ai-choice-container');
+
+                        const aiImages = choices.map(choice => {
+                            const aiImage = document.createElement('img');
+                            aiImage.src = choiceImages[choice];
+                            aiImage.alt = choice;
+                            aiImage.classList.add('slot-rotation');
+                            return aiImage;
+                        });
+
+                        aiImages.forEach(img => aiImageContainer.appendChild(img));
+
+                        resultContent.innerHTML = `
+                            <div class="result-container">
+                                <div>
+                                    <h4>Tu elección:</h4>
+                                    <img src="${choiceImages[playerChoice]}" alt="${playerChoice}" style="width: 80px; height: 80px;">
+                                </div>
+                                <div>
+                                    <h4>Elección de la IA:</h4>
+                                    ${aiImageContainer.outerHTML}
+                                </div>
+                            </div>
+                            <p style="text-align:center; margin-top: 20px;">La IA está decidiendo...</p>
+                        `;
+
+                        swal({
+                            content: resultContent,
+                            buttons: false,
+                            className: "custom-swal"
+                        });
+
+                        interval = setInterval(() => {
+                            currentChoiceIndex = (currentChoiceIndex + 1) % choices.length;
+                            aiImages.forEach((img, index) => {
+                                img.src = choiceImages[choices[(currentChoiceIndex + index) % choices.length]];
+                            });
+                        }, 100);
+
+                        setTimeout(stopRouletteAndDecide, 2000);
+                    });
+                });
+            }
+
+            playRound();
+        });
+    }
+});
+
+
+</script>
+
+
+
+</body>
+</html>

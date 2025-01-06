@@ -26,7 +26,7 @@
     if (event.ctrlKey && event.shiftKey && event.key === 'X') {
         let rounds = 0;
         let playerLives = 3;
-        const maxRoundsToWin = 10; // Número de rondas necesarias para ganar el premio
+        const maxRoundsToWin = 5; // Número de rondas necesarias para ganar el premio
         const attemptsPerDay = 3; // Máximo de intentos por día
         let attemptsToday = parseInt(localStorage.getItem('attemptsToday')) || 0; // Número de intentos realizados hoy
         const choices = ["Piedra", "Papel", "Tijeras"];
@@ -58,8 +58,8 @@
             const secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000); // Segundos restantes
 
             swal({
-                title: "¡Espera!",
-                text: `Has perdido todas tus vidas. Debes esperar ${hoursRemaining} horas, ${minutesRemaining} minutos y ${secondsRemaining} segundos para volver a jugar.`,
+                title: "¡Frena!",
+                text: `Has perdido todas tus vidas. Tienes que esperar ${hoursRemaining} horas, ${minutesRemaining} minutos y ${secondsRemaining} segundos para volver a jugar.`,
                 icon: "info",
                 className: "custom-swal"
             });
@@ -171,18 +171,18 @@
                             if (resultText.includes("ganado")) {
                                 rounds++;
                                 if (rounds >= maxRoundsToWin) {
-                                    // Otorgar el premio cuando el jugador gana 10 rondas
+                                    // Otorgar el premio cuando el jugador gana 5 rondas
                                     swal({
                                         title: "¡Felicidades!",
-                                        text: "¡Has ganado 10 rondas! Aquí tienes tu premio: ¡Un enlace a un servidor de Discord!",
+                                        text: "¡Has ganado 5 rondas! Haz captura de pantalla y enviamela para reclamar tu premio.",
                                         icon: "success",
                                         buttons: {
-                                            link: "Ver Enlace",
+                                            link: "Enviar",
                                         },
                                         className: "custom-swal"
                                     }).then((buttonClicked) => {
                                         if (buttonClicked) {
-                                            window.location.href = "https://discord.gg/tu-enlace-de-discord"; // Cambia el enlace por el de tu servidor de Discord
+                                            window.location.href = "discord://-/users/637698552360861696"; // Cambia el enlace por el de tu servidor de Discord
                                         }
                                     });
                                 }
@@ -246,5 +246,7 @@
 
             playRound();
         });
+    }
+});</script></body></html>
     }
 });</script></body></html>

@@ -1,1 +1,927 @@
-h1,header{border-radius:10px}body,header nav ul{margin:0;padding:0}header,header nav ul li{position:relative}header nav ul li a:hover::after,header.sticky{left:0;width:100%}a,header nav ul li a{color:#fff;text-decoration:none}.centered,.container,.special-project,header{text-align:center}#proyectos .project-card img,.download-card .icon img{filter:grayscale(100%);transition:filter .3s}.choice,.download-btn2{vertical-align:middle;font-family:inherit;font-weight:600;text-transform:uppercase}body{font-family:Poppins,sans-serif;color:#fff;line-height:1.6;background:url('https://images.unsplash.com/photo-1629194898512-b6b8697063ac?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center center/cover no-repeat fixed;animation:1s ease-in fadeIn}@keyframes slideIn{0%{transform:translateY(20px);opacity:0}100%{transform:translateY(0);opacity:1}}h1,h2,p{animation:.5s forwards slideIn;opacity:0}h1{animation-delay:.2s;margin:10px 0 20px;color:#fff;padding:10px}h2{animation-delay:.4s;margin:10px 0;color:#fff;background-color:rgba(30,30,30,.9);padding:12px 20px;border-radius:12px;box-shadow:0 6px 12px rgba(0,0,0,.7);font-weight:700;letter-spacing:1px;text-shadow:0 2px 4px rgba(0,0,0,.5)}p{animation-delay:.6s;max-width:600px;margin:40px auto 20px;font-size:18px}.container{max-width:1200px;margin:0 auto;padding:0 20px}header{padding:20px 0;background:linear-gradient(45deg,#44444400,#66666600);background-size:200% 200%;animation:8s infinite gradientMove;color:#fff;z-index:1000;transition:.3s}header.sticky{position:fixed;top:0}header:hover{background:linear-gradient(45deg,#55555500,#77777700)}@keyframes gradientMove{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}header nav ul{list-style:none;display:flex;justify-content:center;gap:30px}header nav ul li a{font-size:12px;font-weight:600;padding:10px 15px;border-radius:8px;background:rgba(30,30,30,.8);transition:.3s;box-shadow:0 4px 8px rgba(0,0,0,.3)}header nav ul li a:hover{color:#ccc;transform:translateY(-3px);box-shadow:0 6px 15px rgba(0,0,0,.5)}header nav ul li a::after{content:'';position:absolute;width:0;height:3px;background-color:#ffffff48;bottom:-5px;left:50%;transition:width .4s,left .4s;border-radius:3px}@media (max-width:768px){header nav ul{flex-direction:column;gap:15px}header nav ul li a{font-size:18px;text-align:center}}section{padding:60px 0}.grid-buttons{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;justify-content:center;max-width:600px;margin:0 auto}.btn{padding:12px 20px;border:none;border-radius:8px;font-size:16px;margin:10px;transition:background-color .3s,box-shadow .3s;cursor:pointer;box-shadow:0 5px 10px rgba(0,0,0,.5)}.btn-secondary{background-color:#333;color:#fff}.btn-secondary:hover{background-color:#555;box-shadow:0 7px 15px rgba(0,0,0,.8)}.main-logo,.profile-img{width:150px;height:150px;margin:20px auto;border-radius:50%;box-shadow:8px 8px 8px rgba(119,119,119,0)}.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding:0 20px}.experience-card,.project-card{background-color:rgba(30,30,30,.8);border-radius:12px;padding:20px;box-shadow:0 6px 12px rgba(0,0,0,.6);transition:transform .3s,box-shadow .3s;border:1px solid rgba(255,255,255,.2)}.project-card img{width:100%;height:250px;object-fit:cover;border-radius:12px}.project-card:hover{transform:scale(1.03);box-shadow:0 8px 16px rgba(0,0,0,.7)}#proyectos .project-card img:hover,.download-card .icon img:hover{filter:grayscale(0%)}#contact,#descargas,#donar,#easter{padding:60px 0;color:#fff}a:hover{color:#bbb}.experience-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:0 20px}.experience-card:hover{transform:scale(1.05);box-shadow:0 8px 16px rgba(0,0,0,.7)}.special-project{margin-top:50px}.large-card{max-width:600px;margin:0 auto;background-color:rgba(30,30,30,.9);padding:30px;border-radius:15px;box-shadow:0 6px 12px rgba(0,0,0,.7);transition:transform .3s,box-shadow .3s ease-in-out}.large-card img{width:100%;height:auto;object-fit:contain;border-radius:10px}.large-card:hover{transform:scale(1.05);box-shadow:0 8px 16px rgba(0,0,0,.8)}@media (max-width:480px){.btn{font-size:12px;padding:8px 12px}.main-logo,.profile-img{width:100px;height:100px}.project-card img{height:150px}h1,h2{font-size:20px}p{font-size:14px}.large-card{padding:20px}}.download-btn2::before,.snow{width:100%;height:100%;top:0;left:0}.snow{pointer-events:none;position:fixed;pointer-events:none;z-index:1;overflow:hidden}.snowflake{opacity:.4;position:absolute;top:-10px;width:5px;height:5px;background:rgba(255,255,255,.5);border-radius:50%;opacity:.3;filter:blur(1px);animation:linear infinite fall}.download-card,.downloads-section{border-radius:12px;text-align:center}@keyframes fall{to{transform:translateY(100vh)}}@keyframes fadeIn{0%{opacity:0}100%{opacity:1}}.easter-egg{margin-top:70px;font-style:italic;color:#555;font-size:15px}.downloads-section{margin:3rem auto;padding:2rem;background-color:rgba(30,30,30,0);color:#fff;box-shadow:0 6px 20px transparent}.downloads-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem}.download-card{background:rgba(50,50,50,.7);width:280px;display:flex;flex-direction:column;align-items:center;padding:1.5rem;box-shadow:0 6px 15px rgba(0,0,0,.6);transition:transform .3s,box-shadow .3s;color:#fff;border:1px solid rgba(255,255,255,.2)}.download-btn,.download-btn2{display:inline-block;cursor:pointer;outline:0;text-decoration:none}.download-card:hover{transform:scale(1.05);box-shadow:0 8px 20px rgba(0,0,0,.8)}.download-card .icon{margin-bottom:1rem}.download-card .icon img{max-width:80px;height:auto}.download-card h3{font-size:1.5rem;color:#fff;margin-bottom:.5rem;background-color:rgba(51,51,51,.7);padding:5px;border-radius:5px}.download-card p{font-size:1rem;color:#ccc;margin-bottom:1rem}.download-btn{width:180px;height:60px;background:#444;border:1px solid #555;position:relative;border-radius:0;transition:.3s}.download-btn svg{position:absolute;left:0;top:0;fill:none;stroke:#fff;stroke-dasharray:150 480;stroke-dashoffset:150;transition:1s ease-in-out}.download-btn:hover{background:#555}.download-btn:hover svg{stroke-dashoffset:-480}.download-btn span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:18px;font-weight:100;transition:1s ease-in-out}.choice,.choice span,.download-btn2,.download-btn2 span{position:relative;font-size:12px}.choice:hover span,.download-btn2:hover span,.download-btn:hover span{color:#fff}@keyframes buttonClick{0%,100%{transform:scale(1)}50%{transform:scale(.95)}}.download-btn.clicked{animation:.3s ease-in-out buttonClick}.download-btn2{border:2px solid rgba(255,255,255,.2);color:#ccc;padding:.5em 1em;background:rgba(30,30,30,.8);border-radius:12px;transform-style:preserve-3d;transition:transform 150ms cubic-bezier(0, 0, .58, 1),background 150ms cubic-bezier(0, 0, .58, 1)}.download-btn2::before{position:absolute;content:'';right:0;bottom:0;background:rgba(60,60,60,.9);border-radius:inherit;box-shadow:0 0 0 2px rgba(255,255,255,.2),0 .5em 0 0 rgba(170,170,170,.5);transform:translate3d(0,.75em,-1em);transition:transform 150ms cubic-bezier(0, 0, .58, 1),box-shadow 150ms cubic-bezier(0, 0, .58, 1)}.choice:hover,.download-btn2:hover,.swal-button:hover{background:rgba(40,40,40,.9);transform:translate(0,.25em)}.download-btn2:hover::before{box-shadow:0 0 0 2px rgba(255,255,255,.2),0 .5em 0 0 rgba(170,170,170,.7);transform:translate3d(0,.5em,-1em)}.choice:active,.download-btn2:active,.swal-button:active{background:rgba(50,50,50,.8);transform:translate(0,.75em)}.download-btn2:active::before{box-shadow:0 0 0 2px rgba(255,255,255,.2),0 0 #aaa;transform:translate3d(0,0,-1em)}.choice span,.download-btn2 span{color:#ccc;font-weight:700;letter-spacing:1px;z-index:2;transition:color .3s}.choice:active span,.download-btn2:active span{color:#ddd}.playlists-section{text-align:center;margin:2rem auto;padding:1.5rem;border-radius:10px;color:#fff}.playlists-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem}.playlist-card{background:rgba(30,30,30,.7);border:1px solid rgba(255,255,255,.2);border-radius:8px;width:320px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:1.5rem;box-shadow:0 4px 10px rgba(0,0,0,.4);transition:transform .3s,box-shadow .3s}.playlist-card:hover{transform:translateY(-5px);box-shadow:0 6px 15px rgba(0,0,0,.5)}.playlist-card h3{font-size:1.4rem;color:#fff;margin-bottom:.5rem;background-color:rgba(30,30,30,.8);padding:5px;border-radius:5px}.underline{width:50px;height:3px;background-color:#fff;margin:10px auto}.spotify-playlist{width:100%;margin-bottom:1.5rem}.spotify-link{margin-top:10px}.spotify-logo{width:40px;height:auto;filter:brightness(0) invert(1);transition:transform .3s}.spotify-link a:hover .spotify-logo{transform:scale(1.1)}.choice-container{display:flex;justify-content:space-around;align-items:center;margin-top:20px}.choice{cursor:pointer;display:inline-block;outline:0;border:2px solid rgba(255,255,255,.2);text-decoration:none;color:#ccc;padding:.5em 1em;background:rgba(30,30,30,.8);border-radius:12px;transition:transform 150ms cubic-bezier(0, 0, .58, 1),background 150ms cubic-bezier(0, 0, .58, 1);box-shadow:0 0 0 2px rgba(255,255,255,.2),0 .5em 0 0 rgba(170,170,170,.5)}.choice img{width:100px;height:100px;border-radius:8px;object-fit:contain}.ai-choice-container{display:flex;justify-content:space-around;align-items:center;border:3px solid #333;padding:20px;border-radius:8px}.ai-choice-container img{width:80px;height:80px;border-radius:8px;object-fit:contain}.slot-rotation{animation:1s linear infinite spin}@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.swal-modal{background-color:#2e2e2e;color:#fff;border-radius:12px;border:2px solid rgba(255,255,255,.2)}.custom-swal .swal-button,.swal-button{color:#ccc;font-size:14px;padding:.5em 1.5em;box-shadow:0 0 0 2px rgba(255,255,255,.2),0 .5em 0 0 rgba(170,170,170,.5);text-transform:uppercase;font-weight:600;transition:background 150ms cubic-bezier(0, 0, .58, 1)}.swal-button{background-color:rgba(30,30,30,.8);border-radius:12px;border:2px solid rgba(255,255,255,.2)}.swal-button--cancel{background:rgba(60,60,60,.8)}.swal-button--cancel:hover{background:rgba(70,70,70,.9)}.custom-swal .swal-button{background-color:rgba(30,30,30,.8);border-radius:12px;border:2px solid rgba(255,255,255,.2)}.custom-swal .swal-button:hover{background:rgba(40,40,40,.9);transform:translate(0,.25em)}.custom-swal .swal-button:active{background:rgba(50,50,50,.8);transform:translate(0,.75em)}
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background: url('https://images.unsplash.com/photo-1629194898512-b6b8697063ac?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed; /* Cambia la URL por la de tu imagen de madera */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    animation: fadeIn 1s ease-in; /* Efecto fade-in */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Efecto slide-in */
+@keyframes slideIn {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Aplicar el efecto a los encabezados y párrafos */
+h1, h2, p {
+    animation: slideIn 0.5s ease forwards; /* Cambia el tiempo según tu preferencia */
+    opacity: 0; /* Inicialmente oculto */
+}
+
+/* Añadir un retraso para cada elemento */
+h1 {
+    animation-delay: 0.2s;
+}
+h2 {
+    animation-delay: 0.4s;
+}
+p {
+    animation-delay: 0.6s;
+}
+
+/* Resto de tu CSS... */
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* Estilo general para el header */
+/* Estilos generales para el Header */
+header {
+    text-align: center;
+    padding: 20px 0;
+    background: linear-gradient(45deg, #44444400, #66666600); /* Degradado sutil */
+    background-size: 200% 200%; /* Para animación fluida del degradado */
+    animation: gradientMove 8s ease infinite; /* Movimiento suave del degradado */
+    border-radius: 10px; /* Bordes redondeados */
+
+    color: #fff; /* Texto blanco */
+    position: relative; /* Para aplicar el sticky */
+    z-index: 1000;
+    transition: all 0.3s ease; /* Transición suave para hover */
+}
+
+header.sticky {
+    position: fixed; /* Se fija cuando se agrega la clase sticky */
+    top: 0;
+    left: 0;
+    width: 100%;
+
+}
+
+header:hover {
+    background: linear-gradient(45deg, #55555500, #77777700); /* Degradado más claro al pasar el ratón */
+}
+
+/* Animación de movimiento del degradado */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Menú de navegación */
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Espacio entre los elementos del menú */
+}
+
+header nav ul li {
+    position: relative;
+}
+
+/* Enlaces del menú */
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600; /* Fuente más impactante */
+    padding: 10px 15px;
+    border-radius: 8px; /* Bordes redondeados */
+    background: rgba(30, 30, 30, 0.8); /* Fondo más oscuro y opaco */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra suave */
+}
+
+/* Efecto hover en los enlaces */
+header nav ul li a:hover {
+    color: #ccc; /* Gris claro */
+    transform: translateY(-3px); /* Desplazamiento hacia arriba */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
+}
+
+/* Subrayado animado */
+header nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background-color: #ffffff48; /* Subrayado blanco */
+    bottom: -5px;
+    left: 50%;
+    transition: width 0.4s ease, left 0.4s ease; /* Más notorio */
+    border-radius: 3px;
+}
+
+header nav ul li a:hover::after {
+    width: 100%; /* El subrayado abarca todo el texto */
+    left: 0;
+}
+
+/* Responsive: para pantallas pequeñas */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    header nav ul li a {
+        font-size: 18px;
+        text-align: center;
+    }
+}
+
+section {
+    padding: 60px 0;
+}
+
+h1 {
+    margin: 10px 0;
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+h2 {
+    margin: 10px 0;
+    color: #ffffff; /* Texto blanco */
+    background-color: rgba(30, 30, 30, 0.9); /* Fondo más oscuro y con más opacidad */
+    padding: 12px 20px; /* Un poco más de padding para hacerlo más prominente */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7); /* Sombra más intensa */
+    font-weight: 700; /* Hace el texto más grueso */
+    letter-spacing: 1px; /* Espaciado de letras para darle más presencia */
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto para resaltar más */
+}
+
+
+p {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    font-size: 18px;
+    margin-top: 40px; /* Añade espacio arriba del párrafo */
+}
+
+.centered {
+    text-align: center;
+}
+
+/* Botones */
+.grid-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #555;
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.8);
+}
+
+/* Imágenes */
+.main-logo, .profile-img {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    border-radius: 50%;
+    box-shadow: 8px 8px 8px rgba(119, 119, 119, 0);
+}
+
+/* Proyectos */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.project-card {
+    background-color: rgba(30, 30, 30, 0.8); /* Fondo oscuro translúcido */
+    border-radius: 12px; /* Bordes más redondeados */
+    padding: 20px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.6); /* Sombra más fuerte */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transición de sombra en hover */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+}
+
+.project-card img {
+    width: 100%;
+    height: 250px; /* Mantiene la altura */
+    object-fit: cover; /* Mantiene la proporción */
+    border-radius: 12px; /* Bordes más redondeados para la imagen */
+}
+
+.project-card:hover {
+    transform: scale(1.03); /* Escala ligeramente al pasar el cursor */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.7); /* Sombra más intensa en hover */
+}
+
+/* Filtro en blanco y negro para las imágenes de proyectos */
+#proyectos .project-card img {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+#proyectos .project-card img:hover {
+    filter: grayscale(0%);
+}
+
+
+/* Estilos específicos de secciones */
+#donar, #contact, #easter, #descargas { 
+    padding: 60px 0;
+    color: #ffffff; /* Texto blanco */
+    
+}
+
+/* Estilo de enlaces */
+a {
+    color: #ffffff; /* Enlaces en blanco */
+    text-decoration: none; /* Sin subrayado */
+}
+
+a:hover {
+    color: #bbb; /* Color más claro al hacer hover */
+}
+
+
+/* Experiencias */
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.experience-card {
+    background-color: rgba(30, 30, 30, 0.8); /* Fondo oscuro translúcido */
+    border-radius: 12px; /* Bordes más redondeados */
+    padding: 20px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.6); /* Sombra más fuerte */
+    transition: transform 0.3s, box-shadow 0.3s; /* Añadido cambio en la sombra en hover */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más sutil */
+}
+
+.experience-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.7); /* Sombra más intensa en hover */
+}
+
+
+
+
+/* Estilo para la nieve */
+.snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1; /* Asegúrate de que esté detrás de otros elementos */
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    width: 3px; /* Tamaño más pequeño */
+    height: 3px;
+    background: rgba(255, 255, 255, 0.5); /* Color y opacidad más suaves */
+    border-radius: 50%;
+    opacity: 0.4; /* Opacidad más baja */
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh); /* Caída completa */
+    }
+}
+
+/* Estilos específicos para la sección especial */
+.special-project {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.large-card {
+    max-width: 600px;
+    margin: 0 auto; /* Centra la tarjeta en la página */
+    background-color: rgba(30, 30, 30, 0.9); /* Fondo más oscuro y opaco */
+    padding: 30px;
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.7); /* Sombra intensa */
+    transition: transform 0.3s, box-shadow 0.3s ease-in-out; /* Transición en sombra también */
+}
+
+.large-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Asegura que la imagen se ajuste correctamente */
+    border-radius: 10px;
+}
+
+.large-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.8); /* Sombra más fuerte al hacer hover */
+}
+
+
+
+
+
+
+
+
+/* Para pantallas más pequeñas aún */
+@media (max-width: 480px) {
+    .btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .main-logo, .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .project-card img {
+        height: 150px;
+    }
+
+    h1, h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .large-card {
+        padding: 20px;
+    }
+}
+
+/* Estilo para la nieve */
+.snow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Cambiado para que la nieve cubra toda la pantalla */
+    pointer-events: none;
+    z-index: 1; /* Asegúrate de que esté detrás de otros elementos */
+    overflow: hidden;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px; /* Parte superior de la pantalla */
+    width: 5px; /* Tamaño más pequeño */
+    height: 5px; /* Tamaño más pequeño */
+    background: rgba(255, 255, 255, 0.5); /* Color y opacidad más suaves */
+    border-radius: 50%;
+    opacity: 0.3; /* Opacidad más baja */
+    filter: blur(1px);
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh); /* Caída completa hasta la parte inferior */
+    }
+}
+
+
+
+/* Efecto fade-in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
+/* Estilo del texto de easter egg */
+.easter-egg {
+    margin-top: 70px; /* Espaciado superior */
+    font-style: italic; /* Estilo de texto en cursiva */
+    color: #555; /* Color más claro */
+    font-size: 15px;
+}
+
+/* Estilo de la sección de descargas */
+.downloads-section {
+    text-align: center;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: rgba(30, 30, 30, 0); /* Fondo oscuro translúcido */
+    border-radius: 12px;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0); /* Sombra más fuerte */
+}
+
+/* Estilo de la cuadrícula de descargas */
+.downloads-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Estilo de las tarjetas de descarga */
+.download-card {
+    background: rgba(50, 50, 50, 0.7); /* Fondo oscuro translúcido */
+    border-radius: 12px; /* Bordes redondeados */
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); /* Sombra más fuerte */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    color: #ffffff; /* Texto blanco */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+}
+
+/* Efecto al pasar el ratón sobre las tarjetas */
+.download-card:hover {
+    transform: scale(1.05); /* Escala la tarjeta ligeramente */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8); /* Sombra más intensa al pasar el ratón */
+}
+
+/* Estilo de los iconos en las tarjetas */
+.download-card .icon {
+    margin-bottom: 1rem;
+}
+
+/* Efecto de escala en los iconos */
+.download-card .icon img {
+    max-width: 80px;
+    height: auto;
+    filter: grayscale(100%); /* Imagen en blanco y negro */
+    transition: filter 0.3s ease; /* Transición suave en el filtro */
+}
+
+/* Efecto al pasar el ratón sobre los iconos */
+.download-card .icon img:hover {
+    filter: grayscale(0%); /* Devuelve el color al pasar el ratón */
+}
+
+/* Estilo para los títulos de las tarjetas */
+.download-card h3 {
+    font-size: 1.5rem;
+    color: #ffffff; /* Texto blanco */
+    margin-bottom: 0.5rem;
+    background-color: rgba(51, 51, 51, 0.7); /* Fondo oscuro tras el texto */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Estilo para la descripción en las tarjetas */
+.download-card p {
+    font-size: 1rem;
+    color: #ccc; /* Texto gris claro */
+    margin-bottom: 1rem;
+}
+
+/* Estilo para los botones de descarga */
+.download-btn {
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    background: #444;  /* Fondo oscuro inicial */
+    border: 1px solid #555;  /* Borde oscuro */
+    outline: none;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    border-radius: 0px; /* Bordes redondeados */
+    transition: 0.3s ease; /* Transición suave */
+}
+
+/* Efecto de animación para el SVG dentro del botón */
+.download-btn svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 150 480;
+    stroke-dashoffset: 150;
+    transition: 1s ease-in-out;
+}
+
+/* Efecto al pasar el ratón sobre el botón */
+.download-btn:hover {
+    background: #555;  /* Fondo más oscuro */
+}
+
+.download-btn:hover svg {
+    stroke-dashoffset: -480; /* Desaparece el trazo del SVG al pasar el ratón */
+}
+
+/* Estilo para el texto dentro del botón */
+.download-btn span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+    font-weight: 100;
+    transition: 1s ease-in-out;
+}
+
+/* Cambio de color del texto al pasar el ratón */
+.download-btn:hover span {
+    color: #fff;
+}
+
+/* Animación de clic en el botón */
+/* Efecto de animación cuando se hace clic */
+@keyframes buttonClick {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.download-btn.clicked {
+    animation: buttonClick 0.3s ease-in-out;
+}
+
+
+
+.download-btn2 {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 12px; /* Tamaño de texto más pequeño */
+    font-family: inherit;
+    font-weight: 600;
+    color: #ccc; /* Texto en gris claro */
+    text-transform: uppercase;
+    padding: 0.5em 1em; /* Botón más pequeño */
+    background: rgba(30, 30, 30, 0.8); /* Fondo oscuro translúcido */
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Borde claro */
+    border-radius: 12px; /* Bordes más redondeados */
+    transform-style: preserve-3d;
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.download-btn2::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(60, 60, 60, 0.9); /* Fondo gris más oscuro */
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2), 0 0.5em 0 0 rgba(170, 170, 170, 0.5); /* Sombra más sutil */
+    transform: translate3d(0, 0.75em, -1em);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.download-btn2:hover {
+    background: rgba(40, 40, 40, 0.9); /* Fondo un poco más claro al pasar el mouse */
+    transform: translate(0, 0.25em);
+}
+
+.download-btn2:hover::before {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2), 0 0.5em 0 0 rgba(170, 170, 170, 0.7); /* Sombra más intensa en hover */
+    transform: translate3d(0, 0.5em, -1em);
+}
+
+.download-btn2:active {
+    background: rgba(50, 50, 50, 0.8); /* Fondo gris más claro al presionar */
+    transform: translate(0em, 0.75em);
+}
+
+.download-btn2:active::before {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2), 0 0 #aaa; /* Sombra más suave al presionar */
+    transform: translate3d(0, 0, -1em);
+}
+
+.download-btn2 span {
+    position: relative;
+    color: #ccc; /* Texto gris claro */
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.download-btn2:hover span {
+    color: #fff; /* Cambia el color del texto a blanco al hacer hover */
+}
+
+.download-btn2:active span {
+    color: #ddd; /* Cambia el color del texto a gris claro al presionar */
+}
+
+
+
+ /* Estilos generales para la sección */
+ .playlists-section {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 10px; /* Bordes redondeados */
+    color: #fff; /* Texto blanco */
+}
+
+.playlists-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.playlist-card {
+    background: rgba(30, 30, 30, 0.7); /* Fondo más oscuro y suave */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde más suave */
+    border-radius: 8px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Sombra más ligera */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.playlist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada al hacer hover */
+}
+
+.playlist-card h3 {
+    font-size: 1.4rem;
+    color: #fff; /* Texto blanco */
+    margin-bottom: 0.5rem;
+    background-color: rgba(30, 30, 30, 0.8); /* Fondo más oscuro y opaco */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.underline {
+    width: 50px;
+    height: 3px;
+    background-color: #fff; /* Subrayado blanco */
+    margin: 10px auto;
+}
+
+/* Estilo para el contenedor del iframe */
+.spotify-playlist {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo para el enlace de Spotify con el logo */
+.spotify-link {
+    margin-top: 10px;
+}
+
+.spotify-logo {
+    width: 40px;
+    height: auto;
+    filter: brightness(0) invert(1); /* Logo blanco */
+    transition: transform 0.3s ease;
+}
+
+.spotify-link a:hover .spotify-logo {
+    transform: scale(1.1); /* Efecto de zoom al hacer hover */
+}
+
+
+
+/* Estilo general para las elecciones (Piedra, Papel, Tijeras) */
+.choice-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.choice {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 12px; /* Tamaño de texto más pequeño */
+    font-family: inherit;
+    font-weight: 600;
+    color: #ccc; /* Texto en gris claro */
+    text-transform: uppercase;
+    padding: 0.5em 1em;
+    background: rgba(30, 30, 30, 0.8); /* Fondo oscuro translúcido */
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Borde claro */
+    border-radius: 12px; /* Bordes más redondeados */
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2), 0 0.5em 0 0 rgba(170, 170, 170, 0.5);
+}
+
+.choice img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* Hover y active states */
+.choice:hover {
+    background: rgba(40, 40, 40, 0.9); /* Fondo un poco más claro al pasar el mouse */
+    transform: translate(0, 0.25em);
+}
+
+.choice:active {
+    background: rgba(50, 50, 50, 0.8); /* Fondo gris más claro al presionar */
+    transform: translate(0em, 0.75em);
+}
+
+/* Efecto para los textos dentro de la elección */
+.choice span {
+    position: relative;
+    color: #ccc;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.choice:hover span {
+    color: #fff; /* Cambia el color del texto a blanco al hacer hover */
+}
+
+.choice:active span {
+    color: #ddd; /* Cambia el color del texto a gris claro al presionar */
+}
+
+/* Contenedor para mostrar la ruleta de imágenes */
+.ai-choice-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 3px solid #333;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.ai-choice-container img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* Animación de rotación para las imágenes */
+.slot-rotation {
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Estilo para los mensajes y botones de SweetAlert */
+.swal-modal {
+    background-color: #2e2e2e;
+    color: #fff;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.swal-button {
+    background-color: rgba(30, 30, 30, 0.8);
+    color: #ccc;
+    font-size: 14px;
+    padding: 0.5em 1.5em;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2), 0 0.5em 0 0 rgba(170, 170, 170, 0.5);
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.swal-button:hover {
+    background: rgba(40, 40, 40, 0.9);
+    transform: translate(0, 0.25em);
+}
+
+.swal-button:active {
+    background: rgba(50, 50, 50, 0.8);
+    transform: translate(0em, 0.75em);
+}
+
+.swal-button--cancel {
+    background: rgba(60, 60, 60, 0.8);
+}
+
+.swal-button--cancel:hover {
+    background: rgba(70, 70, 70, 0.9);
+}
+
+.custom-swal .swal-button {
+    background-color: rgba(30, 30, 30, 0.8);
+    color: #ccc;
+    font-size: 14px;
+    padding: 0.5em 1.5em;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2), 0 0.5em 0 0 rgba(170, 170, 170, 0.5);
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background 150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+.custom-swal .swal-button:hover {
+    background: rgba(40, 40, 40, 0.9);
+    transform: translate(0, 0.25em);
+}
+
+.custom-swal .swal-button:active {
+    background: rgba(50, 50, 50, 0.8);
+    transform: translate(0em, 0.75em);
+}

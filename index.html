@@ -418,249 +418,190 @@
     
 
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-<script>
- document.addEventListener('keydown', function (event) {
-    if (event.ctrlKey && event.shiftKey && event.key === 'X') {
-        let rounds = 0;
-        let playerLives = 3;
-        const maxRoundsToWin = 5; // Número de rondas necesarias para ganar el premio
-        const attemptsPerDay = 3; // Máximo de intentos por día
-        let attemptsToday = parseInt(localStorage.getItem('attemptsToday')) || 0; // Número de intentos realizados hoy
-        const choices = ["Piedra", "Papel", "Tijeras"];
-        const choiceImages = {
-            Piedra: "https://images.vexels.com/content/145874/preview/stone-boulder-2f1c5f.png",
-            Papel: "https://i.ibb.co/4phx1SK/papel.png",
-            Tijeras: "https://i.ibb.co/G3JTJwC/tijeras.png"
-        };
-
-        // Cargar datos guardados (última fecha de intento, rondas ganadas y fecha de pérdida de vidas)
-        const lastPlayedDate = localStorage.getItem('lastPlayedDate');
-        const roundsWon = parseInt(localStorage.getItem('roundsWon')) || 0;
-        const lastLossDate = localStorage.getItem('lastLossDate'); // Fecha cuando el jugador perdió todas las vidas
-
-        const currentDate = new Date();
-        const lastPlayedDateObj = lastPlayedDate ? new Date(lastPlayedDate) : null;
-        const timeDifference = lastPlayedDateObj ? currentDate - lastPlayedDateObj : 0;
-        const hoursSinceLastPlay = timeDifference / (1000 * 60 * 60); // en horas
-
-        const lastLossDateObj = lastLossDate ? new Date(lastLossDate) : null;
-        const timeSinceLastLoss = lastLossDateObj ? currentDate - lastLossDateObj : 0;
-        const minutesSinceLastLoss = timeSinceLastLoss / (1000 * 60); // en minutos
-
-        // Si han pasado más de 12 horas desde la última pérdida, resetear el bloqueo
-if (minutesSinceLastLoss >= 720) { 
-    localStorage.removeItem('lastLossDate'); // Eliminar bloqueo
-    playerLives = 3; // Restaurar vidas
-    attemptsToday = 0; // Restaurar intentos
-    localStorage.setItem('attemptsToday', attemptsToday);
-}
-
-// Verificar si han pasado 12 horas desde la última vez que se perdió todas las vidas
-if (minutesSinceLastLoss < 720) { // 12 horas = 720 minutos
-    const timeRemaining = 720 * 60 * 1000 - timeSinceLastLoss; // Tiempo restante en milisegundos
-    const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60)); // Horas restantes
-    const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60)); // Minutos restantes
-    const secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000); // Segundos restantes
-
-    swal({
-        title: "¡Frena!",
-        text: `Has perdido todas tus vidas. Tienes que esperar ${hoursRemaining} horas, ${minutesRemaining} minutos y ${secondsRemaining} segundos para volver a jugar.`,
-        icon: "info",
-        className: "custom-swal"
-    });
-    return;
-}
-
-
-        // Si pasaron más de 12 horas desde el último intento, reiniciar los intentos
-        if (timeDifference > (1000 * 60 * 60 * 12)) { // 12 horas (en milisegundos)
-            attemptsToday = 0; // Reiniciar intentos
-            localStorage.setItem('attemptsToday', attemptsToday);
-        }
-
-        // Verificar si el jugador ha alcanzado el límite de intentos por día
-        if (attemptsToday >= attemptsPerDay) {
-            swal({
-                title: "¡Límite de intentos alcanzado!",
-                text: "Has alcanzado el máximo de 3 intentos por hoy. ¡Vuelve mañana para más desafíos!",
-                icon: "info",
-                className: "custom-swal"
-            });
-            return;
-        }
-
-        swal({
-            title: "¡Juego Activado!",
-            text: "¡Estás a punto de entrar en la arena de batalla! Tienes 3 vidas para desafiar al sistema. Elige sabiamente entre Piedra, Papel o Tijeras. ¡Vamos a ver quién es el más astuto!",
-            buttons: ["Cancelar", "Comenzar"],
-            className: "custom-swal"
-        }).then((startGame) => {
-            if (!startGame) return;
-
-            // Marcar que se ha jugado un intento hoy
-            attemptsToday++;
-            localStorage.setItem('attemptsToday', attemptsToday);
-            localStorage.setItem('lastPlayedDate', currentDate.toISOString()); // Guardar la fecha de este intento
-
-            function playRound() {
-                if (playerLives <= 0) {
-                    // Registrar la fecha en que el jugador pierde todas las vidas
-                    localStorage.setItem('lastLossDate', currentDate.toISOString());
-
-                    swal({
-                        title: "¡Juego Terminado!",
-                        text: `¡Has perdido todas tus vidas! Has sobrevivido ${rounds} rondas. Vuelve en 12 horas para intentar de nuevo.`,
-                        icon: "error",
-                        className: "custom-swal"
-                    });
-                    return; // Termina el juego si el jugador no tiene vidas
-                }
-
-                const content = document.createElement('div');
-                content.innerHTML = `
-                    <h3 style="text-align:center">Ronda ${rounds + 1}: Haz tu elección</h3>
-                    <div class="choice-container">
-                        <div class="choice" data-choice="Piedra">
-                            <img src="${choiceImages.Piedra}" alt="Piedra">
-                            <p style="text-align:center">Piedra</p>
-                        </div>
-                        <div class="choice" data-choice="Papel">
-                            <img src="${choiceImages.Papel}" alt="Papel">
-                            <p style="text-align:center">Papel</p>
-                        </div>
-                        <div class="choice" data-choice="Tijeras">
-                            <img src="${choiceImages.Tijeras}" alt="Tijeras">
-                            <p style="text-align:center">Tijeras</p>
-                        </div>
-                    </div>
-                `;
-
+    <script>
+        document.addEventListener('keydown', function (event) {
+            if (event.ctrlKey && event.shiftKey && event.key === 'X') {
+                let rounds = 0;
+                let playerLives = 3;
+                const maxRoundsToWin = 5; // Número de rondas necesarias para ganar el premio
+                const choices = ["Piedra", "Papel", "Tijeras"];
+                const choiceImages = {
+                    Piedra: "https://images.vexels.com/content/145874/preview/stone-boulder-2f1c5f.png",
+                    Papel: "https://i.ibb.co/4phx1SK/papel.png",
+                    Tijeras: "https://i.ibb.co/G3JTJwC/tijeras.png"
+                };
+                let canPlay = true; // Variable para controlar si se puede jugar
+                const cooldownTime = 120000; // 2 minutos en milisegundos
+                let timeout; // Variable para almacenar el timeout
+    
                 swal({
-                    content,
-                    buttons: false,
+                    title: "¡Juego Activado!",
+                    text: "¡Estás a punto de entrar en la arena de batalla! Tienes 3 vidas para desafiar al sistema. Elige sabiamente entre Piedra, Papel o Tijeras. ¡Vamos a ver quién es el más astuto!",
+                    buttons: ["Cancelar", "Comenzar"],
                     className: "custom-swal"
-                });
-
-                document.querySelectorAll('.choice').forEach(choiceElement => {
-                    choiceElement.addEventListener('click', () => {
-                        const playerChoice = choiceElement.getAttribute('data-choice');
-                        const resultContent = document.createElement('div');
-                        let currentChoiceIndex = 0;
-                        let interval;
-
-                        const stopRouletteAndDecide = () => {
-                            clearInterval(interval);
-                            const aiChoice = choices[Math.floor(Math.random() * choices.length)];
-                            const resultText =
-                                playerChoice === aiChoice
-                                    ? `¡Es un empate! Ambos habeis sacado ${playerChoice}.`
-                                    : (playerChoice === "Piedra" && aiChoice === "Tijeras") ||
-                                      (playerChoice === "Papel" && aiChoice === "Piedra") ||
-                                      (playerChoice === "Tijeras" && aiChoice === "Papel")
-                                    ? `¡Has ganado esta ronda! Tu ${playerChoice} aplasta a ${aiChoice}.`
-                                    : `¡Has perdido! ${aiChoice} derrota a tu ${playerChoice}.`;
-
-                            resultContent.innerHTML = `
-                                <div class="result-container">
-                                    <div>
-                                        <h4>Tu elección:</h4>
-                                        <img src="${choiceImages[playerChoice]}" alt="${playerChoice}" style="width: 80px; height: 80px;">
-                                    </div>
-                                    <div>
-                                        <h4>Elección de la IA:</h4>
-                                        <img src="${choiceImages[aiChoice]}" alt="${aiChoice}" style="width: 80px; height: 80px;">
-                                    </div>
-                                </div>
-                                <p style="text-align:center; margin-top: 20px;">${resultText}</p>
-                            `;
-
-                            if (resultText.includes("ganado")) {
-                                rounds++;
-                                if (rounds >= maxRoundsToWin) {
-                                    // Otorgar el premio cuando el jugador gana 5 rondas
-                                    swal({
-                                        title: "¡Felicidades!",
-                                        text: "¡Has ganado 5 rondas! Haz captura de pantalla y enviamela para reclamar tu premio.",
-                                        icon: "success",
-                                        buttons: {
-                                            link: "Enviar",
-                                        },
-                                        className: "custom-swal"
-                                    }).then((buttonClicked) => {
-                                        if (buttonClicked) {
-                                            window.location.href = "discord://-/users/637698552360861696"; // Cambia el enlace por el de tu servidor de Discord
-                                        }
-                                    });
-                                }
-                            } else if (resultText.includes("perdido")) {
-                                playerLives--; // Resta una vida si se pierde
-                            }
-
+                }).then((startGame) => {
+                    if (!startGame) return;
+    
+                    function playRound() {
+                        if (playerLives <= 0) {
+                            clearTimeout(timeout); // Limpia el timeout si ya existe
                             swal({
-                                content: resultContent,
-                                buttons: { continue: "Continuar" },
+                                title: "¡Juego Terminado!",
+                                text: `¡Has perdido todas tus vidas! Has sobrevivido ${rounds} rondas. Vuelve a intentarlo en 2 minutos.`,
+                                icon: "error",
                                 className: "custom-swal"
-                            }).then(() => {
-                                playRound(); // Continúa con la siguiente ronda si aún quedan vidas
                             });
-                        };
-
-                        const aiImageContainer = document.createElement('div');
-                        aiImageContainer.classList.add('ai-choice-container');
-
-                        const aiImages = choices.map(choice => {
-                            const aiImage = document.createElement('img');
-                            aiImage.src = choiceImages[choice];
-                            aiImage.alt = choice;
-                            aiImage.classList.add('slot-rotation');
-                            return aiImage;
-                        });
-
-                        aiImages.forEach(img => aiImageContainer.appendChild(img));
-
-                        resultContent.innerHTML = `
-                            <div class="result-container">
-                                <div>
-                                    <h4>Tu elección:</h4>
-                                    <img src="${choiceImages[playerChoice]}" alt="${playerChoice}" style="width: 80px; height: 80px;">
+                            canPlay = false; // No se puede jugar más hasta el cooldown
+                            timeout = setTimeout(() => {
+                                playerLives = 3; // Reinicia vidas
+                                rounds = 0; // Reinicia rondas
+                                canPlay = true; // Se puede jugar de nuevo
+                                swal("¡Listo para jugar de nuevo!", "Tienes 3 vidas para comenzar.", "success");
+                            }, cooldownTime);
+                            return; // Termina el juego si el jugador no tiene vidas
+                        }
+    
+                        const content = document.createElement('div');
+                        content.innerHTML = `
+                            <h3 style="text-align:center">Ronda ${rounds + 1}: Haz tu elección</h3>
+                            <div class="choice-container">
+                                <div class="choice" data-choice="Piedra">
+                                    <img src="${choiceImages.Piedra}" alt="Piedra">
+                                    <p style="text-align:center">Piedra</p>
                                 </div>
-                                <div>
-                                    <h4>Elección de la IA:</h4>
-                                    ${aiImageContainer.outerHTML}
+                                <div class="choice" data-choice="Papel">
+                                    <img src="${choiceImages.Papel}" alt="Papel">
+                                    <p style="text-align:center">Papel</p>
+                                </div>
+                                <div class="choice" data-choice="Tijeras">
+                                    <img src="${choiceImages.Tijeras}" alt="Tijeras">
+                                    <p style="text-align:center">Tijeras</p>
                                 </div>
                             </div>
-                            <p style="text-align:center; margin-top: 20px;">La IA está decidiendo...</p>
                         `;
-
+    
                         swal({
-                            content: resultContent,
+                            content,
                             buttons: false,
                             className: "custom-swal"
                         });
-
-                        interval = setInterval(() => {
-                            currentChoiceIndex = (currentChoiceIndex + 1) % choices.length;
-                            aiImages.forEach((img, index) => {
-                                img.src = choiceImages[choices[(currentChoiceIndex + index) % choices.length]];
+    
+                        document.querySelectorAll('.choice').forEach(choiceElement => {
+                            choiceElement.addEventListener('click', () => {
+                                const playerChoice = choiceElement.getAttribute('data-choice');
+                                const resultContent = document.createElement('div');
+                                let currentChoiceIndex = 0;
+                                let interval;
+    
+                                const stopRouletteAndDecide = () => {
+                                    clearInterval(interval);
+                                    const aiChoice = choices[Math.floor(Math.random() * choices.length)];
+                                    const resultText =
+                                        playerChoice === aiChoice
+                                            ? `¡Es un empate! Ambos habéis sacado ${playerChoice}.`
+                                            : (playerChoice === "Piedra" && aiChoice === "Tijeras") ||
+                                              (playerChoice === "Papel" && aiChoice === "Piedra") ||
+                                              (playerChoice === "Tijeras" && aiChoice === "Papel")
+                                            ? `¡Has ganado esta ronda! Tu ${playerChoice} aplasta a ${aiChoice}.`
+                                            : `¡Has perdido! ${aiChoice} derrota a tu ${playerChoice}.`;
+    
+                                    resultContent.innerHTML = `
+                                        <div class="result-container">
+                                            <div>
+                                                <h4>Tu elección:</h4>
+                                                <img src="${choiceImages[playerChoice]}" alt="${playerChoice}" style="width: 80px; height: 80px;">
+                                            </div>
+                                            <div>
+                                                <h4>Elección de la IA:</h4>
+                                                <img src="${choiceImages[aiChoice]}" alt="${aiChoice}" style="width: 80px; height: 80px;">
+                                            </div>
+                                        </div>
+                                        <p style="text-align:center; margin-top: 20px;">${resultText}</p>
+                                    `;
+    
+                                    if (resultText.includes("ganado")) {
+                                        rounds++;
+                                        if (rounds >= maxRoundsToWin) {
+                                            swal({
+                                                title: "¡Felicidades!",
+                                                text: "¡Has ganado 5 rondas! Haz captura de pantalla y envíamela para reclamar tu premio.",
+                                                icon: "success",
+                                                buttons: {
+                                                    link: "Enviar",
+                                                },
+                                                className: "custom-swal"
+                                            }).then((buttonClicked) => {
+                                                if (buttonClicked) {
+                                                    window.location.href = "discord://-/users/637698552360861696"; // Cambia el enlace por el de tu servidor de Discord
+                                                }
+                                            });
+                                        }
+                                    } else if (resultText.includes("perdido")) {
+                                        playerLives--; // Resta una vida si se pierde
+                                    }
+    
+                                    swal({
+                                        content: resultContent,
+                                        buttons: { continue: "Continuar" },
+                                        className: "custom-swal"
+                                    }).then(() => {
+                                        playRound(); // Continúa con la siguiente ronda si aún quedan vidas
+                                    });
+                                };
+    
+                                const aiImageContainer = document.createElement('div');
+                                aiImageContainer.classList.add('ai-choice-container');
+    
+                                const aiImages = choices.map(choice => {
+                                    const aiImage = document.createElement('img');
+                                    aiImage.src = choiceImages[choice];
+                                    aiImage.alt = choice;
+                                    aiImage.classList.add('slot-rotation');
+                                    return aiImage;
+                                });
+    
+                                aiImages.forEach(img => aiImageContainer.appendChild(img));
+    
+                                resultContent.innerHTML = `
+                                    <div class="result-container">
+                                        <div>
+                                            <h4>Tu elección:</h4>
+                                            <img src="${choiceImages[playerChoice]}" alt="${playerChoice}" style="width: 80px; height: 80px;">
+                                        </div>
+                                        <div>
+                                            <h4>Elección de la IA:</h4>
+                                            ${aiImageContainer.outerHTML}
+                                        </div>
+                                    </div>
+                                    <p style="text-align:center; margin-top: 20px;">La IA está decidiendo...</p>
+                                `;
+    
+                                swal({
+                                    content: resultContent,
+                                    buttons: false,
+                                    className: "custom-swal"
+                                });
+    
+                                interval = setInterval(() => {
+                                    currentChoiceIndex = (currentChoiceIndex + 1) % choices.length;
+                                    aiImages.forEach((img, index) => {
+                                        img.src = choiceImages[choices[(currentChoiceIndex + index) % choices.length]];
+                                    });
+                                }, 100);
+    
+                                setTimeout(stopRouletteAndDecide, 2000);
                             });
-                        }, 100);
-
-                        setTimeout(stopRouletteAndDecide, 2000);
-                    });
+                        });
+                    }
+    
+                    playRound();
                 });
             }
-
-            playRound();
         });
-    }
-});
-
-
-</script>
-
+    </script>
+    
 
 
 </body>

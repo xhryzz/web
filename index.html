@@ -450,21 +450,30 @@
         const timeSinceLastLoss = lastLossDateObj ? currentDate - lastLossDateObj : 0;
         const minutesSinceLastLoss = timeSinceLastLoss / (1000 * 60); // en minutos
 
-        // Verificar si han pasado 12 horas desde la última vez que se perdió todas las vidas
-        if (minutesSinceLastLoss < 720) { // 12 horas = 720 minutos
-            const timeRemaining = 720 * 60 * 1000 - timeSinceLastLoss; // Tiempo restante en milisegundos
-            const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60)); // Horas restantes
-            const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60)); // Minutos restantes
-            const secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000); // Segundos restantes
+        // Si han pasado más de 12 horas desde la última pérdida, resetear el bloqueo
+if (minutesSinceLastLoss >= 720) { 
+    localStorage.removeItem('lastLossDate'); // Eliminar bloqueo
+    playerLives = 3; // Restaurar vidas
+    attemptsToday = 0; // Restaurar intentos
+    localStorage.setItem('attemptsToday', attemptsToday);
+}
 
-            swal({
-                title: "¡Frena!",
-                text: `Has perdido todas tus vidas. Tienes que esperar ${hoursRemaining} horas, ${minutesRemaining} minutos y ${secondsRemaining} segundos para volver a jugar.`,
-                icon: "info",
-                className: "custom-swal"
-            });
-            return;
-        }
+// Verificar si han pasado 12 horas desde la última vez que se perdió todas las vidas
+if (minutesSinceLastLoss < 720) { // 12 horas = 720 minutos
+    const timeRemaining = 720 * 60 * 1000 - timeSinceLastLoss; // Tiempo restante en milisegundos
+    const hoursRemaining = Math.floor(timeRemaining / (1000 * 60 * 60)); // Horas restantes
+    const minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60)); // Minutos restantes
+    const secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / 1000); // Segundos restantes
+
+    swal({
+        title: "¡Frena!",
+        text: `Has perdido todas tus vidas. Tienes que esperar ${hoursRemaining} horas, ${minutesRemaining} minutos y ${secondsRemaining} segundos para volver a jugar.`,
+        icon: "info",
+        className: "custom-swal"
+    });
+    return;
+}
+
 
         // Si pasaron más de 12 horas desde el último intento, reiniciar los intentos
         if (timeDifference > (1000 * 60 * 60 * 12)) { // 12 horas (en milisegundos)

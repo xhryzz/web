@@ -123,7 +123,82 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+ <div id="contacto">
+        <h2>Enviar Mensaje</h2>
+        <form id="mensajeForm">
+            <input type="text" id="nombre" placeholder="Tu nombre" required /> <!-- Campo para el nombre -->
+            <textarea id="mensaje" placeholder="Escribe tu mensaje aquí" required></textarea>
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </div>
+
     
+
+    
+    <script>
+        document.getElementById('mensajeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar el envío normal del formulario
+
+            const nombre = document.getElementById('nombre').value; // Obtener el nombre
+            const mensaje = document.getElementById('mensaje').value; // Obtener el mensaje
+
+            // Reemplaza esto con la URL de tu webhook de Discord
+            const webhookURL = 'https://discord.com/api/webhooks/1346617064235733003/lW1Oo7s_clIPNLfX8SFdWH3_Sn4cqO8NUIEqIfJq0R0ssRbfdj71wxJhMeok91uYEnM7';
+
+            const data = {
+                embeds: [{
+                    title: "Nuevo Mensaje",
+                    description: `**De parte de:** ${nombre}\n**Mensaje:** ${mensaje}`,
+                    color: 5814783 // Puedes cambiar el color usando un número hexadecimal
+                }]
+            };
+
+            // Enviar el mensaje a Discord usando Fetch API
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Mensaje enviado correctamente!');
+                    document.getElementById('mensaje').value = ''; // Limpiar el textarea
+                    document.getElementById('nombre').value = ''; // Limpiar el nombre
+                } else {
+                    alert('Error al enviar el mensaje: ' + response.statusText);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error al enviar el mensaje.');
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
       
 
 

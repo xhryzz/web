@@ -228,7 +228,8 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    padding: 0 20px
+    padding: 0 20px;
+    margin-bottom: 40px;
 }
 
 .experience-card,
@@ -841,11 +842,6 @@ a:hover {
     transform: translate(0, -.25rem);
     background-color: rgba(40, 40, 40, .9)
 }
-
-
-
-
-
 #nombre {
     width: 100%; /* Ancho completo */
     padding: 10px; /* Espaciado interno */
@@ -936,7 +932,3 @@ button:hover {
 button:active {
     transform: translateY(0); /* Restablecer posición al hacer clic */
 }
-
-
-
-

@@ -842,75 +842,54 @@ a:hover {
     transform: translate(0, -.25rem);
     background-color: rgba(40, 40, 40, .9)
 }
-#nombre {
-    width: 100%; /* Ancho completo */
-    padding: 10px; /* Espaciado interno */
-    border: none; /* Sin borde */
-    border-radius: 8px; /* Bordes redondeados */
-    background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
-    color: #fff; /* Color del texto */
-    font-size: 16px; /* Tamaño de fuente */
-    margin-bottom: 15px; /* Espaciado inferior */
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra interna */
-    transition: background-color 0.3s; /* Transición de fondo */
-}
-
-#nombre:focus {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo más claro al enfocar */
-}
-
-
-
 #contacto {
-    text-align: center; /* Centrar el texto */
-    margin: 2rem auto; /* Margen superior e inferior */
-    padding: 1.5rem; /* Relleno interno */
-    border-radius: 10px; /* Bordes redondeados */
-    background: rgba(30, 30, 30, 0.7); /* Fondo oscuro semitransparente */
-    color: #fff; /* Color del texto */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Sombra del cuadro */
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+    background: rgba(30, 30, 30, 0.9);
+    color: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+    animation: fadeIn 0.5s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #contacto h2 {
-    margin-bottom: 20px; /* Espacio inferior */
-    font-size: 1.8rem; /* Tamaño de fuente del título */
-    color: #fff; /* Color del título */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: Arial, sans-serif; /* Fuente original para el título */
 }
 
-
-#contacto {
-    max-width: 600px; /* Ancho máximo para el formulario */
-    margin: 20px auto; /* Centrar el formulario */
-    padding: 20px;
-    background-color: rgba(30, 30, 30, 0.8); /* Fondo oscuro semitransparente */
-    border-radius: 15px; /* Bordes redondeados */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* Sombra del cuadro */
-    animation: fadeIn 0.5s; /* Animación de entrada */
+input[type="text"],
+#mensaje {
+    width: 90%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 15px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
+    text-align: left;
+    font-family: 'Courier New', monospace; /* Mismo tipo de letra para los campos */
 }
 
-#contacto h2 {
-    color: #fff; /* Color del título */
-    margin-bottom: 15px; /* Espaciado inferior */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
+input:focus,
+#mensaje:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    outline: none;
 }
 
 #mensaje {
-    width: 100%; /* Ancho completo */
-    height: 100px; /* Altura fija */
-    padding: 10px; /* Espaciado interno */
-    border: none; /* Sin borde */
-    border-radius: 8px; /* Bordes redondeados */
-    background-color: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
-    color: #fff; /* Color del texto */
-    font-size: 16px; /* Tamaño de fuente */
-    resize: none; /* Sin redimensionamiento */
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5); /* Sombra interna */
-    transition: background-color 0.3s; /* Transición de fondo */
-}
-
-#mensaje:focus {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo más claro al enfocar */
+    height: 120px;
+    resize: none;
 }
 
 button {
@@ -925,10 +904,10 @@ button {
 }
 
 button:hover {
-    background-color: #555; /* Color más claro al pasar el ratón */
-    transform: translateY(-2px); /* Efecto de elevación */
+    background-color: #555;
+    transform: translateY(-2px);
 }
 
 button:active {
-    transform: translateY(0); /* Restablecer posición al hacer clic */
+    transform: translateY(0);
 }

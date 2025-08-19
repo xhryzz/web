@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viajes Mochitos</title>
+    <link rel="icon" href="https://example.com/icon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #e8a1a6;  /* Rosa suave */
+            --primary-hover: #d48a8f;
+            --secondary-color: #a5b4cb; /* Azul polvoriento */
+            --accent-color: #d4af37;   /* Dorado */
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --border-radius: 12px;
+            --font-elegant: 'Great Vibes', cursive;
+            --font-main: 'Montserrat', sans-serif;
+            --paper-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23fff9fb"/><path d="M0 0 L100 0 L100 1 L0 1 Z" fill="%23f5e0e6" opacity="0.3"/><path d="M0 10 L100 10 L100 11 L0 11 Z" fill="%23f5e0e6" opacity="0.2"/><path d="M0 20 L100 20 L100 21 L0 21 Z" fill="%23f5e0e6" opacity="0.1"/></svg>');
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #fff9fb;
+            background-image: var(--paper-texture);
+            color: #555;
+            line-height: 1.7;
+            font-family: var(--font-main);
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Login para móviles - diseño simplificado */
+        .mobile-login-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.4)), 
+                        url('https://media.discordapp.net/attachments/1237512601907494973/1407332054085140570/IMG_1624.jpg?ex=68a5b79c&is=68a4661c&hm=f2030208c809cc79c13ffd864ae81b980dd321eef4f5d8fbdab1a12214574186&=&format=webp&width=648&height=864') no-repeat center center;
+            background-size: cover;
+        }
+        
+        .desktop-login-container {
+            display: none;
+        }
+        
+        .login-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid #ffebee;
+            backdrop-filter: blur(5px);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-box h1 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            font-weight: normal;
+            font-family: var(--font-elegant);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #f0c6d2;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-family: var(--font-main);
+            transition: all 0.3s;
+            background-color: #fff;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 161, 166, 0.2);
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: var(--font-main);
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover::after {
+            transform: translateX(100%);
+        }
+
+        .remember-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .remember-container input {
+            width: auto;
+        }
+
+        .remember-container label {
+            margin-bottom: 0;
+            color: #777;
+        }
+
+        /* Main Content - Estilo de scrapbook */
+        .main-content {
+            display: none;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px 15px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #f0c6d2;
+            position: relative;
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #f0c6d2, transparent);
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: normal;
+            font-family: var(--font-elegant);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .logout-btn {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 10px 20px;
+            width: auto;
+            align-self: center;
+        }
+
+        .logout-btn:hover {
+            background-color: #fff0f5;
+        }
+
+        /* Tarjetas de lugares - Estilo Polaroid */
+        .places-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .place-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ffebee;
+            background-image: var(--paper-texture);
+        }
+
+        .place-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .place-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .place-card h2 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: normal;
+            font-family: var(--font-elegant);
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f5e0e6;
+            position: relative;
+        }
+
+        .place-card h2::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 40px;
+            height: 1px;
+            background: var(--accent-color);
+        }
+
+        .ratings-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .rating {
+            text-align: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--border-radius);
+            position: relative;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 235, 238, 0.5);
+        }
+
+        .rating h3 {
+            font-size: 13px;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .stars {
+            color: var(--accent-color);
+            font-size: 20px;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+            display: inline-block;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .edit-rating {
+            font-size: 12px;
+            color: var(--secondary-color);
+            cursor: pointer;
+            margin-top: 8px;
+            display: inline-block;
+            border-bottom: 1px dashed var(--secondary-color);
+            transition: all 0.2s;
+        }
+
+        .edit-rating:hover {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .average-rating {
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 10px;
+            background: rgba(253, 242, 245, 0.7);
+            border-radius: var(--border-radius);
+            color: var(--primary-color);
+            position: relative;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 235, 238, 0.5);
+        }
+
+        .average-rating::before {
+            content: "★";
+            color: var(--accent-color);
+            margin-right: 5px;
+        }
+
+        /* Fotos en estilo collage */
+        .photos-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .photo-thumbnail {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .photo-thumbnail:hover {
+            transform: scale(1.1);
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo-item {
+            position: relative;
+        }
+
+        .delete-photo {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: white;
+            color: var(--primary-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #f0c6d2;
+            transition: all 0.2s;
+        }
+
+        .delete-photo:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .add-photo-btn {
+            margin-top: 15px;
+            background-color: var(--secondary-color);
+            border-radius: 50px;
+            padding: 10px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .add-photo-btn:hover {
+            background-color: #8e9ec1;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .card-btn {
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        /* Ranking con estilo de lista elegante */
+        .ranking-section {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 25px 20px;
+            margin-top: 40px;
+            border: 1px solid #ffebee;
+            background-image: var(--paper-texture);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ranking-section::before {
+            content: "🏆";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 50px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .ranking-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: normal;
+            font-family: var(--font-elegant);
+            position: relative;
+            z-index: 1;
+        }
+
+        .ranking-list {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ranking-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #f5e0e6;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 4px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .ranking-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .ranking-item:hover {
+            background: rgba(255, 249, 251, 0.8);
+            transform: translateX(3px);
+        }
+
+        .ranking-position {
+            font-size: 16px;
+            color: var(--accent-color);
+            min-width: 25px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .ranking-place {
+            flex: 1;
+            padding: 0 15px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .ranking-stars {
+            color: var(--accent-color);
+            min-width: 80px;
+            text-align: right;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Modal de fotos con estilo de marco */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 10px solid white;
+            box-shadow: 0 0 0 5px #f5e0e6, 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: scaleIn 0.3s ease;
+            background-image: var(--paper-texture);
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #f5e0e6;
+            padding-bottom: 12px;
+        }
+
+        .modal-header h2 {
+            color: var(--primary-color);
+            font-weight: normal;
+            font-size: 1.5rem;
+            font-family: var(--font-elegant);
+        }
+
+        .close-btn {
+            font-size: 24px;
+            cursor: pointer;
+            color: #aaa;
+            transition: color 0.3s;
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+
+        /* Barra de búsqueda */
+        .search-container {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #f0c6d2;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-family: var(--font-main);
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(232, 161, 166, 0.2);
+        }
+
+        .search-btn {
+            padding: 12px 20px;
+            width: auto;
+        }
+
+        /* Filtros */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .action-btn {
+            background: white;
+            border: 1px solid #f0c6d2;
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 13px;
+            color: var(--primary-color);
+            flex: 1;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            background: #fff9fb;
+            border-color: var(--primary-color);
+        }
+
+        .action-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Sync status */
+        .sync-status {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 100;
+        }
+
+        .sync-status .sync-icon {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+
+        /* Export/Import buttons */
+        .data-actions {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .data-btn {
+            background: white;
+            border: 1px solid var(--secondary-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--secondary-color);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .data-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Nuevos estilos para el botón de reset */
+        .reset-btn {
+            background: white;
+            border: 1px solid #e75480;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #e75480;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .reset-btn:hover {
+            background: #e75480;
+            color: white;
+        }
+        
+        /* Estilo para el botón de descargar recuerdo */
+        .memory-btn {
+            position: fixed;
+            bottom: 60px;
+            right: 10px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+        
+        .memory-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background: #c99f2a;
+        }
+
+        /* Notas adhesivas */
+        .note {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 200px;
+    padding: 15px;
+    background: #fffacd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 0 0 5px 5px;
+    transform: rotate(2deg);
+    border-top: 15px solid #f5e8a0;
+    font-family: 'Comic Sans MS', cursive;
+    z-index: 100;
+    display: none;
+}
+
+.note::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background: #fffacd;
+    transform: rotate(45deg);
+    z-index: -1;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+}
+
+        /* Navegación entre fotos en modal */
+        .photo-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.7);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .prev-photo {
+            left: 10px;
+        }
+
+        .next-photo {
+            right: 10px;
+        }
+
+        /* Estilos para formularios en modales */
+        .modal-form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .modal-form-group input,
+        .modal-form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #f0c6d2;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-family: var(--font-main);
+        }
+
+        .modal-form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .rating-inputs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .rating-input {
+            flex: 1;
+        }
+
+        .rating-input input {
+            text-align: center;
+        }
+
+        /* Media queries para tablets */
+        @media (min-width: 768px) {
+            .mobile-login-container {
+                display: none;
+            }
+            
+            .desktop-login-container {
+                display: flex;
+            }
+            
+            .places-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .header h1 {
+                text-align: left;
+            }
+            
+            .ratings-container {
+                flex-direction: row;
+            }
+            
+            .card-actions {
+                flex-direction: row;
+            }
+            
+            .data-actions {
+                flex-direction: row;
+            }
+        }
+
+        /* Media queries para desktop */
+        @media (min-width: 1024px) {
+            .places-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .main-content {
+                padding: 30px 20px;
+                max-width: 1200px;
+            }
+        }
+
+        /* Contenedor de login para desktop (original) */
+        .desktop-login-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+        }
+        
+        .image-half {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s ease;
+        }
+        
+        .left-half {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('https://media.discordapp.net/attachments/1237512601907494973/1407332054085140570/IMG_1624.jpg?ex=68a5b79c&is=68a4661c&hm=f2030208c809cc79c13ffd864ae81b980dd321eef4f5d8fbdab1a12214574186&=&format=webp&width=648&height=864') no-repeat center center;
+        }
+        
+        .right-half {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('https://media.discordapp.net/attachments/1237512601907494973/1407132748598083776/IMG_1458.jpg?ex=68a5a6be&is=68a4553e&hm=429e971d59b1b6988dffb4337d68041478e5811d4d1b4c98b8dc32719bf730bf&=&format=webp&width=648&height=864') no-repeat center center;
+        }
+        
+        .center-login {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            width: 400px;
+            max-width: 90%;
+        }
+        
+        .desktop-login-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid #ffebee;
+            backdrop-filter: blur(5px);
+        }
+
+        .desktop-login-box:hover {
+            transform: translateY(-5px) rotateX(5deg);
+        }
+
+        .desktop-login-box h1 {
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: normal;
+            font-family: var(--font-elegant);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Efecto de conexión entre las dos mitades */
+        .desktop-login-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, 
+                transparent, 
+                var(--primary-color), 
+                var(--accent-color), 
+                var(--primary-color), 
+                transparent);
+            z-index: 5;
+            opacity: 0.7;
+        }
+
+        /* Efectos especiales */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login para móviles -->
+    <div class="mobile-login-container">
+        <div class="login-box floating">
+            <h1>Viajes Mochitos</h1>
+            <form id="mobileLoginForm">
+                <div class="form-group">
+                    <label for="mobileUsername">Usuario</label>
+                    <input type="text" id="mobileUsername" required placeholder="La teua serie fav (1era paraula)">
+                </div>
+                <div class="form-group">
+                    <label for="mobilePassword">Contraseña</label>
+                    <input type="password" id="mobilePassword" required placeholder="Dia que te vaig demanar ixir">
+                </div>
+                <div class="remember-container">
+                    <input type="checkbox" id="mobileRememberMe">
+                    <label for="mobileRememberMe">Recordarme</label>
+                </div>
+                <button type="submit" class="btn">🔑 Abrir diario</button>
+                <div class="error-message" id="mobileErrorMessage" style="display:none; color:#e75480; margin-top:15px; font-size:14px;">
+                    Usuario o contraseña incorrectos (pensa be mochii)
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login para desktop (original) -->
+    <div class="desktop-login-container">
+        <div class="image-half left-half"></div>
+        <div class="image-half right-half"></div>
+        
+        <div class="center-login">
+            <div class="desktop-login-box floating">
+                <h1>Viajes Mochitos</h1>
+                <form id="desktopLoginForm">
+                    <div class="form-group">
+                        <label for="desktopUsername">Nombre</label>
+                        <input type="text" id="desktopUsername" required placeholder="La teua serie fav (1era paraula)">
+                    </div>
+                    <div class="form-group">
+                        <label for="desktopPassword">Contraseña</label>
+                        <input type="password" id="desktopPassword" required placeholder="Dia que te vaig demanar ixir">
+                    </div>
+                    <div class="remember-container">
+                        <input type="checkbox" id="desktopRememberMe">
+                        <label for="desktopRememberMe">Recordarme</label>
+                    </div>
+                    <button type="submit" class="btn">🔑 Abrir diario</button>
+                    <div class="error-message" id="desktopErrorMessage" style="display:none; color:#e75480; margin-top:15px; font-size:14px;">
+                        Usuario o contraseña incorrectos (pensa be mochii)
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido principal - Estilo scrapbook -->
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <div class="header">
+                <h1>❤️ Viajes Mochitos</h1>
+                <button class="btn logout-btn" id="logoutBtn">✌️ Cerrar diario</button>
+            </div>
+
+            <!-- Barra de búsqueda y filtros -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Buscar lugares...">
+                <button class="btn search-btn" id="searchBtn">🔍</button>
+            </div>
+
+            <!-- Filtros -->
+            <div class="action-buttons">
+                <button class="action-btn active" data-filter="all">Todos</button>
+                <button class="action-btn" data-filter="rated">Valorados</button>
+                <button class="action-btn" data-filter="unrated">Sin valorar</button>
+                <button class="action-btn" data-filter="photos">Con fotos</button>
+            </div>
+
+            <div style="text-align: center; margin: 25px 0;">
+                <button class="btn" id="addPlaceBtn" style="background-color: var(--secondary-color);">➕ Añadir recuerdo</button>
+            </div>
+
+            <!-- Lugares -->
+            <div class="places-container" id="placesContainer">
+                <!-- Se llena dinámicamente -->
+            </div>
+
+            <!-- Ranking -->
+            <div class="ranking-section">
+                <h2>🏆 Nuestros Favoritos</h2>
+                <div class="ranking-list" id="rankingList">
+                    <!-- Se llena dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para añadir lugares -->
+    <div class="modal" id="addPlaceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📸 Nuevo Recuerdo</h2>
+                <span class="close-btn" id="closePlaceModal">&times;</span>
+            </div>
+            <form id="addPlaceForm">
+                <div class="modal-form-group">
+                    <label for="placeName">Lugar</label>
+                    <input type="text" id="placeName" required placeholder="¿Dónde estuvimos?">
+                </div>
+                <div class="rating-inputs">
+                    <div class="modal-form-group rating-input">
+                        <label for="myRating">Mochito</label>
+                        <input type="number" id="myRating" min="1" max="5" required placeholder="1-5">
+                    </div>
+                    <div class="modal-form-group rating-input">
+                        <label for="partnerRating">Mochita</label>
+                        <input type="number" id="partnerRating" min="1" max="5" required placeholder="1-5">
+                    </div>
+                </div>
+                <div class="modal-form-group">
+                    <label for="placePhotos">Fotos (opcional)</label>
+                    <input type="file" id="placePhotos" multiple accept="image/*" style="border: none; padding: 8px 0;">
+                </div>
+                <div class="modal-form-group">
+                    <label for="placeDate">Fecha (opcional)</label>
+                    <input type="date" id="placeDate">
+                </div>
+                <div class="modal-form-group">
+                    <label for="placeNotes">Notas (opcional)</label>
+                    <textarea id="placeNotes" rows="3" placeholder="Algo especial que recordar..."></textarea>
+                </div>
+                <button type="submit" class="btn" style="margin-top: 15px;">💾 Guardar recuerdo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para editar valoraciones -->
+    <div class="modal" id="editRatingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="editRatingTitle">⭐ Cambiar valoración</h2>
+                <span class="close-btn" id="closeEditModal">&times;</span>
+            </div>
+            <form id="editRatingForm">
+                <input type="hidden" id="editPlaceIndex">
+                <input type="hidden" id="editRatingType">
+                <div class="modal-form-group">
+                    <label for="newRating">Nueva valoración (1-5)</label>
+                    <input type="number" id="newRating" min="1" max="5" required>
+                </div>
+                <button type="submit" class="btn">💫 Actualizar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para fotos -->
+    <div class="modal" id="photoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="photoModalTitle"></h2>
+                <span class="close-btn" id="closePhotoModal">&times;</span>
+            </div>
+            <div style="position: relative;">
+                <img id="modalPhoto" src="" alt="" style="width: 100%; max-height: 50vh; object-fit: contain; border-radius: 5px;">
+                <button class="photo-nav prev-photo" id="prevPhotoBtn">❮</button>
+                <button class="photo-nav next-photo" id="nextPhotoBtn">❯</button>
+            </div>
+            <div id="photoNotes" style="margin-top: 15px; padding: 10px; background: #fff9fb; border-radius: var(--border-radius); font-size: 14px;"></div>
+            <div style="text-align: center; margin-top: 15px;">
+                <button class="btn" id="deletePhotoBtn" style="background-color: var(--primary-color);">🗑️ Eliminar foto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nota adhesiva -->
+    <div class="note" id="welcomeNote">
+        ¡Hola mochitaa! En esta web guardarem cada viatge que fem.
+    </div>
+
+    <!-- Estado de sincronización -->
+    <div class="sync-status" id="syncStatus" style="display: none;">
+        <div class="sync-icon"></div>
+        <span>Sincronizado</span>
+    </div>
+
+    <!-- Acciones de datos -->
+    <div class="data-actions">
+        <button class="data-btn" id="exportDataBtn">Exportar datos</button>
+        <button class="data-btn" id="importDataBtn">Importar datos</button>
+        <button class="reset-btn" id="resetDataBtn">Restablecer</button>
+    </div>
+    
+    <script>
+        // Credenciales
+        const FIXED_USERNAME = 'peaky';
+        const FIXED_PASSWORD = '2';
+        const API_URL = 'https://api.jsonbin.io/v3/b'; // Cambia esto por tu endpoint real
+        const API_KEY = '$2a$10$/MqC/ftPDzhwV7iLQTOTaOYHKIdTUVh.06S1UtPBzOw.mUHhu5Ilm'; // Cambia esto por tu API key real
+
+        // Elementos del DOM
+        const mobileLoginForm = document.getElementById('mobileLoginForm');
+        const desktopLoginForm = document.getElementById('desktopLoginForm');
+        const mobileErrorMessage = document.getElementById('mobileErrorMessage');
+        const desktopErrorMessage = document.getElementById('desktopErrorMessage');
+        const mainContent = document.getElementById('mainContent');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const placesContainer = document.getElementById('placesContainer');
+        const rankingList = document.getElementById('rankingList');
+        const addPlaceBtn = document.getElementById('addPlaceBtn');
+        const addPlaceModal = document.getElementById('addPlaceModal');
+        const closePlaceModal = document.getElementById('closePlaceModal');
+        const addPlaceForm = document.getElementById('addPlaceForm');
+        const editRatingModal = document.getElementById('editRatingModal');
+        const closeEditModal = document.getElementById('closeEditModal');
+        const editRatingForm = document.getElementById('editRatingForm');
+        const photoModal = document.getElementById('photoModal');
+        const closePhotoModal = document.getElementById('closePhotoModal');
+        const modalPhoto = document.getElementById('modalPhoto');
+        const photoModalTitle = document.getElementById('photoModalTitle');
+        const deletePhotoBtn = document.getElementById('deletePhotoBtn');
+        const welcomeNote = document.getElementById('welcomeNote');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const filterButtons = document.querySelectorAll('.action-btn');
+        const prevPhotoBtn = document.getElementById('prevPhotoBtn');
+        const nextPhotoBtn = document.getElementById('nextPhotoBtn');
+        const photoNotes = document.getElementById('photoNotes');
+        const syncStatus = document.getElementById('syncStatus');
+        const exportDataBtn = document.getElementById('exportDataBtn');
+        const importDataBtn = document.getElementById('importDataBtn');
+        const resetDataBtn = document.getElementById('resetDataBtn');
+
+        // Datos
+        let places = [];
+        let currentPhotoIndex = -1;
+        let currentPlaceIndex = -1;
+        let currentFilter = 'all';
+        let currentSearchTerm = '';
+        let lastSyncTime = null;
+        let syncInterval;
+
+        // Eventos
+        mobileLoginForm.addEventListener('submit', handleLogin);
+        desktopLoginForm.addEventListener('submit', handleLogin);
+        logoutBtn.addEventListener('click', handleLogout);
+        addPlaceBtn.addEventListener('click', () => addPlaceModal.style.display = 'flex');
+        closePlaceModal.addEventListener('click', () => addPlaceModal.style.display = 'none');
+        closeEditModal.addEventListener('click', () => editRatingModal.style.display = 'none');
+        closePhotoModal.addEventListener('click', () => photoModal.style.display = 'none');
+        addPlaceForm.addEventListener('submit', handleAddPlace);
+        editRatingForm.addEventListener('submit', handleEditRating);
+        deletePhotoBtn.addEventListener('click', deleteCurrentPhoto);
+        searchInput.addEventListener('input', handleSearch);
+        searchBtn.addEventListener('click', handleSearch);
+        filterButtons.forEach(btn => btn.addEventListener('click', handleFilterClick));
+        prevPhotoBtn.addEventListener('click', showPrevPhoto);
+        nextPhotoBtn.addEventListener('click', showNextPhoto);
+        exportDataBtn.addEventListener('click', exportData);
+        importDataBtn.addEventListener('click', importData);
+        resetDataBtn.addEventListener('click', resetData);
+
+        // Mostrar nota de bienvenida
+        setTimeout(() => {
+            welcomeNote.style.display = 'block';
+            setTimeout(() => {
+                welcomeNote.style.display = 'none';
+            }, 10000);
+        }, 2000);
+
+        // Inicialización
+        async function init() {
+            // Verificar si hay credenciales guardadas
+            checkRememberedLogin();
+            
+            // Cargar datos
+            await loadData();
+            
+            renderPlaces();
+            updateRanking();
+            
+            // Iniciar sincronización periódica
+            startSync();
+        }
+
+        // Verificar credenciales guardadas
+        function checkRememberedLogin() {
+            const remembered = localStorage.getItem('rememberMe') === 'true';
+            if (remembered) {
+                const savedUsername = localStorage.getItem('username');
+                const savedPassword = localStorage.getItem('password');
+                
+                if (savedUsername && savedPassword) {
+                    document.getElementById('mobileUsername').value = savedUsername;
+                    document.getElementById('mobilePassword').value = savedPassword;
+                    document.getElementById('desktopUsername').value = savedUsername;
+                    document.getElementById('desktopPassword').value = savedPassword;
+                    document.getElementById('mobileRememberMe').checked = true;
+                    document.getElementById('desktopRememberMe').checked = true;
+                    
+                    // Autologin si las credenciales son correctas
+                    if (savedUsername === FIXED_USERNAME && savedPassword === FIXED_PASSWORD) {
+                        document.querySelector('.mobile-login-container').style.display = 'none';
+                        document.querySelector('.desktop-login-container').style.display = 'none';
+                        mainContent.style.display = 'block';
+                    }
+                }
+            }
+        }
+
+        // Cargar datos desde JSON local o remoto
+        async function loadData() {
+            // Primero intentamos cargar desde localStorage
+            const localData = localStorage.getItem('places');
+            
+            if (localData) {
+                places = JSON.parse(localData);
+                showSyncStatus('Datos locales cargados');
+                return;
+            }
+            
+            // Si no hay datos locales, intentamos cargar desde el servidor
+            try {
+                showSyncStatus('Sincronizando con el servidor...');
+                const response = await fetch(API_URL, {
+                    headers: {
+                        'X-Master-Key': API_KEY
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    places = data.record.places || getDefaultPlaces();
+                    localStorage.setItem('places', JSON.stringify(places));
+                    lastSyncTime = new Date();
+                    showSyncStatus('Datos sincronizados');
+                } else {
+                    throw new Error('Error al cargar datos');
+                }
+            } catch (error) {
+                console.error('Error al cargar datos:', error);
+                places = getDefaultPlaces();
+                localStorage.setItem('places', JSON.stringify(places));
+                showSyncStatus('Usando datos locales', 'error');
+            }
+        }
+
+        // Obtener lugares por defecto
+        function getDefaultPlaces() {
+            return [
+                { name: "Estadio Santiago Bernabéu", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Plaza Mayor", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Puerta del Sol", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Parque del Retiro", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Museo del Prado", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Templo de Debod", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Gran Vía", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Catedral de la Almudena", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Mercado de San Miguel", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Santiago Bernabéu", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Plaza de Cibeles", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Parque de El Capricho", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Matadero Madrid", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Plaza de España", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Teleférico de Madrid", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" },
+                { name: "Estación de Atocha", myRating: 0, partnerRating: 0, photos: [], notes: "", date: "" }
+            ];
+        }
+
+        // Mostrar estado de sincronización
+        function showSyncStatus(message, type = 'success') {
+            syncStatus.style.display = 'flex';
+            syncStatus.querySelector('span').textContent = message;
+            
+            const icon = syncStatus.querySelector('.sync-icon');
+            if (type === 'error') {
+                icon.style.backgroundColor = '#f44336';
+                icon.style.animation = 'none';
+            } else {
+                icon.style.backgroundColor = '#4CAF50';
+                icon.style.animation = 'pulse 2s infinite';
+            }
+            
+            setTimeout(() => {
+                if (syncStatus.querySelector('span').textContent === message) {
+                    syncStatus.style.display = 'none';
+                }
+            }, 3000);
+        }
+
+        // Iniciar sincronización periódica
+        function startSync() {
+            // Sincronizar cada 30 segundos
+            syncInterval = setInterval(async () => {
+                await syncData();
+            }, 30000);
+        }
+
+        // Sincronizar datos con el servidor
+        async function syncData() {
+            try {
+                showSyncStatus('Sincronizando...');
+                
+                const response = await fetch(API_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': API_KEY
+                    },
+                    body: JSON.stringify({ places })
+                });
+                
+                if (response.ok) {
+                    lastSyncTime = new Date();
+                    showSyncStatus('Datos sincronizados');
+                } else {
+                    throw new Error('Error al sincronizar');
+                }
+            } catch (error) {
+                console.error('Error al sincronizar:', error);
+                showSyncStatus('Error de sincronización', 'error');
+            }
+        }
+
+        // Login
+        async function handleLogin(e) {
+            e.preventDefault();
+            let username, password, remember;
+            
+            if (e.target.id === 'mobileLoginForm') {
+                username = document.getElementById('mobileUsername').value;
+                password = document.getElementById('mobilePassword').value;
+                remember = document.getElementById('mobileRememberMe').checked;
+                mobileErrorMessage.style.display = 'none';
+            } else {
+                username = document.getElementById('desktopUsername').value;
+                password = document.getElementById('desktopPassword').value;
+                remember = document.getElementById('desktopRememberMe').checked;
+                desktopErrorMessage.style.display = 'none';
+            }
+
+            if (username === FIXED_USERNAME && password === FIXED_PASSWORD) {
+                // Guardar credenciales si el usuario lo desea
+                if (remember) {
+                    localStorage.setItem('rememberMe', 'true');
+                    localStorage.setItem('username', username);
+                    localStorage.setItem('password', password);
+                } else {
+                    localStorage.removeItem('rememberMe');
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('password');
+                }
+                
+                document.querySelector('.mobile-login-container').style.display = 'none';
+                document.querySelector('.desktop-login-container').style.display = 'none';
+                mainContent.style.display = 'block';
+                await init();
+            } else {
+                if (e.target.id === 'mobileLoginForm') {
+                    mobileErrorMessage.style.display = 'block';
+                } else {
+                    desktopErrorMessage.style.display = 'block';
+                }
+            }
+        }
+
+        // Logout
+        function handleLogout() {
+            // Limpiar credenciales guardadas
+            localStorage.removeItem('rememberMe');
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+            
+            // Detener sincronización
+            clearInterval(syncInterval);
+            
+            document.querySelector('.mobile-login-container').style.display = 'flex';
+            document.querySelector('.desktop-login-container').style.display = 'flex';
+            mainContent.style.display = 'none';
+            mobileLoginForm.reset();
+            desktopLoginForm.reset();
+            mobileErrorMessage.style.display = 'none';
+            desktopErrorMessage.style.display = 'none';
+        }
+
+        // Renderizar lugares con filtros
+        function renderPlaces() {
+            placesContainer.innerHTML = '';
+            
+            const filteredPlaces = places.filter(place => {
+                // Aplicar filtro
+                if (currentFilter === 'rated' && (place.myRating === 0 || place.partnerRating === 0)) return false;
+                if (currentFilter === 'unrated' && (place.myRating > 0 && place.partnerRating > 0)) return false;
+                if (currentFilter === 'photos' && place.photos.length === 0) return false;
+                
+                // Aplicar búsqueda
+                if (currentSearchTerm && !place.name.toLowerCase().includes(currentSearchTerm.toLowerCase())) {
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            if (filteredPlaces.length === 0) {
+                placesContainer.innerHTML = '<div style="text-align: center; padding: 40px; color: #888; font-style: italic;">No hay lugares que coincidan con tu búsqueda</div>';
+                return;
+            }
+            
+            filteredPlaces.forEach((place, index) => {
+                const originalIndex = places.findIndex(p => p.name === place.name);
+                const placeCard = document.createElement('div');
+                placeCard.className = 'place-card';
+                
+                const averageRating = place.myRating > 0 && place.partnerRating > 0 ? 
+                    ((place.myRating + place.partnerRating) / 2).toFixed(1) : 'Sin valorar';
+                
+                // Formatear fecha si existe
+                let dateHtml = '';
+                if (place.date) {
+                    const formattedDate = new Date(place.date).toLocaleDateString('es-ES', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    });
+                    dateHtml = `<div style="font-size: 12px; color: #888; margin-bottom: 10px;">📅 ${formattedDate}</div>`;
+                }
+                
+                placeCard.innerHTML = `
+                    <h2>${place.name}</h2>
+                    ${dateHtml}
+                    <div class="ratings-container">
+                        <div class="rating">
+                            <h3>Mochito</h3>
+                            <div class="stars">${place.myRating > 0 ? getStarsHTML(place.myRating) : '-'}</div>
+                            <div class="edit-rating" onclick="openEditRatingModal(${originalIndex}, 'myRating')">
+                                ${place.myRating > 0 ? 'Editar' : 'Añadir'}
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <h3>Mochita</h3>
+                            <div class="stars">${place.partnerRating > 0 ? getStarsHTML(place.partnerRating) : '-'}</div>
+                            <div class="edit-rating" onclick="openEditRatingModal(${originalIndex}, 'partnerRating')">
+                                ${place.partnerRating > 0 ? 'Editar' : 'Añadir'}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="average-rating">
+                        ${averageRating}
+                    </div>
+                    ${place.notes ? `<div style="background: #fff9fb; padding: 10px; border-radius: var(--border-radius); margin: 10px 0; font-size: 14px; border-left: 3px solid var(--primary-color);">${place.notes}</div>` : ''}
+                    <div class="photos-container" id="photos-${originalIndex}">
+                        ${place.photos.map((photo, photoIndex) => `
+                            <div class="photo-item">
+                                <img src="${photo}" alt="Foto de ${place.name}" class="photo-thumbnail" 
+                                     onclick="openPhotoModal('${place.name}', '${photo}', ${originalIndex}, ${photoIndex})">
+                                <div class="delete-photo" onclick="event.stopPropagation(); deletePhoto(${originalIndex}, ${photoIndex})">×</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn add-photo-btn card-btn" onclick="addPhotoToPlace(${originalIndex})">📸 Añadir foto</button>
+                        <button class="btn card-btn" onclick="editPlace(${originalIndex})" style="background-color: var(--accent-color);">✏️ Editar</button>
+                        <button class="btn card-btn" onclick="deletePlace(${originalIndex})" style="background-color: #e75480;">🗑️ Eliminar</button>
+                    </div>
+                `;
+                
+                placesContainer.appendChild(placeCard);
+            });
+        }
+
+        // Funciones para el rating
+        function getStarsHTML(rating) {
+            let starsHTML = '';
+            for (let i = 0; i < 5; i++) {
+                starsHTML += i < Math.floor(rating) ? '★' : '☆';
+            }
+            return starsHTML;
+        }
+
+        function openEditRatingModal(placeIndex, ratingType) {
+            document.getElementById('editPlaceIndex').value = placeIndex;
+            document.getElementById('editRatingType').value = ratingType;
+            document.getElementById('newRating').value = places[placeIndex][ratingType] || '';
+            
+            const title = ratingType === 'myRating' ? 'Mochito' : 'Mochita';
+            document.getElementById('editRatingTitle').textContent = `⭐ ${title} - ${places[placeIndex].name}`;
+            
+            editRatingModal.style.display = 'flex';
+        }
+
+        async function handleEditRating(e) {
+            e.preventDefault();
+            
+            const placeIndex = parseInt(document.getElementById('editPlaceIndex').value);
+            const ratingType = document.getElementById('editRatingType').value;
+            const newRating = parseInt(document.getElementById('newRating').value);
+            
+            if (newRating >= 1 && newRating <= 5) {
+                places[placeIndex][ratingType] = newRating;
+                await saveData();
+                
+                editRatingModal.style.display = 'none';
+                renderPlaces();
+                updateRanking();
+            } else {
+                alert('Por favor, introduce un número entre 1 y 5');
+            }
+        }
+
+        // Funciones para fotos
+        function addPhotoToPlace(placeIndex) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.multiple = true;
+            
+            input.onchange = async e => {
+                const files = Array.from(e.target.files);
+                for (const file of files) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        places[placeIndex].photos.push(e.target.result);
+                        saveData();
+                        renderPlaces();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            
+            input.click();
+        }
+
+        function openPhotoModal(placeName, photoSrc, placeIndex, photoIndex) {
+            photoModalTitle.textContent = placeName;
+            modalPhoto.src = photoSrc;
+            photoModal.style.display = 'flex';
+            
+            currentPhotoIndex = photoIndex;
+            currentPlaceIndex = placeIndex;
+            
+            // Mostrar notas si existen
+            photoNotes.innerHTML = places[placeIndex].notes ? 
+                `<strong>Notas:</strong> ${places[placeIndex].notes}` : '';
+        }
+
+        function showPrevPhoto() {
+            if (currentPlaceIndex === -1) return;
+            
+            const photos = places[currentPlaceIndex].photos;
+            currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+            modalPhoto.src = photos[currentPhotoIndex];
+        }
+
+        function showNextPhoto() {
+            if (currentPlaceIndex === -1) return;
+            
+            const photos = places[currentPlaceIndex].photos;
+            currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
+            modalPhoto.src = photos[currentPhotoIndex];
+        }
+
+        async function deletePhoto(placeIndex, photoIndex) {
+            if (confirm('¿Eliminar esta foto del recuerdo?')) {
+                places[placeIndex].photos.splice(photoIndex, 1);
+                await saveData();
+                renderPlaces();
+            }
+        }
+
+        async function deleteCurrentPhoto() {
+            if (currentPlaceIndex !== -1 && currentPhotoIndex !== -1) {
+                await deletePhoto(currentPlaceIndex, currentPhotoIndex);
+                photoModal.style.display = 'none';
+            }
+        }
+
+        // Ranking
+        function updateRanking() {
+            const ratedPlaces = places.filter(place => place.myRating > 0 && place.partnerRating > 0);
+            const sortedPlaces = [...ratedPlaces].sort((a, b) => {
+                const avgA = (a.myRating + a.partnerRating) / 2;
+                const avgB = (b.myRating + b.partnerRating) / 2;
+                return avgB - avgA;
+            });
+            
+            rankingList.innerHTML = '';
+            
+            if (sortedPlaces.length === 0) {
+                rankingList.innerHTML = '<div style="text-align: center; padding: 20px; color: #888; font-style: italic;">Aún no hay lugares valorados</div>';
+                return;
+            }
+            
+            sortedPlaces.forEach((place, index) => {
+                const avgRating = ((place.myRating + place.partnerRating) / 2).toFixed(1);
+                
+                const rankingItem = document.createElement('li');
+                rankingItem.className = 'ranking-item';
+                rankingItem.innerHTML = `
+                    <div class="ranking-position">${index + 1}</div>
+                    <div class="ranking-place">${place.name}</div>
+                    <div class="ranking-stars">${getStarsHTML(avgRating)} ${avgRating}</div>
+                `;
+                
+                rankingList.appendChild(rankingItem);
+            });
+        }
+
+        // Añadir nuevo lugar
+        async function handleAddPlace(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('placeName').value;
+            const myRating = parseInt(document.getElementById('myRating').value);
+            const partnerRating = parseInt(document.getElementById('partnerRating').value);
+            const photosInput = document.getElementById('placePhotos');
+            const date = document.getElementById('placeDate').value;
+            const notes = document.getElementById('placeNotes').value;
+            
+            const newPlace = {
+                name,
+                myRating,
+                partnerRating,
+                photos: [],
+                date,
+                notes
+            };
+            
+            if (photosInput.files.length > 0) {
+                const files = Array.from(photosInput.files);
+                for (const file of files) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        newPlace.photos.push(e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+            
+            await savePlace(newPlace);
+        }
+
+        async function savePlace(place) {
+            places.push(place);
+            await saveData();
+            addPlaceModal.style.display = 'none';
+            addPlaceForm.reset();
+            renderPlaces();
+            updateRanking();
+        }
+
+        // Editar lugar existente
+        function editPlace(placeIndex) {
+            const place = places[placeIndex];
+            
+            document.getElementById('placeName').value = place.name;
+            document.getElementById('myRating').value = place.myRating;
+            document.getElementById('partnerRating').value = place.partnerRating;
+            document.getElementById('placeDate').value = place.date;
+            document.getElementById('placeNotes').value = place.notes;
+            
+            // Cambiar el formulario para editar
+            addPlaceForm.onsubmit = async function(e) {
+                e.preventDefault();
+                
+                place.name = document.getElementById('placeName').value;
+                place.myRating = parseInt(document.getElementById('myRating').value);
+                place.partnerRating = parseInt(document.getElementById('partnerRating').value);
+                place.date = document.getElementById('placeDate').value;
+                place.notes = document.getElementById('placeNotes').value;
+                
+                // Manejar nuevas fotos
+                const photosInput = document.getElementById('placePhotos');
+                if (photosInput.files.length > 0) {
+                    const files = Array.from(photosInput.files);
+                    for (const file of files) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            place.photos.push(e.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+                
+                await saveData();
+                addPlaceModal.style.display = 'none';
+                addPlaceForm.reset();
+                renderPlaces();
+                updateRanking();
+                
+                // Restaurar el manejador original
+                addPlaceForm.onsubmit = handleAddPlace;
+            };
+            
+            addPlaceModal.style.display = 'flex';
+        }
+
+        // Eliminar lugar
+        async function deletePlace(placeIndex) {
+            if (confirm('¿Eliminar este lugar y todos sus recuerdos?')) {
+                places.splice(placeIndex, 1);
+                await saveData();
+                renderPlaces();
+                updateRanking();
+            }
+        }
+
+        // Guardar datos localmente y sincronizar
+        async function saveData() {
+            localStorage.setItem('places', JSON.stringify(places));
+            showSyncStatus('Datos guardados');
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': API_KEY
+                    },
+                    body: JSON.stringify({ places })
+                });
+                
+                if (response.ok) {
+                    lastSyncTime = new Date();
+                    showSyncStatus('Datos sincronizados');
+                }
+            } catch (error) {
+                console.error('Error al sincronizar:', error);
+                showSyncStatus('Error de sincronización', 'error');
+            }
+        }
+
+        // Exportar datos a JSON
+        function exportData() {
+            const dataStr = JSON.stringify(places, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = 'diario-viajes-madrid.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            showSyncStatus('Datos exportados');
+        }
+
+        // Importar datos desde JSON
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = e => {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const importedData = JSON.parse(e.target.result);
+                        
+                        if (Array.isArray(importedData)) {
+                            if (confirm(`¿Importar ${importedData.length} lugares? Esto reemplazará tus datos actuales.`)) {
+                                places = importedData;
+                                saveData();
+                                renderPlaces();
+                                updateRanking();
+                                showSyncStatus('Datos importados');
+                            }
+                        } else {
+                            alert('El archivo no tiene el formato correcto');
+                        }
+                    } catch (error) {
+                        console.error('Error al importar datos:', error);
+                        alert('Error al importar el archivo');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+
+        // Resetear datos
+        function resetData() {
+            if (confirm('¿Estás seguro de que quieres restablecer todos los datos? Esta acción no se puede deshacer.')) {
+                localStorage.removeItem('places');
+                places = getDefaultPlaces();
+                saveData();
+                renderPlaces();
+                updateRanking();
+                showSyncStatus('Datos restablecidos');
+            }
+        }
+
+        // Búsqueda y filtrado
+        function handleSearch() {
+            currentSearchTerm = searchInput.value.trim();
+            renderPlaces();
+        }
+
+        function handleFilterClick(e) {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            
+            currentFilter = e.target.dataset.filter;
+            renderPlaces();
+        }
+
+        // Cerrar modales al hacer clic fuera
+        window.onclick = function(event) {
+            if (event.target === addPlaceModal) addPlaceModal.style.display = 'none';
+            if (event.target === editRatingModal) editRatingModal.style.display = 'none';
+            if (event.target === photoModal) photoModal.style.display = 'none';
+        };
+
+        // Funciones globales
+        window.openEditRatingModal = openEditRatingModal;
+        window.openPhotoModal = openPhotoModal;
+        window.addPhotoToPlace = addPhotoToPlace;
+        window.deletePhoto = deletePhoto;
+        window.editPlace = editPlace;
+        window.deletePlace = deletePlace;
+    </script>
+</body>
+</html>

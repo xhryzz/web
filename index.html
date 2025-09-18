@@ -1,581 +1,1204 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christian Martinez | Xhryz</title>
-    <link href="https://i.ibb.co/VpP05tZq/xhryz-img.png" rel="icon">
-    <link href="styles.css" rel="stylesheet">
-    <script src="sweetalert.min.js"></script>
-    <script src="jquery.min.js"></script>
+    <title>Christian Martinez - Gym</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+    <style>
+        /* Variables de color y tipografía */
+        :root {
+            --primary-color: #1e1e1e;
+            --secondary-color: #333333;
+            --accent-color: #4a6fa5;
+            --accent-color-2: #d64c4c;
+            --text-color: #ffffff;
+            --text-light: #cccccc;
+            --bg-dark: rgba(30, 30, 30, 0.9);
+            --bg-light: rgba(255, 255, 255, 0.1);
+            --border-color: rgba(255, 255, 255, 0.2);
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
 
+        /* Reset y estilos base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Tipografía */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); }
+        h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+        h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); }
+        p { font-size: clamp(0.9rem, 2vw, 1.1rem); }
+
+        .highlight {
+            color: var(--accent-color);
+        }
+
+        .highlight-2 {
+            color: var(--accent-color-2);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--bg-dark);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-container .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .logo-container span {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--text-color);
+            background: var(--bg-light);
+        }
+
+        nav ul li a i {
+            font-size: 0.8rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .mobile-menu:hover {
+            color: var(--text-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(74, 111, 165, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 3rem;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .hero-text h1 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.3s forwards;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.6s forwards;
+        }
+
+        .social-icon {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--bg-light);
+        }
+
+        .social-icon:hover {
+            color: var(--text-color);
+            background: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 111, 165, 0.4);
+        }
+
+        .hero-image {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+            animation: fadeInRight 1s ease forwards;
+        }
+
+        .profile-image {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .profile-image:hover {
+            transform: scale(1.03);
+        }
+
+        .image-border {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent-color);
+            border-radius: 20px;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .hero-image:hover .image-border {
+            top: -15px;
+            right: -15px;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-light);
+            font-size: 0.8rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards, bounce 2s infinite 1s;
+        }
+
+        .scroll-down i {
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        /* Rutina de Gym */
+        .routine-section {
+            background: linear-gradient(to bottom, rgba(15, 15, 15, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
+        }
+
+        .days-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .day-card {
+            background: var(--bg-dark);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--accent-color);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .day-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-right: 1rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-light);
+            border-radius: 50%;
+        }
+
+        .day-title h3 {
+            margin-bottom: 0.2rem;
+        }
+
+        .day-title p {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .exercise-list {
+            list-style: none;
+        }
+
+        .exercise-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .exercise-item:last-child {
+            border-bottom: none;
+        }
+
+        .exercise-name {
+            font-weight: 500;
+        }
+
+        .exercise-details {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        /* Dieta Semanal */
+        .diet-section {
+            background: linear-gradient(to bottom, rgba(26, 26, 26, 0.9) 0%, rgba(15, 15, 15, 0.8) 100%);
+        }
+
+        .week-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .day-diet {
+            background: var(--bg-dark);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-diet:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--accent-color-2);
+        }
+
+        .diet-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .diet-icon {
+            font-size: 1.5rem;
+            color: var(--accent-color-2);
+            margin-right: 1rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-light);
+            border-radius: 50%;
+        }
+
+        .diet-title h3 {
+            margin-bottom: 0.2rem;
+        }
+
+        .diet-title p {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .meal-list {
+            list-style: none;
+        }
+
+        .meal-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .meal-item:last-child {
+            border-bottom: none;
+        }
+
+        .meal-time {
+            font-weight: 500;
+            color: var(--accent-color-2);
+            margin-bottom: 0.3rem;
+        }
+
+        .meal-content {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .easter-egg {
+            color: var(--text-light);
+            font-size: 0.8rem;
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        /* Botón volver arriba */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #3a5a8a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 111, 165, 0.4);
+        }
+
+        /* Barra de progreso */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--accent-color);
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        /* Responsividad */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                max-width: 100%;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                margin-top: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero {
+                padding-top: 8rem;
+            }
+            
+            .days-container, .week-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            header {
+                padding: 1rem;
+            }
+            
+            .hero {
+                padding: 6rem 1rem 4rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-text .subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
 <body>
-    <div class="snow"></div>
+    <!-- Barra de progreso -->
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
     </div>
-    
+
     <!-- Header -->
-        <header>
+    <header>
         <div class="header-container">
             <div class="logo-container">
-                <img src="https://i.ibb.co/VpP05tZq/xhryz-img.png" alt="Xhryz Logo" class="logo">
-                <span>Xhryz</span>
+                <img src="https://i.ibb.co/NgSRxWDL/Whats-App-Image-2025-09-18-at-17-56-18.jpg" alt="Logo" class="logo">
+                <span>Christian Martinez</span>
             </div>
             <nav>
                 <ul id="navMenu">
-                    <li><a href="#main"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="#experiencias"><i class="fas fa-user"></i> Conóceme</a></li>
-                    <li><a href="#proyectos"><i class="fas fa-code"></i> Proyectos</a></li>
-                    <li><a href="#descargas"><i class="fas fa-download"></i> Descargas</a></li>
-                    <li><a href="#repositorios"><i class="fab fa-github"></i> Repositorios</a></li>
-                    <li><a href="#donar"><i class="fas fa-heart"></i> Donaciones</a></li>
-                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contacto</a></li>
-                    <li><a href="mochitos.html"><i class="fa-solid fa-plane"></i> Mochitos</a></li>
+                    <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="#rutina"><i class="fas fa-dumbbell"></i> Rutina</a></li>
+                    <li><a href="#dieta"><i class="fas fa-utensils"></i> Dieta</a></li>
                 </ul>
+                <div class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
             </nav>
-            <div class="mobile-menu" id="mobileMenu">
-                <i class="fas fa-bars"></i>
-            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="main">
+    <section class="hero" id="inicio">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Christian Martinez <span class="highlight">Xhryz</span></h1>
-                <p class="subtitle">Desarrollador & Especialista en Ciberseguridad</p>
+                <h1>Rutina <span class="highlight">Extensa</span>, Semanal <span class="highlight-2">Christian</span></h1>
+                
                 <div class="social-links">
-                    <a href="discord://-/users/637698552360861696" class="social-icon" target="_blank" title="Discord">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                    <a href="https://www.instagram.com/chriismartinezz/" class="social-icon" target="_blank" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://github.com/xhryzz" class="social-icon" target="_blank" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://i.ibb.co/VpP05tZq/xhryz-img.png" alt="Xhryz" class="profile-image">
+                <img src="https://i.ibb.co/NgSRxWDL/Whats-App-Image-2025-09-18-at-17-56-18.jpg" alt="Foto de fitness" class="profile-image">
                 <div class="image-border"></div>
             </div>
         </div>
-        <div class="scroll-down">
-            <span>Scroll Down</span>
+        <div class="scroll-down" onclick="scrollToSection('rutina')">
+            <span>Ver Rutina</span>
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- Experiencias -->
-    <section class="experience-section" id="experiencias">
-        <div class="section-title">
-            <h2>Experiencias y Estudios</h2>
-        </div>
-        <div class="experience-grid">
-            <div class="experience-card">
-                <h3>Grado Medio SMX</h3>
+    <!-- Rutina de Gym -->
+    <section class="routine-section" id="rutina">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mi <span class="highlight">Rutina</span> de Gym</h2>
+                <p>Lunes a Sábado - Entrenamiento intensivo</p>
             </div>
-            <div class="experience-card">
-                <h3>Grado Superior DAM</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Grado Superior DAW</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Ciberseguridad</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Ingeniería en IA</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Machine Learning</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Blockchain y Criptografía</h3>
-            </div>
-            <div class="experience-card">
-                <h3>C++</h3>
-            </div>
-            <div class="experience-card">
-                <h3>C#</h3>
-            </div>
-            <div class="experience-card">
-                <h3>JAVA</h3>
-            </div>
-            <div class="experience-card">
-                <h3>PYTHON</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Informática Forense</h3>
-            </div>
-            <div class="experience-card">
-                <h3>HTML</h3>
-            </div>
-            <div class="experience-card">
-                <h3>CSS</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Data Science</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Desarrollo de Videojuegos</h3>
-            </div>
-            <div class="experience-card">
-                <h3>DevOps y Automatización</h3>
-            </div>
-            <div class="experience-card">
-                <h3>Análisis de Malware</h3>
+            <div class="days-container">
+                <!-- Lunes -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="day-title">
+                            <h3>Lunes</h3>
+                            <p>Pecho y Tríceps</p>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item">
+                            <span class="exercise-name">Press de banca</span>
+                            <span class="exercise-details">4x8-12</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Press inclinado</span>
+                            <span class="exercise-details">3x10-12</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Aperturas</span>
+                            <span class="exercise-details">3x12-15</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Fondos</span>
+                            <span class="exercise-details">3x10-15</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Extensión de tríceps</span>
+                            <span class="exercise-details">3x12-15</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Martes -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="day-title">
+                            <h3>Martes</h3>
+                            <p>Espalda y Bíceps</p>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item">
+                            <span class="exercise-name">Dominadas</span>
+                            <span class="exercise-details">4x8-10</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Jalón al pecho</span>
+                            <span class="exercise-details">4x10-12</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Remo con barra</span>
+                            <span class="exercise-details">4x8-12</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Curl de bíceps</span>
+                            <span class="exercise-details">3x10-12</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Curl martillo</span>
+                            <span class="exercise-details">3x12-15</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Miércoles -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="day-title">
+                            <h3>Miércoles</h3>
+                            <p>Piernas</p>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item">
+                            <span class="exercise-name">Sentadillas</span>
+                            <span class="exercise-details">4x8-10</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Prensa</span>
+                            <span class="exercise-details">4x10-12</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Extensiones</span>
+                            <span class="exercise-details">3x12-15</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Femorales</span>
+                            <span class="exercise-details">3x12-15</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Gemelos</span>
+                            <span class="exercise-details">4x15-20</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Jueves -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="day-title">
+                            <h3>Jueves</h3>
+                            <p>Hombros y Trapecio</p>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item">
+                            <span class="exercise-name">Press militar</span>
+                            <span class="exercise-details">4x8-12</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Elevaciones laterales</span>
+                            <span class="exercise-details">3x12-15</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Elevaciones frontales</span>
+                            <span class="exercise-details">3x12-15</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Encogimientos</span>
+                            <span class="exercise-details">4x12-15</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Face pulls</span>
+                            <span class="exercise-details">3x15-20</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Viernes -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="day-title">
+                            <h3>Viernes</h3>
+                            <p>Brazo y Abdomen</p>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item">
+                            <span class="exercise-name">Curl concentrado</span>
+                            <span class="exercise-details">3x10-12</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Curl polea</span>
+                            <span class="exercise-details">3x12-15</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Extensión polea</span>
+                            <span class="exercise-details">3x12-15</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Press francés</span>
+                            <span class="exercise-details">3x10-12</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Abdominales</span>
+                            <span class="exercise-details">4x15-20</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Sábado -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="day-title">
+                            <h3>Sábado</h3>
+                            <p>Cardio y Core</p>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item">
+                            <span class="exercise-name">Running</span>
+                            <span class="exercise-details">30 min</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Bicicleta</span>
+                            <span class="exercise-details">20 min</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Plancha</span>
+                            <span class="exercise-details">3x1 min</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Russian twists</span>
+                            <span class="exercise-details">3x20</span>
+                        </li>
+                        <li class="exercise-item">
+                            <span class="exercise-name">Elevación de piernas</span>
+                            <span class="exercise-details">3x15</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Proyectos -->
-    <section class="project-section" id="proyectos">
-        <div class="section-title">
-            <h2>Proyectos & Logros</h2>
-        </div>
-        
-        <div class="project-grid">
-            <div class="project-card">
-                <img alt="Venice AI" src="https://i.ibb.co/tPRCTW8/image5.webp">
-                <div class="project-content">
-                    <h3>Venice AI</h3>
-                    <p>Participación en la seguridad de Venice AI</p>
-                    <div class="project-tags">
-                        <span class="tag">Ciberseguridad</span>
-                        <span class="tag">IA</span>
-                    </div>
-                </div>
+    <!-- Dieta Semanal -->
+    <section class="diet-section" id="dieta">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mi <span class="highlight-2">Dieta</span> Semanal</h2>
+                <p>Plan de alimentación de lunes a domingo</p>
             </div>
-            
-            <div class="project-card">
-                <img alt="Wolf RP" src="https://i.ibb.co/mBX5NHf/image4.webp">
-                <div class="project-content">
-                    <h3>Wolf RP</h3>
-                    <p>Owner y Programador de Wolf RP</p>
-                    <div class="project-tags">
-                        <span class="tag">Desarrollo</span>
-                        <span class="tag">Gestión</span>
+            <div class="week-container">
+                <!-- Lunes -->
+                <div class="day-diet">
+                    <div class="diet-header">
+                        <div class="diet-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="diet-title">
+                            <h3>Lunes</h3>
+                            <p>Enfoque: Fuerza</p>
+                        </div>
                     </div>
+                    <ul class="meal-list">
+                        <li class="meal-item">
+                            <div class="meal-time">Desayuno (7:00 am)</div>
+                            <div class="meal-content">Avena con plátano, huevos revueltos (4 claras, 2 enteros), tostadas integrales</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Media Mañana (10:30 am)</div>
+                            <div class="meal-content">Batido de proteínas, almendras (30g)</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Almuerzo (1:30 pm)</div>
+                            <div class="meal-content">Pechuga de pollo (200g), arroz integral (150g), ensalada verde</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Merienda (5:00 pm)</div>
+                            <div class="meal-content">Yogur griego (200g) con frutos rojos</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Cena (8:00 pm)</div>
+                            <div class="meal-content">Salmón (200g), brócoli al vapor, quinoa (100g)</div>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            
-            <div class="project-card">
-                <img alt="Optimizer" src="https://i.ibb.co/bg0r1Ck/image3.webp">
-                <div class="project-content">
-                    <h3>Optimizer</h3>
-                    <p>Optimizador para Windows 10 y Windows 11</p>
-                    <div class="project-tags">
-                        <span class="tag">Windows</span>
-                        <span class="tag">Optimización</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <img alt="AdBlock" src="https://i.ibb.co/DwjxZ33/image2.webp">
-                <div class="project-content">
-                    <h3>AdBlock</h3>
-                    <p>Adblock para Navegadores</p>
-                    <div class="project-tags">
-                        <span class="tag">Navegadores</span>
-                        <span class="tag">Privacidad</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <img alt="Páginas Webs" src="https://i.ibb.co/hMhTBvb/image1.webp">
-                <div class="project-content">
-                    <h3>Páginas Webs</h3>
-                    <p>Webs para Particulares/Empresas</p>
-                    <div class="project-tags">
-                        <span class="tag">Web</span>
-                        <span class="tag">Desarrollo</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <img alt="Windows 10 Custom" src="https://i.ibb.co/CnX1Yqm/image.png">
-                <div class="project-content">
-                    <h3>Windows 10 Custom</h3>
-                    <p>Realización de un Windows Personalizado</p>
-                    <div class="project-tags">
-                        <span class="tag">Windows</span>
-                        <span class="tag">Personalización</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <img alt="C1b3rWall" src="https://i.ibb.co/pwW7Fc2/image-1.png">
-                <div class="project-content">
-                    <h3>C1b3rWall</h3>
-                    <p>Participante en C1b3rWall para la Policia Nacional</p>
-                    <div class="project-tags">
-                        <span class="tag">Ciberseguridad</span>
-                        <span class="tag">Hacking Ético</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <img alt="Bots Discord" src="https://i.ibb.co/6s9Qn3v/discord.jpg">
-                <div class="project-content">
-                    <h3>Bots Discord</h3>
-                    <p>Bots Personalizados para Discord</p>
-                    <div class="project-tags">
-                        <span class="tag">Discord</span>
-                        <span class="tag">Automación</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card">
-                <img alt="Programas a medida" src="https://i.ibb.co/Pm1DzTT/texto-codigo-java-digital-concepto-vector-codificacion-software-computadora-programacion-script-codi.jpg">
-                <div class="project-content">
-                    <h3>Programas a medida</h3>
-                    <p>Programas para Particulares/Empresas</p>
-                    <div class="project-tags">
-                        <span class="tag">Software</span>
-                        <span class="tag">Personalizado</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="project-grid">
-            <div class="project-card large-card">
-                <img alt="Campeón Nacional" src="https://i.ibb.co/MDbywMq/Diploma-Christian-Martinez.png">
-                <div class="project-content">
-                    <h3>Campeón Nacional</h3>
-                    <p>Campeón Nacional de Ciberseguridad y Hacking Ético 2024/2025</p>
-                    <div class="project-tags">
-                        <span class="tag">Premio</span>
-                        <span class="tag">Ciberseguridad</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Descargas -->
-    <section class="downloads-section" id="descargas">
-        <div class="section-title">
-            <h2>Descargas Disponibles</h2>
-        </div>
-        <div class="downloads-grid">
-            <div class="download-card">
-                <div class="download-icon">
-                    <i class="fab fa-php"></i>
+                <!-- Martes -->
+                <div class="day-diet">
+                    <div class="diet-header">
+                        <div class="diet-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="diet-title">
+                            <h3>Martes</h3>
+                            <p>Enfoque: Volumen</p>
+                        </div>
+                    </div>
+                    <ul class="meal-list">
+                        <li class="meal-item">
+                            <div class="meal-time">Desayuno (7:00 am)</div>
+                            <div class="meal-content">Batido de avena, proteína y frutos secos, pan integral con aguacate</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Media Mañana (10:30 am)</div>
+                            <div class="meal-content">Queso cottage con nueces, manzana</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Almuerzo (1:30 pm)</div>
+                            <div class="meal-content">Carne de res magra (200g), batata (150g), espárragos</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Merienda (5:00 pm)</div>
+                            <div class="meal-content">Hummus con zanahorias, galletas integrales</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Cena (8:00 pm)</div>
+                            <div class="meal-content">Pescado blanco (200g), ensalada de quinoa, vegetales asados</div>
+                        </li>
+                    </ul>
                 </div>
-                <h3>Extension PHP</h3>
-                <p>Extensión con IA para PHP</p>
-                <a href="descargas/vscode-xhryz-php-client-1.0.vsix" class="download-btn">
-                    <i class="fas fa-download"></i> Descargar
-                </a>
-            </div>
-            
-            <div class="download-card">
-                <div class="download-icon">
-                    <i class="fas fa-tachometer-alt"></i>
-                </div>
-                <h3>Optimizer</h3>
-                <p>Optimizador para Windows 10/11</p>
-                <a href="descargas/Optimizer-Xhryz.exe" class="download-btn">
-                    <i class="fas fa-download"></i> Descargar
-                </a>
-            </div>
-            
-            <div class="download-card">
-                <div class="download-icon">
-                    <i class="fas fa-mouse-pointer"></i>
-                </div>
-                <h3>Cursor</h3>
-                <p>Cursor Minimalista para Windows</p>
-                <a href="descargas/Cursores Mouse.rar" class="download-btn">
-                    <i class="fas fa-download"></i> Descargar
-                </a>
-            </div>
-            
-            <div class="download-card">
-                <div class="download-icon">
-                    <i class="fas fa-key"></i>
-                </div>
-                <h3>Activador</h3>
-                <p>Activador de Windows y Office 365</p>
-                <a href="descargas/act-win10-xhryz.rar" class="download-btn">
-                    <i class="fas fa-download"></i> Descargar
-                </a>
-            </div>
-            
-            <div class="download-card">
-                <div class="download-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h3>XhMacro</h3>
-                <p>Macros avanzadas</p>
-                <a href="descargas/XhMacro.exe" class="download-btn">
-                    <i class="fas fa-download"></i> Descargar
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Repositorios -->
-    <section class="repos-section" id="repositorios">
-        <div class="section-title">
-            <h2>Mis Repositorios en GitHub</h2>
-        </div>
-        <div class="repositorio-grid">
-            <div class="repositorio-card">
-                <div class="repo-header">
-                    <div class="repo-icon">
-                        <i class="fas fa-shield-alt"></i>
+                <!-- Miércoles -->
+                <div class="day-diet">
+                    <div class="diet-header">
+                        <div class="diet-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="diet-title">
+                            <h3>Miércoles</h3>
+                            <p>Enfoque: Recuperación</p>
+                        </div>
                     </div>
-                    <div class="repo-title">
-                        <h3>Recursos de Hacking Ético</h3>
-                        <p>Apuntes y guías prácticas</p>
-                    </div>
+                    <ul class="meal-list">
+                        <li class="meal-item">
+                            <div class="meal-time">Desayuno (7:00 am)</div>
+                            <div class="meal-content">Tortilla de claras con espinacas, avena con frutos rojos</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Media Mañana (10:30 am)</div>
+                            <div class="meal-content">Batido verde (espinaca, plátano, proteína)</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Almuerzo (1:30 pm)</div>
+                            <div class="meal-content">Pavo molido (200g), pasta integral (100g), vegetales mixtos</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Merienda (5:00 pm)</div>
+                            <div class="meal-content">Greek yogurt con miel y almendras</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Cena (8:00 pm)</div>
+                            <div class="meal-content">Atún (200g), patata dulce (150g), ensalada verde</div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="repo-description">
-                    <p>Este repositorio contiene mis apuntes sobre Hacking Ético, diseñado para ayudar a quienes inician en la ciberseguridad. Es un proyecto colaborativo: puedes contribuir con mejoras y correcciones.</p>
-                </div>
-                <div class="repo-stats">
-                    <div class="stat">
-                        <i class="fas fa-star"></i>
-                        <span>120 stars</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-code-branch"></i>
-                        <span>45 forks</span>
-                    </div>
-                </div>
-                <a href="https://github.com/xhryzz/hacking-etico" target="_blank" class="repo-btn">
-                    Ver en GitHub
-                </a>
-            </div>
-            
-            <div class="repositorio-card">
-                <div class="repo-header">
-                    <div class="repo-icon">
-                        <i class="fas fa-terminal"></i>
-                    </div>
-                    <div class="repo-title">
-                        <h3>BSPWM Parrot OS</h3>
-                        <p>Entorno de trabajo personalizado</p>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    <p>Este repositorio contiene la configuración y scripts para establecer un entorno de trabajo utilizando bspwm en Parrot OS. Incluye personalizaciones y herramientas útiles para mejorar la productividad.</p>
-                </div>
-                <div class="repo-stats">
-                    <div class="stat">
-                        <i class="fas fa-star"></i>
-                        <span>85 stars</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-code-branch"></i>
-                        <span>32 forks</span>
-                    </div>
-                </div>
-                <div class="repo-buttons">
-                    <a href="https://github.com/xhryzz/bspwm-parrot" target="_blank" class="repo-btn">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                    <a href="#" class="repo-btn">
-                        <i class="fab fa-youtube"></i> Video
-                    </a>
-                </div>
-            </div>
-            
-            <div class="repositorio-card">
-                <div class="repo-header">
-                    <div class="repo-icon">
-                        <i class="fab fa-spotify"></i>
-                    </div>
-                    <div class="repo-title">
-                        <h3>Spotify Premium IOS</h3>
-                        <p>Cliente de Spotify premium</p>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    <p>Este repositorio proporciona un cliente de Spotify con características premium, sin necesidad de una cuenta premium. Permite disfrutar de música de manera ilimitada y sin anuncios.</p>
-                </div>
-                <div class="repo-stats">
-                    <div class="stat">
-                        <i class="fas fa-star"></i>
-                        <span>210 stars</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-code-branch"></i>
-                        <span>78 forks</span>
-                    </div>
-                </div>
-                <div class="repo-buttons">
-                    <a href="https://github.com/xhryzz/xpotify-premium" target="_blank" class="repo-btn">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                    <a href="descargas/Xpotify-Xhryz.ipa" class="repo-btn">
-                        <i class="fas fa-download"></i> Descargar
-                    </a>
-                </div>
-            </div>
-            
-            <div class="repositorio-card">
-                <div class="repo-header">
-                    <div class="repo-icon">
-                        <i class="fas fa-dumbbell"></i>
-                    </div>
-                    <div class="repo-title">
-                        <h3>XhyTrack</h3>
-                        <p>Seguimiento de entrenamientos</p>
-                    </div>
-                </div>
-                <div class="repo-description">
-                    <p>XhyTrack es una aplicación full-stack responsiva diseñada para ayudar a las personas a llevar un control de sus entrenamientos. Los usuarios pueden agregar ejercicios, ver estadísticas/historial de sus entrenamientos.</p>
-                </div>
-                <div class="repo-stats">
-                    <div class="stat">
-                        <i class="fas fa-star"></i>
-                        <span>65 stars</span>
-                    </div>
-                    <div class="stat">
-                        <i class="fas fa-code-branch"></i>
-                        <span>23 forks</span>
-                    </div>
-                </div>
-                <a href="https://github.com/xhryzz/XhyTrack" target="_blank" class="repo-btn">
-                    Ver en GitHub
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Playlists -->
-    <section class="playlists-section" id="my-playlists">
-        <div class="section-title">
-            <h2>Mis Playlists</h2>
-        </div>
-        <div class="playlists-grid">
-            <div class="playlist-card">
-                <h3><i class="fab fa-spotify"></i> Own</h3>
-                <div class="spotify-embed">
-                    <iframe allow="encrypted-media" allowtransparency="true" frameborder="0" height="380"
-                        src="https://open.spotify.com/embed/playlist/1wuucjtHUqxlQbhTCGUDvf" width="100%"></iframe>
+                <!-- Jueves -->
+                <div class="day-diet">
+                    <div class="diet-header">
+                        <div class="diet-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="diet-title">
+                            <h3>Jueves</h3>
+                            <p>Enfoque: Energía</p>
+                        </div>
+                    </div>
+                    <ul class="meal-list">
+                        <li class="meal-item">
+                            <div class="meal-time">Desayuno (7:00 am)</div>
+                            <div class="meal-content">Pan integral con huevo, aguacate y tomate, smoothie de proteína</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Media Mañana (10:30 am)</div>
+                            <div class="meal-content">Barrita proteica casera, puñado de frutos secos</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Almuerzo (1:30 pm)</div>
+                            <div class="meal-content">Pollo al curry con arroz basmati, ensalada de col</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Merienda (5:00 pm)</div>
+                            <div class="meal-content">Requesón con piña, galletas de avena</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Cena (8:00 pm)</div>
+                            <div class="meal-content">Salmón a la plancha, espárragos trigueros, couscous</div>
+                        </li>
+                    </ul>
                 </div>
-                <a href="https://open.spotify.com/playlist/1wuucjtHUqxlQbhTCGUDvf?si=1e2f8f690029495b" target="_blank" class="playlist-link">
-                    Abrir en Spotify <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-            
-            <div class="playlist-card">
-                <h3><i class="fab fa-spotify"></i> Gym</h3>
-                <div class="spotify-embed">
-                    <iframe allow="encrypted-media" allowtransparency="true" frameborder="0" height="380"
-                        src="https://open.spotify.com/embed/playlist/6NFoOzkguzPhgAjkSR1uC5" width="100%"></iframe>
-                </div>
-                <a href="https://open.spotify.com/playlist/6NFoOzkguzPhgAjkSR1uC5?si=85d1393de3a8401f" target="_blank" class="playlist-link">
-                    Abrir en Spotify <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-            
-            <div class="playlist-card">
-                <h3><i class="fab fa-spotify"></i> Party</h3>
-                <div class="spotify-embed">
-                    <iframe allow="encrypted-media" allowtransparency="true" frameborder="0" height="380"
-                        src="https://open.spotify.com/embed/playlist/1XSkIF85cuiBikG6zygDZ6" width="100%"></iframe>
-                </div>
-                <a href="https://open.spotify.com/playlist/1XSkIF85cuiBikG6zygDZ6?si=dcf1bdf3e3104669" target="_blank" class="playlist-link">
-                    Abrir en Spotify <i class="fas fa-external-link-alt"></i>
-                </a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Donaciones -->
-    <section class="donate-section" id="donar">
-        <div class="section-title">
-            <h2>Donaciones</h2>
-        </div>
-        <div class="donate-content">
-            <p class="donate-text">Si te gusta lo que hago, puedes apoyar mi trabajo con una donación:</p>
-            <a href="https://www.paypal.com/paypalme/chriismartinezz" class="donate-btn" target="_blank">
-                <i class="fab fa-paypal"></i> Donar con PayPal
-            </a>
-        </div>
-    </section>
+                <!-- Viernes -->
+                <div class="day-diet">
+                    <div class="diet-header">
+                        <div class="diet-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="diet-title">
+                            <h3>Viernes</h3>
+                            <p>Enfoque: Definición</p>
+                        </div>
+                    </div>
+                    <ul class="meal-list">
+                        <li class="meal-item">
+                            <div class="meal-time">Desayuno (7:00 am)</div>
+                            <div class="meal-content">Tostadas de aguacate con huevo pochado, jugo de naranja natural</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Media Mañana (10:30 am)</div>
+                            <div class="meal-content">Yogur griego con granola y frutos rojos</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Almuerzo (1:30 pm)</div>
+                            <div class="meal-content">Lomo de cerdo magro, puré de calabaza, judías verdes</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Merienda (5:00 pm)</div>
+                            <div class="meal-content">Batido de proteína de suero con agua</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Cena (8:00 pm)</div>
+                            <div class="meal-content">Ensalada cesar con pollo a la parrilla, aderezo light</div>
+                        </li>
+                    </ul>
+                </div>
 
-    <!-- Contacto -->
-    <section class="contact-section" id="contact">
-        <div class="section-title">
-            <h2>Contacto</h2>
-        </div>
-        <div class="contact-container">
-            <div class="contact-info">
-                <p>Para preguntas o comentarios, escríbeme en:</p>
-                
-                <div class="contact-method">
-                    <div class="contact-icon">
-                        <i class="fab fa-discord"></i>
+                <!-- Sábado -->
+                <div class="day-diet">
+                    <div class="diet-header">
+                        <div class="diet-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="diet-title">
+                            <h3>Sábado</h3>
+                            <p>Enfoque: Descanso activo</p>
+                        </div>
                     </div>
-                    <div class="contact-text">
-                        <h4>Discord</h4>
-                        <a href="discord://-/users/637698552360861696">Xhryz.</a>
-                    </div>
+                    <ul class="meal-list">
+                        <li class="meal-item">
+                            <div class="meal-time">Desayuno (8:00 am)</div>
+                            <div class="meal-content">Tortitas de avena con plátano y miel, huevos revueltos</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Media Mañana (11:30 am)</div>
+                            <div class="meal-content">Smoothie bowl con toppings saludables</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Almuerzo (2:00 pm)</div>
+                            <div class="meal-content">Paella de mariscos light, ensalada mediterránea</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Merienda (5:30 pm)</div>
+                            <div class="meal-content">Pudín de chía con frutos del bosque</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Cena (8:30 pm)</div>
+                            <div class="meal-content">Wrap de pollo y vegetales con tortilla integral</div>
+                        </li>
+                    </ul>
                 </div>
-                
-                <div class="contact-method">
-                    <div class="contact-icon">
-                        <i class="fab fa-instagram"></i>
+
+                <!-- Domingo -->
+                <div class="day-diet">
+                    <div class="diet-header">
+                        <div class="diet-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="diet-title">
+                            <h3>Domingo</h3>
+                            <p>Enfoque: Recarga</p>
+                        </div>
                     </div>
-                    <div class="contact-text">
-                        <h4>Instagram</h4>
-                        <a href="https://www.instagram.com/chriismartinezz/" target="_blank">@chriismartinezz</a>
-                    </div>
+                    <ul class="meal-list">
+                        <li class="meal-item">
+                            <div class="meal-time">Desayuno (8:30 am)</div>
+                            <div class="meal-content">Revuelto de champiñones con jamón ibérico, pan integral</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Media Mañana (12:00 pm)</div>
+                            <div class="meal-content">Bol de frutas variadas con yogur</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Almuerzo (2:30 pm)</div>
+                            <div class="meal-content">Asado de ternera con patatas al horno y verduras</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Merienda (6:00 pm)</div>
+                            <div class="meal-content">Galletas de avena caseras, té verde</div>
+                        </li>
+                        <li class="meal-item">
+                            <div class="meal-time">Cena (9:00 pm)</div>
+                            <div class="meal-content">Sopa de verduras con picatostes, tortilla francesa</div>
+                        </li>
+                    </ul>
                 </div>
-                
-                <div class="contact-method">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <div class="contact-text">
-                        <h4>GitHub</h4>
-                        <a href="https://github.com/xhryzz" target="_blank">github.com/xhryzz</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contact-form">
-                <h3>Enviar Mensaje</h3>
-                <form id="mensajeForm">
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" class="form-control" placeholder="Tu nombre" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="tipoContacto">Contacto</label>
-                        <input type="text" id="tipoContacto" class="form-control" placeholder="Correo o Teléfono" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="mensaje">Mensaje</label>
-                        <textarea id="mensaje" class="form-control" placeholder="Escribe tu mensaje aquí" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
-                    </button>
-                </form>
             </div>
         </div>
     </section>
@@ -584,14 +1207,11 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#main" class="footer-link">Inicio</a>
-                <a href="#experiencias" class="footer-link">Experiencia</a>
-                <a href="#proyectos" class="footer-link">Proyectos</a>
-                <a href="#descargas" class="footer-link">Descargas</a>
-                <a href="#contact" class="footer-link">Contacto</a>
+                <a href="#inicio" class="footer-link">Inicio</a>
+                <a href="#rutina" class="footer-link">Rutina</a>
+                <a href="#dieta" class="footer-link">Dieta</a>
             </div>
-            <p class="copyright">© 2025 Christian Martinez (Xhryz). Todos los derechos reservados.</p>
-            <p class="easter-egg">Explora la página y descubre un easter egg escondido. Ctrl + Shift + X</p>
+            <p class="copyright">© 2025 Christian Martinez. Todos los derechos reservados.</p>
         </div>
     </footer>
 
@@ -600,284 +1220,40 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-        // Menú móvil
-        document.getElementById('mobileMenu').addEventListener('click', function() {
-            document.getElementById('navMenu').classList.toggle('show');
+        // Menu móvil
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
         });
 
-        // Barra de progreso
-        window.onscroll = function() {
+        // Botón volver arriba
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+            
+            // Barra de progreso
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-            
-            // Mostrar/ocultar botón volver arriba
-            if (winScroll > 300) {
-                document.getElementById('backToTop').classList.add('show');
-            } else {
-                document.getElementById('backToTop').classList.remove('show');
-            }
-        };
-
-        // Botón volver arriba
-        document.getElementById('backToTop').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Nieve
-        document.addEventListener('DOMContentLoaded', function () {
-            const snowContainer = document.querySelector('.snow');
-            const numFlakes = 100;
-
-            for (let i = 0; i < numFlakes; i++) {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                snowflake.style.left = Math.random() * 100 + 'vw';
-                snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
-                snowflake.style.opacity = Math.random() + 0.3;
-                snowflake.style.transform = `scale(${Math.random()})`;
-                snowflake.style.animationDelay = Math.random() * 5 + 's';
-                snowContainer.appendChild(snowflake);
-            }
-        });
-
-        // Juego Easter Egg
-        document.addEventListener('keydown', function (event) {
-            if (event.ctrlKey && event.shiftKey && event.key === 'X') {
-                let rounds = 0;
-                let playerLives = 3;
-                const maxRoundsToWin = 5;
-                const choices = ["Piedra", "Papel", "Tijeras"];
-                const choiceImages = {
-                    Piedra: "https://images.vexels.com/content/145874/preview/stone-boulder-2f1c5f.png",
-                    Papel: "https://i.ibb.co/4phx1SK/papel.png",
-                    Tijeras: "https://i.ibb.co/G3JTJwC/tijeras.png"
-                };
-                let canPlay = true;
-                const cooldownTime = 120000;
-                let timeout;
-
-                swal({
-                    title: "¡Juego Activado!",
-                    text: "¡Estás a punto de entrar en la arena de batalla! Tienes 3 vidas para desafiar al sistema. Elige sabiamente entre Piedra, Papel o Tijeras. ¡Vamos a ver quién es el más astuto!",
-                    buttons: ["Cancelar", "Comenzar"],
-                    className: "custom-swal"
-                }).then((startGame) => {
-                    if (!startGame) return;
-
-                    function playRound() {
-                        if (playerLives <= 0) {
-                            clearTimeout(timeout);
-                            swal({
-                                title: "¡Juego Terminado!",
-                                text: `¡Has perdido todas tus vidas! Has sobrevivido ${rounds} rondas. Vuelve a intentarlo.`,
-                                icon: "error",
-                                className: "custom-swal"
-                            });
-                            canPlay = false;
-                            timeout = setTimeout(() => {
-                                playerLives = 3;
-                                rounds = 0;
-                                canPlay = true;
-                                swal("¡Listo para jugar de nuevo!", "Tienes 3 vidas para comenzar.", "success");
-                            }, cooldownTime);
-                            return;
-                        }
-
-                        const content = document.createElement('div');
-                        content.innerHTML = `
-                            <h3 style="text-align:center">Ronda ${rounds + 1}: Haz tu elección</h3>
-                            <div class="choice-container">
-                                <div class="choice" data-choice="Piedra">
-                                    <img src="${choiceImages.Piedra}" alt="Piedra">
-                                    <p style="text-align:center">Piedra</p>
-                                </div>
-                                <div class="choice" data-choice="Papel">
-                                    <img src="${choiceImages.Papel}" alt="Papel">
-                                    <p style="text-align:center">Papel</p>
-                                </div>
-                                <div class="choice" data-choice="Tijeras">
-                                    <img src="${choiceImages.Tijeras}" alt="Tijeras">
-                                    <p style="text-align:center">Tijeras</p>
-                                </div>
-                            </div>
-                        `;
-
-                        swal({
-                            content,
-                            buttons: false,
-                            className: "custom-swal"
-                        });
-
-                        document.querySelectorAll('.choice').forEach(choiceElement => {
-                            choiceElement.addEventListener('click', () => {
-                                const playerChoice = choiceElement.getAttribute('data-choice');
-                                const resultContent = document.createElement('div');
-                                let currentChoiceIndex = 0;
-                                let interval;
-
-                                const stopRouletteAndDecide = () => {
-                                    clearInterval(interval);
-                                    const aiChoice = choices[Math.floor(Math.random() * choices.length)];
-                                    const resultText =
-                                        playerChoice === aiChoice ?
-                                            `¡Es un empate! Ambos habéis sacado ${playerChoice}.` :
-                                            (playerChoice === "Piedra" && aiChoice === "Tijeras") ||
-                                                (playerChoice === "Papel" && aiChoice === "Piedra") ||
-                                                (playerChoice === "Tijeras" && aiChoice === "Papel") ?
-                                            `¡Has ganado esta ronda! Tu ${playerChoice} aplasta a ${aiChoice}.` :
-                                            `¡Has perdido! ${aiChoice} derrota a tu ${playerChoice}.`;
-
-                                    resultContent.innerHTML = `
-                                        <div class="result-container">
-                                            <div>
-                                                <h4>Tu elección:</h4>
-                                                <img src="${choiceImages[playerChoice]}" alt="${playerChoice}" style="width: 80px; height: 80px;">
-                                            </div>
-                                            <div>
-                                                <h4>Elección de la IA:</h4>
-                                                <img src="${choiceImages[aiChoice]}" alt="${aiChoice}" style="width: 80px; height: 80px;">
-                                            </div>
-                                        </div>
-                                        <p style="text-align:center; margin-top: 20px;">${resultText}</p>
-                                    `;
-
-                                    if (resultText.includes("ganado")) {
-                                        rounds++;
-                                        if (rounds >= maxRoundsToWin) {
-                                            swal({
-                                                title: "¡Felicidades!",
-                                                text: "¡Has ganado 5 rondas! Haz captura de pantalla y envíamela para reclamar tu premio.",
-                                                icon: "success",
-                                                buttons: {
-                                                    link: "Enviar",
-                                                },
-                                                className: "custom-swal"
-                                            }).then((buttonClicked) => {
-                                                if (buttonClicked) {
-                                                    window.location.href = "discord://-/users/637698552360861696";
-                                                }
-                                            });
-                                        }
-                                    } else if (resultText.includes("perdido")) {
-                                        playerLives--;
-                                    }
-
-                                    swal({
-                                        content: resultContent,
-                                        buttons: {
-                                            continue: "Continuar"
-                                        },
-                                        className: "custom-swal"
-                                    }).then(() => {
-                                        playRound();
-                                    });
-                                };
-
-                                const aiImageContainer = document.createElement('div');
-                                aiImageContainer.classList.add('ai-choice-container');
-
-                                const aiImages = choices.map(choice => {
-                                    const aiImage = document.createElement('img');
-                                    aiImage.src = choiceImages[choice];
-                                    aiImage.alt = choice;
-                                    aiImage.classList.add('slot-rotation');
-                                    return aiImage;
-                                });
-
-                                aiImages.forEach(img => aiImageContainer.appendChild(img));
-
-                                resultContent.innerHTML = `
-                                    <div class="result-container">
-                                        <div>
-                                            <h4>Tu elección:</h4>
-                                            <img src="${choiceImages[playerChoice]}" alt="${playerChoice}" style="width: 80px; height: 80px;">
-                                        </div>
-                                        <div>
-                                            <h4>Elección de la IA:</h4>
-                                            ${aiImageContainer.outerHTML}
-                                        </div>
-                                    </div>
-                                    <p style="text-align:center; margin-top: 20px;">La IA está decidiendo...</p>
-                                `;
-
-                                swal({
-                                    content: resultContent,
-                                    buttons: false,
-                                    className: "custom-swal"
-                                });
-
-                                interval = setInterval(() => {
-                                    currentChoiceIndex = (currentChoiceIndex + 1) % choices.length;
-                                    aiImages.forEach((img, index) => {
-                                        img.src = choiceImages[choices[(currentChoiceIndex + index) % choices.length]];
-                                    });
-                                }, 100);
-
-                                setTimeout(stopRouletteAndDecide, 2000);
-                            });
-                        });
-                    }
-
-                    playRound();
-                });
-            }
-        });
-
-        // Formulario de contacto
-        document.getElementById('mensajeForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const nombre = document.getElementById('nombre').value;
-            const tipoContacto = document.getElementById('tipoContacto').value;
-            const mensaje = document.getElementById('mensaje').value;
-
-            const webhookURL = "https://discord.com/api/webhooks/1346617064235733003/lW1Oo7s_clIPNLfX8SFdWH3_Sn4cqO8NUIEqIfJq0R0ssRbfdj71wxJhMeok91uYEnM7";
-            const data = {
-                embeds: [{
-                    title: "Nuevo Mensaje",
-                    description: `**De parte de:** ${nombre}\n**Tipo de contacto:** ${tipoContacto}\n**Mensaje:** ${mensaje}`,
-                    color: 5814783
-                }]
-            };
-
-            fetch(webhookURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-                .then(response => {
-                    if (response.ok) {
-                        swal({
-                            title: "¡Mensaje enviado!",
-                            text: "Gracias por contactarme. Te responderé lo antes posible.",
-                            icon: "success",
-                            button: "Aceptar"
-                        });
-                        document.getElementById('mensajeForm').reset();
-                    } else {
-                        throw new Error('Error en la respuesta del servidor');
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    swal({
-                        title: "Error",
-                        text: "Hubo un problema al enviar el mensaje. Por favor inténtalo de nuevo más tarde.",
-                        icon: "error",
-                        button: "Aceptar"
-                    });
-                });
-        });
+        // Scroll a sección
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>

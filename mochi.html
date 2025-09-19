@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian y Clara</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Parisienne&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ff7eb9;
+            --secondary-color: #d867a3;
+            --accent-color: #ff5c8d;
+            --dark-color: #7e57c2;
+            --background-color: #fff5f9;
+            --card-color: #ffffff;
+            --text-color: #4a4a4a;
+            --text-light: #888;
+            --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.12);
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            --gradient-dark: linear-gradient(135deg, var(--accent-color), var(--dark-color));
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(#ff9ec5 0.5px, transparent 0.5px),
+                radial-gradient(#ff9ec5 0.5px, var(--background-color) 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header y Navegación */
+        header {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.7;
+        }
+        
+        .app-title {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+            position: relative;
+            display: inline-block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .app-title::after {
+            content: "❤";
+            position: absolute;
+            right: -25px;
+            top: 0;
+            font-size: 1.8rem;
+            color: #ffeb3b;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .logout {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .logout:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Auth Container */
+        .auth-container {
+            max-width: 450px;
+            margin: 80px auto;
+            padding: 30px;
+            background-color: var(--card-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .auth-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--gradient);
+        }
+        
+        .auth-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+            padding-left: 5px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: 2px solid #f0f0f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: var(--transition);
+            background-color: #fafafa;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 126, 185, 0.2);
+            outline: none;
+            background-color: white;
+        }
+        
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 42px;
+            color: var(--text-light);
+            font-size: 18px;
+        }
+        
+        button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: var(--transition);
+            box-shadow: 0 4px 10px rgba(255, 126, 185, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 126, 185, 0.5);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .login-message {
+            color: #ff4757;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+            background-color: rgba(255, 71, 87, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #ff4757;
+        }
+        
+        /* Dashboard */
+        .dashboard {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Banner */
+        .banner {
+            width: 100%;
+            height: 350px;
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 25px;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+        
+        .banner::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+        
+        .banner-upload {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            z-index: 2;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .banner-upload:hover {
+            background-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Counters */
+        .counters {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .counter {
+            background-color: var(--card-color);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            min-width: 250px;
+            flex: 1;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .counter:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .counter::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .counter h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .counter .days {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .counter button {
+            width: auto;
+            padding: 10px 20px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            background: var(--gradient-dark);
+        }
+        
+        /* Albums */
+        .albums-container {
+            margin-top: 40px;
+            padding: 25px;
+            background-color: var(--card-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .albums-container h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #createAlbumBtn {
+            width: auto;
+            margin: 15px 0;
+            padding: 12px 25px;
+        }
+        
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .album-card {
+            background-color: var(--card-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .album-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .album-thumbnail {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .album-thumbnail::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        }
+        
+        .album-info {
+            padding: 20px;
+        }
+        
+        .album-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .album-count {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: var(--card-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+        }
+        
+        .modal-content h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+        
+        .close:hover {
+            color: var(--accent-color);
+            transform: rotate(90deg);
+        }
+        
+        /* View Album Modal */
+        #albumPhotos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 12px;
+        }
+        
+        #albumPhotos img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        #albumPhotos img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .counters {
+                flex-direction: column;
+            }
+            
+            .counter {
+                width: 100%;
+            }
+            
+            .albums-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .banner {
+                height: 250px;
+            }
+            
+            .app-title {
+                font-size: 2.2rem;
+            }
+            
+            .logout {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            #albumPhotos {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor de autenticación -->
+    <div id="authContainer" class="auth-container">
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" required placeholder="Tu email">
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" required placeholder="Tu contraseña">
+            </div>
+            <button type="submit"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+        </form>
+        <p id="loginMessage" class="login-message">Credenciales incorrectas</p>
+    </div>
+
+    <!-- Dashboard principal -->
+    <div id="dashboard" class="dashboard">
+        <header>
+            <h1 class="app-title">Christian y Clara</h1>
+            <div class="logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</div>
+        </header>
+        
+        <div class="container">
+            <!-- Banner con imagen -->
+            <div class="banner" id="banner" style="background-image: url('https://images.unsplash.com/photo-1533153922506-5e5d7c644ab4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1500&q=80')">
+                <div class="banner-upload" id="bannerUploadBtn"><i class="fas fa-camera"></i> Cambiar banner</div>
+            </div>
+            
+            <!-- Contadores -->
+            <div class="counters">
+                <div class="counter">
+                    <h3><i class="fas fa-heart"></i> Días juntos</h3>
+                    <div class="days" id="daysTogether">0</div>
+                    <p>Cada día contigo es especial</p>
+                </div>
+                <div class="counter">
+                    <h3><i class="fas fa-calendar-check"></i> Días para vernos</h3>
+                    <div class="days" id="daysUntilMeet">0</div>
+                    <p>¡Pronto estaremos juntos!</p>
+                    <div style="margin-top: 15px;">
+                        <button id="editMeetDateBtn"><i class="fas fa-edit"></i> Editar fecha</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Álbumes de fotos -->
+            <div class="albums-container">
+                <h2><i class="fas fa-images"></i> Nuestros Álbumes</h2>
+                <p>Guarda todos tus recuerdos especiales</p>
+                <button id="createAlbumBtn"><i class="fas fa-plus"></i> Crear nuevo álbum</button>
+                <div class="albums-grid" id="albumsGrid">
+                    <!-- Los álbumes se cargarán aquí dinámicamente -->
+                    <div class="album-card">
+                        <div class="album-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1516487106395-f2d269d6a21c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"></div>
+                        <div class="album-info">
+                            <div class="album-title">Nuestro primer viaje</div>
+                            <div class="album-count"><i class="fas fa-image"></i> 24 foto(s)</div>
+                        </div>
+                    </div>
+                    <div class="album-card">
+                        <div class="album-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1543080853-556086153871?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')"></div>
+                        <div class="album-info">
+                            <div class="album-title">Celebraciones</div>
+                            <div class="album-count"><i class="fas fa-image"></i> 18 foto(s)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para cambiar banner -->
+    <div id="bannerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeBannerModal">&times;</span>
+            <h2><i class="fas fa-camera"></i> Cambiar banner</h2>
+            <p>Selecciona una imagen especial para tu banner</p>
+            <div class="form-group">
+                <input type="file" id="bannerImageInput" accept="image/*">
+            </div>
+            <button id="uploadBannerBtn"><i class="fas fa-upload"></i> Subir banner</button>
+        </div>
+    </div>
+
+    <!-- Modal para editar fecha de encuentro -->
+    <div id="meetDateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeMeetDateModal">&times;</span>
+            <h2><i class="fas fa-calendar-alt"></i> Editar fecha de encuentro</h2>
+            <div class="form-group">
+                <label for="meetDate">Fecha de encuentro:</label>
+                <input type="date" id="meetDate" required>
+            </div>
+            <button id="saveMeetDateBtn"><i class="fas fa-save"></i> Guardar fecha</button>
+        </div>
+    </div>
+
+    <!-- Modal para crear álbum -->
+    <div id="createAlbumModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeCreateAlbumModal">&times;</span>
+            <h2><i class="fas fa-plus-circle"></i> Crear nuevo álbum</h2>
+            <div class="form-group">
+                <label for="albumTitle">Título del álbum:</label>
+                <input type="text" id="albumTitle" required placeholder="Ej: Nuestro aniversario">
+            </div>
+            <button id="saveAlbumBtn"><i class="fas fa-save"></i> Crear álbum</button>
+        </div>
+    </div>
+
+    <!-- Modal para ver álbum -->
+    <div id="viewAlbumModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeViewAlbumModal">&times;</span>
+            <h2 id="viewAlbumTitle"><i class="fas fa-images"></i> Álbum</h2>
+            <div id="albumPhotos">
+                <!-- Las fotos del álbum se cargarán aquí -->
+                <img src="https://images.unsplash.com/photo-1543080853-556086153871?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Foto">
+                <img src="https://images.unsplash.com/photo-1516487106395-f2d269d6a21c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Foto">
+                <img src="https://images.unsplash.com/photo-1533153922506-5e5d7c644ab4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Foto">
+            </div>
+            <div class="form-group">
+                <input type="file" id="albumImageInput" accept="image/*" multiple>
+            </div>
+            <button id="uploadAlbumPhotosBtn"><i class="fas fa-plus"></i> Añadir fotos</button>
+        </div>
+    </div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyC_gHa8AHrgtcPruQAx9tbp7zTKgf9Ats0",
+    authDomain: "fir-1fc83.firebaseapp.com",
+    projectId: "fir-1fc83",
+    storageBucket: "fir-1fc83.firebasestorage.app",
+    messagingSenderId: "87426301614",
+    appId: "1:87426301614:web:dade152a5d20d4cb2d373f"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // Usuarios (solo para demo)
+  const users = {
+      "christian.martinezbx@gmail.com": { password: "Lionelmesi10_", name: "Christian" },
+      "claratormoshuget@gmail.com": { password: "claratormoshuget@gmail.com", name: "Clara" }
+  };
+
+  // Elementos DOM
+  const loginForm = document.getElementById('loginForm');
+  const authContainer = document.getElementById('authContainer');
+  const dashboard = document.getElementById('dashboard');
+  const loginMessage = document.getElementById('loginMessage');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const daysTogetherEl = document.getElementById('daysTogether');
+  const daysUntilMeetEl = document.getElementById('daysUntilMeet');
+  const bannerUploadBtn = document.getElementById('bannerUploadBtn');
+  const bannerModal = document.getElementById('bannerModal');
+  const closeBannerModal = document.getElementById('closeBannerModal');
+  const uploadBannerBtn = document.getElementById('uploadBannerBtn');
+  const bannerImageInput = document.getElementById('bannerImageInput');
+  const editMeetDateBtn = document.getElementById('editMeetDateBtn');
+  const meetDateModal = document.getElementById('meetDateModal');
+  const closeMeetDateModal = document.getElementById('closeMeetDateModal');
+  const saveMeetDateBtn = document.getElementById('saveMeetDateBtn');
+  const meetDateInput = document.getElementById('meetDate');
+  const createAlbumBtn = document.getElementById('createAlbumBtn');
+  const createAlbumModal = document.getElementById('createAlbumModal');
+  const closeCreateAlbumModal = document.getElementById('closeCreateAlbumModal');
+  const saveAlbumBtn = document.getElementById('saveAlbumBtn');
+  const albumTitleInput = document.getElementById('albumTitle');
+  const albumsGrid = document.getElementById('albumsGrid');
+  const viewAlbumModal = document.getElementById('viewAlbumModal');
+  const closeViewAlbumModal = document.getElementById('closeViewAlbumModal');
+  const viewAlbumTitle = document.getElementById('viewAlbumTitle');
+  const albumPhotos = document.getElementById('albumPhotos');
+  const uploadAlbumPhotosBtn = document.getElementById('uploadAlbumPhotosBtn');
+  const albumImageInput = document.getElementById('albumImageInput');
+
+  // Fecha de inicio de relación
+  const startDate = new Date('2025-08-02');
+
+  let currentUser = null;
+  let meetDate = null;
+  let currentAlbumId = null;
+
+  document.addEventListener('DOMContentLoaded', () => {
+      checkAuth();
+      updateCounters();
+
+      // Listeners de login/logout
+      loginForm.addEventListener('submit', handleLogin);
+      logoutBtn.addEventListener('click', handleLogout);
+
+      // Banner
+      bannerUploadBtn.addEventListener('click', () => bannerModal.style.display = 'flex');
+      closeBannerModal.addEventListener('click', () => bannerModal.style.display = 'none');
+      uploadBannerBtn.addEventListener('click', handleBannerUpload);
+
+      // Meet date
+      editMeetDateBtn.addEventListener('click', () => {
+          if (meetDate) meetDateInput.value = formatDateForInput(meetDate);
+          meetDateModal.style.display = 'flex';
+      });
+      closeMeetDateModal.addEventListener('click', () => meetDateModal.style.display = 'none');
+      saveMeetDateBtn.addEventListener('click', handleSaveMeetDate);
+
+      // Albums
+      createAlbumBtn.addEventListener('click', () => createAlbumModal.style.display = 'flex');
+      closeCreateAlbumModal.addEventListener('click', () => createAlbumModal.style.display = 'none');
+      saveAlbumBtn.addEventListener('click', handleCreateAlbum);
+      closeViewAlbumModal.addEventListener('click', () => viewAlbumModal.style.display = 'none');
+      uploadAlbumPhotosBtn.addEventListener('click', handleUploadAlbumPhotos);
+
+      // Cerrar modales clic afuera
+      window.addEventListener('click', e => {
+          if (e.target === bannerModal) bannerModal.style.display = 'none';
+          if (e.target === meetDateModal) meetDateModal.style.display = 'none';
+          if (e.target === createAlbumModal) createAlbumModal.style.display = 'none';
+          if (e.target === viewAlbumModal) viewAlbumModal.style.display = 'none';
+      });
+
+      // Escuchar cambios Firebase en tiempo real
+      db.ref('app/meetDate').on('value', snapshot => {
+          const date = snapshot.val();
+          if (date) {
+              meetDate = new Date(date);
+              updateCounters();
+          }
+      });
+
+      db.ref('app/banner').on('value', snapshot => {
+          const bannerUrl = snapshot.val();
+          if (bannerUrl) document.getElementById('banner').style.backgroundImage = `url(${bannerUrl})`;
+      });
+
+      db.ref('app/albums').on('value', snapshot => {
+          const albums = snapshot.val() || [];
+          loadAlbumsFromData(albums);
+      });
+  });
+
+  // Funciones de autenticación
+  function checkAuth() {
+      const user = localStorage.getItem('currentUser');
+      if (user) {
+          currentUser = JSON.parse(user);
+          authContainer.style.display = 'none';
+          dashboard.style.display = 'block';
+      }
+  }
+
+  function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (users[email] && users[email].password === password) {
+          currentUser = { email, name: users[email].name };
+          localStorage.setItem('currentUser', JSON.stringify(currentUser));
+          authContainer.style.display = 'none';
+          dashboard.style.display = 'block';
+          loginMessage.style.display = 'none';
+      } else {
+          loginMessage.style.display = 'block';
+      }
+  }
+
+  function handleLogout() {
+      localStorage.removeItem('currentUser');
+      currentUser = null;
+      authContainer.style.display = 'block';
+      dashboard.style.display = 'none';
+  }
+
+  // Contadores
+  function updateCounters() {
+      const today = new Date();
+      const daysTogether = Math.floor((today - startDate) / (1000 * 3600 * 24));
+      daysTogetherEl.textContent = daysTogether;
+
+      if (meetDate) {
+          const daysUntilMeet = Math.ceil((meetDate - today) / (1000 * 3600 * 24));
+          daysUntilMeetEl.textContent = daysUntilMeet > 0 ? daysUntilMeet : 0;
+      } else {
+          daysUntilMeetEl.textContent = '0';
+      }
+  }
+
+  // Banner
+  function handleBannerUpload() {
+      const file = bannerImageInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+          const bannerUrl = e.target.result;
+          db.ref('app/banner').set(bannerUrl);
+          bannerModal.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+  }
+
+  // Meet Date
+  function handleSaveMeetDate() {
+      meetDate = new Date(meetDateInput.value);
+      db.ref('app/meetDate').set(meetDate.toISOString());
+      meetDateModal.style.display = 'none';
+  }
+
+  // Albums
+  function handleCreateAlbum() {
+      const title = albumTitleInput.value.trim();
+      if (!title) return;
+
+      const newAlbum = { id: Date.now(), title, photos: [], createdAt: new Date().toISOString() };
+
+      db.ref('app/albums').once('value').then(snapshot => {
+          const albums = snapshot.val() || [];
+          albums.push(newAlbum);
+          db.ref('app/albums').set(albums);
+      });
+
+      albumTitleInput.value = '';
+      createAlbumModal.style.display = 'none';
+  }
+
+  function loadAlbumsFromData(albums) {
+      albumsGrid.innerHTML = '';
+      albums.forEach(album => {
+          const albumCard = document.createElement('div');
+          albumCard.className = 'album-card';
+          albumCard.innerHTML = `
+              <div class="album-thumbnail" style="background-image: url(${album.photos.length > 0 ? album.photos[0] : 'https://via.placeholder.com/250x180?text=Sin+imágenes'})"></div>
+              <div class="album-info">
+                  <div class="album-title">${album.title}</div>
+                  <div class="album-count"><i class="fas fa-image"></i> ${album.photos.length} foto(s)</div>
+              </div>
+          `;
+          albumCard.addEventListener('click', () => viewAlbum(album.id));
+          albumsGrid.appendChild(albumCard);
+      });
+  }
+
+  function viewAlbum(albumId) {
+      db.ref('app/albums').once('value').then(snapshot => {
+          const albums = snapshot.val() || [];
+          const album = albums.find(a => a.id === albumId);
+          if (!album) return;
+
+          currentAlbumId = albumId;
+          viewAlbumTitle.textContent = album.title;
+          albumPhotos.innerHTML = '';
+          album.photos.forEach(photo => {
+              const img = document.createElement('img');
+              img.src = photo;
+              albumPhotos.appendChild(img);
+          });
+          viewAlbumModal.style.display = 'flex';
+      });
+  }
+
+  function handleUploadAlbumPhotos() {
+      const files = albumImageInput.files;
+      if (!files.length || !currentAlbumId) return;
+
+      db.ref('app/albums').once('value').then(snapshot => {
+          const albums = snapshot.val() || [];
+          const albumIndex = albums.findIndex(a => a.id === currentAlbumId);
+          if (albumIndex === -1) return;
+
+          for (let i = 0; i < files.length; i++) {
+              const reader = new FileReader();
+              reader.onload = e => {
+                  albums[albumIndex].photos.push(e.target.result);
+                  db.ref('app/albums').set(albums);
+              };
+              reader.readAsDataURL(files[i]);
+          }
+      });
+  }
+
+  function formatDateForInput(date) {
+      const y = date.getFullYear();
+      const m = String(date.getMonth() + 1).padStart(2, '0');
+      const d = String(date.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+  }
+</script>
+
+</body>
+</html>
